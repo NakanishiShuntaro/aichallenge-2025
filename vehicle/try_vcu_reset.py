@@ -2,8 +2,9 @@
 # This script send Ctrl + C several times, then send Ctrl + D.
 
 import argparse
-import serial
 import time
+
+import serial
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--device", default="/dev/vcu/usb")

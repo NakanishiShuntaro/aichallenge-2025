@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
 import rclpy
+import rclpy.executors
 import rclpy.node
 import rclpy.qos
-import rclpy.executors
 from std_msgs.msg import Float64MultiArray
-from visualization_msgs.msg import MarkerArray
-from visualization_msgs.msg import Marker
+from visualization_msgs.msg import Marker, MarkerArray
 
 
 class ObjectMarkerNode(rclpy.node.Node):
     def __init__(self):
         super().__init__("object_marker")
-        self.sub = self.create_subscription(Float64MultiArray, "/aichallenge/objects", self.callback, 1)
+        self.sub = self.create_subscription(
+            Float64MultiArray, "/aichallenge/objects", self.callback, 1
+        )
         self.pub = self.create_publisher(MarkerArray, "/aichallenge/objects_marker", 1)
 
     def callback(self, msg):
         markers = MarkerArray()
-        markers.markers = [self.create_marker(msg.data, i) for i in range(0, len(msg.data), 4)]
+        markers.markers = [
+            self.create_marker(msg.data, i) for i in range(0, len(msg.data), 4)
+        ]
         self.pub.publish(markers)
 
     def create_marker(self, data, i):
@@ -39,13 +42,21 @@ class ObjectMarkerNode(rclpy.node.Node):
         marker.color.a = 1.0
         return marker
 
-class PitStopMarkerNode(rclpy.node.Node):
 
+class PitStopMarkerNode(rclpy.node.Node):
     def __init__(self):
         super().__init__("pitstop_marker")
-        qos = rclpy.qos.QoSProfile(depth=1, reliability=rclpy.qos.QoSReliabilityPolicy.RELIABLE, durability=rclpy.qos.QoSDurabilityPolicy.TRANSIENT_LOCAL)
-        self.sub = self.create_subscription(Float64MultiArray, "/aichallenge/pitstop/area", self.callback, qos)
-        self.pub = self.create_publisher(MarkerArray, "/aichallenge/pitstop/area_marker", qos)
+        qos = rclpy.qos.QoSProfile(
+            depth=1,
+            reliability=rclpy.qos.QoSReliabilityPolicy.RELIABLE,
+            durability=rclpy.qos.QoSDurabilityPolicy.TRANSIENT_LOCAL,
+        )
+        self.sub = self.create_subscription(
+            Float64MultiArray, "/aichallenge/pitstop/area", self.callback, qos
+        )
+        self.pub = self.create_publisher(
+            MarkerArray, "/aichallenge/pitstop/area_marker", qos
+        )
 
     def callback(self, msg):
         markers = MarkerArray()
@@ -75,6 +86,7 @@ class PitStopMarkerNode(rclpy.node.Node):
         marker.color.a = 1.0
         return marker
 
+
 def main(args=None):
     rclpy.init(args=args)
     executor = rclpy.executors.SingleThreadedExecutor()
@@ -82,6 +94,7 @@ def main(args=None):
     executor.add_node(PitStopMarkerNode())
     executor.spin()
     rclpy.shutdown()
+
 
 if __name__ == "__main__":
     main()

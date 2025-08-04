@@ -19,3 +19,12 @@ repos:
     hooks:
       - id: shfmt
         args: [-w, -s, -i=4]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+        files: ^aichallenge/workspace/src/aichallenge_submit/.*\.py$
+      - id: ruff-format
+        files: ^aichallenge/workspace/src/aichallenge_submit/.*\.py$

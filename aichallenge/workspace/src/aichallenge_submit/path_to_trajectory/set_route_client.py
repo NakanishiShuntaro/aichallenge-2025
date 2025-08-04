@@ -1,7 +1,7 @@
 import rclpy
-from rclpy.node import Node
 from autoware_planning_msgs.srv import SetRoute
 from geometry_msgs.msg import PoseStamped
+from rclpy.node import Node
 
 
 class SetRouteClientAsync(Node):
@@ -27,7 +27,7 @@ class SetRouteClientAsync(Node):
 
         self.future = self.cli.call_async(request)
         self.future.add_done_callback(self.future_callback)
-    
+
     def future_callback(self, future):
         try:
             response = future.result()

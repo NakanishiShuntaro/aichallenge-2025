@@ -1,5 +1,6 @@
 import argparse
 import json
+
 import numpy
 
 
@@ -62,7 +63,7 @@ summary = {
     "min_time": create_min_time(details),
     "total_lap_time": create_total_lap_time(details),
     "num_laps": create_num_laps(details),
-    #"max_jerk": create_max_jerk(details, dt, ws),
+    # "max_jerk": create_max_jerk(details, dt, ws),
 }
 
 with open(args.output, "w") as fp:

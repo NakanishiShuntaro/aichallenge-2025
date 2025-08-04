@@ -7,9 +7,7 @@ RUN apt-get update
 COPY packages.txt /tmp/packages.txt
 RUN xargs -a /tmp/packages.txt apt-get install -y --no-install-recommends
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install -r requirements.txt
+COPY --from=ghcr.io/astral-sh/uv:0.8.4 /uv /uvx /bin/
 
 # PATH="$PATH:/root/.local/bin"
 # PATH="/usr/local/cuda/bin:$PATH"
@@ -52,3 +50,16 @@ RUN bash -c ' \
 
 ENTRYPOINT []
 CMD ["bash", "/aichallenge/run_evaluation.bash"]
+
+# Set up Python environment with uv
+WORKDIR /app
+COPY pyproject.toml .python-version ./
+RUN uv python install 3.13 && \
+    uv python pin 3.13 && \
+    uv venv && \
+    uv sync
+
+# Activate virtual environment in shell
+ENV PATH="/app/.venv/bin:$PATH"
+
+CMD ["/bin/bash"]
