@@ -1,0 +1,3 @@
+[submodule "aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor"]
+	path = aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor
+	url = https://github.com/iASL-Gifu/aichallenge-trajectory-editor.git
