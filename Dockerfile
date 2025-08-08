@@ -7,8 +7,19 @@ RUN apt-get update
 COPY packages.txt /tmp/packages.txt
 RUN xargs -a /tmp/packages.txt apt-get install -y --no-install-recommends
 
-COPY --from=ghcr.io/astral-sh/uv:0.8.4 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.8.6 /uv /uvx /bin/
 
+# Set up Python environment with uv
+WORKDIR /app
+
+RUN uv python install 3.13 && \
+    uv python pin 3.13 && \
+    uv venv
+
+COPY ./pyproject.toml uv.lock .python-version /app/
+RUN  uv sync
+
+RUN echo "source /home/${USERNAME}/.venv/bin/activate" >> ~/.bashrc
 # PATH="$PATH:/root/.local/bin"
 # PATH="/usr/local/cuda/bin:$PATH"
 ENV XDG_RUNTIME_DIR=/tmp/xdg
@@ -50,16 +61,3 @@ RUN bash -c ' \
 
 ENTRYPOINT []
 CMD ["bash", "/aichallenge/run_evaluation.bash"]
-
-# Set up Python environment with uv
-WORKDIR /app
-COPY pyproject.toml .python-version ./
-RUN uv python install 3.13 && \
-    uv python pin 3.13 && \
-    uv venv && \
-    uv sync
-
-# Activate virtual environment in shell
-ENV PATH="/app/.venv/bin:$PATH"
-
-CMD ["/bin/bash"]
