@@ -4,3 +4,6 @@
 *.webm
 *.db3
 rosbag2*/
+
+# Ignore embedded git repo to avoid accidental inclusion
+/aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/
