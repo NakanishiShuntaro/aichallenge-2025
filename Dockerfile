@@ -7,16 +7,10 @@ RUN apt-get update
 COPY packages.txt /tmp/packages.txt
 RUN xargs -a /tmp/packages.txt apt-get install -y --no-install-recommends
 
-# uvバイナリをコピー
-COPY --from=ghcr.io/astral-sh/uv:0.8.6 /uv /uvx /bin/
-RUN uv python install 3.13 && \
-  uv python pin 3.13 && \
-  uv venv
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-COPY ./pyproject.toml uv.lock .python-version /aichallenge/
-RUN /bin/bash -c "source .venv/bin/activate && uv sync"
-
-# 必要なら仮想環境の有効化
 # PATH="$PATH:/root/.local/bin"
 # PATH="/usr/local/cuda/bin:$PATH"
 ENV XDG_RUNTIME_DIR=/tmp/xdg
@@ -29,7 +23,6 @@ COPY vehicle/cyclonedds.xml /opt/autoware/cyclonedds.xml
 FROM common AS dev
 
 RUN echo 'export PS1="\[\e]0;(AIC_DEV) ${debian_chroot:+($debian_chroot)}\u@\h: \w\a\](AIC_DEV) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "' >> /etc/skel/.bashrc
-RUN echo 'source /aichallenge/.venv/bin/activate' >> /etc/skel/.bashrc
 RUN echo 'cd /aichallenge' >> /etc/skel/.bashrc
 RUN echo 'eval $(resize)' >> /etc/skel/.bashrc
 ENV RCUTILS_COLORIZED_OUTPUT=1
