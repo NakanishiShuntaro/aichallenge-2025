@@ -1,0 +1,102 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2025-08-10-21-13-07-712789-ubuntu-HP-Laptop-14s-dq5xxx-174
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: The arguments for aichallenge_system_launch.
+[INFO] [launch.user]:  - simulation: true
+[INFO] [launch.user]:  - use_sim_time: true
+[INFO] [launch.user]:  - sensor_model: racing_kart_sensor_kit
+[INFO] [launch.user]:  - launch_vehicle_interface: true
+[INFO] [launch.user]:  - rviz config: /aichallenge/workspace/install/aichallenge_system_launch/share/aichallenge_system_launch/config/autoware.rviz
+[INFO] [launch.user]: The arguments for aichallenge_submit_launch.
+[INFO] [launch.user]:  - simulation: true
+[INFO] [launch.user]:  - use_sim_time: true
+[INFO] [launch.user]:  - sensor_model: racing_kart_sensor_kit
+[INFO] [launch.user]:  - launch_vehicle_interface: true
+[INFO] [launch.user]: echo launch param use_sim_time: true launch_vehicle_interface: true sensor_model: racing_kart_sensor_kit
+[INFO] [robot_state_publisher-1]: process started with pid [188]
+[INFO] [vehicle_velocity_converter-2]: process started with pid [190]
+[INFO] [imu_corrector-3]: process started with pid [192]
+[INFO] [gnss_poser-4]: process started with pid [194]
+[INFO] [gyro_odometer-5]: process started with pid [196]
+[INFO] [imu_gnss_poser_node-6]: process started with pid [198]
+[INFO] [ekf_localizer-7]: process started with pid [200]
+[INFO] [twist2accel-8]: process started with pid [202]
+[INFO] [simple_trajectory_generator_node-9]: process started with pid [204]
+[INFO] [interactive_server-10]: process started with pid [206]
+[INFO] [simple_pure_pursuit-11]: process started with pid [208]
+[INFO] [component_container-12]: process started with pid [210]
+[INFO] [raw_vehicle_cmd_converter_node-13]: process started with pid [212]
+[INFO] [goal_pose_setter_node-14]: process started with pid [214]
+[INFO] [rviz2-15]: process started with pid [216]
+[INFO] [relay-16]: process started with pid [242]
+[INFO] [control_mode_adapter.py-17]: process started with pid [275]
+[INFO] [actuation_cmd_converter-18]: process started with pid [281]
+[INFO] [relay-19]: process started with pid [300]
+[INFO] [component_container_mt-20]: process started with pid [310]
+[simple_pure_pursuit-11] [INFO] [1754827988.967421282] [simple_pure_pursuit_node]: odometry is not available
+[simple_trajectory_generator_node-9] [INFO] [1754827988.968009769] [planning.scenario_planning.simple_trajectory_generator]: csv_path parameter changed from '' to '/aichallenge/workspace/install/simple_trajectory_generator/share/simple_trajectory_generator/data/raceline_awsim_15km.csv'
+[simple_trajectory_generator_node-9] [INFO] [1754827988.970114002] [planning.scenario_planning.simple_trajectory_generator]: Successfully loaded new trajectory from CSV: /aichallenge/workspace/install/simple_trajectory_generator/share/simple_trajectory_generator/data/raceline_awsim_15km.csv with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754827988.970407023] [planning.scenario_planning.simple_trajectory_generator]: z parameter changed to 6.500000
+[simple_trajectory_generator_node-9] [INFO] [1754827988.971011056] [planning.scenario_planning.simple_trajectory_generator]: Loaded trajectory from CSV with 121 points
+[interactive_server-10] [INFO] [1754827988.998161779] [editor_tool_server]: Waiting for 5.000000 seconds before loading CSV and publishing markers.
+[gyro_odometer-5] [WARN] [1754827988.998279928] [localization.gyro_odometer]: Imu msg is not subscribed
+[ekf_localizer-7] [WARN] [1754827989.067206438] [localization.ekf_localizer]: The node is not activated. Provide initial pose to pose_initializer
+[component_container-12] [INFO] [1754827989.070774198] [map.map_container]: Load Library: /autoware/install/map_loader/lib/liblanelet2_map_loader_node.so
+[robot_state_publisher-1] [INFO] [1754827989.079434073] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1754827989.079588710] [robot_state_publisher]: got segment gnss_link
+[robot_state_publisher-1] [INFO] [1754827989.079610255] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-1] [INFO] [1754827989.079621595] [robot_state_publisher]: got segment sensor_kit_base_link
+[component_container-12] [INFO] [1754827989.099471480] [map.map_container]: Found class: rclcpp_components::NodeFactoryTemplate<Lanelet2MapLoaderNode>
+[component_container-12] [INFO] [1754827989.099529254] [map.map_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<Lanelet2MapLoaderNode>
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/lanelet2_map_loader' in container '/map/map_container'
+[component_container-12] [INFO] [1754827989.125639971] [map.map_container]: Load Library: /autoware/install/map_loader/lib/liblanelet2_map_visualization_node.so
+[component_container-12] [INFO] [1754827989.128785105] [map.map_container]: Found class: rclcpp_components::NodeFactoryTemplate<Lanelet2MapVisualizationNode>
+[component_container-12] [INFO] [1754827989.128833668] [map.map_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<Lanelet2MapVisualizationNode>
+[component_container_mt-20] [INFO] [1754827989.143151698] [system.system_monitor.system_monitor.system_monitor_container]: Load Library: /autoware/install/system_monitor/lib/libcpu_monitor_lib.so
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/lanelet2_map_visualization' in container '/map/map_container'
+[component_container-12] [INFO] [1754827989.150591126] [map.lanelet2_map_visualization]: Map is loaded
+[component_container-12] 
+[component_container_mt-20] [INFO] [1754827989.153816511] [system.system_monitor.system_monitor.system_monitor_container]: Found class: rclcpp_components::NodeFactoryTemplate<CPUMonitor>
+[component_container_mt-20] [INFO] [1754827989.153891725] [system.system_monitor.system_monitor.system_monitor_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<CPUMonitor>
+[component_container-12] [INFO] [1754827989.158886740] [map.map_container]: Load Library: /autoware/install/map_tf_generator/lib/libvector_map_tf_generator_node.so
+[component_container-12] [INFO] [1754827989.172042042] [map.map_container]: Found class: rclcpp_components::NodeFactoryTemplate<VectorMapTFGeneratorNode>
+[component_container-12] [INFO] [1754827989.172094732] [map.map_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<VectorMapTFGeneratorNode>
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/cpu_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[component_container_mt-20] [INFO] [1754827989.195818889] [system.system_monitor.system_monitor.system_monitor_container]: Load Library: /autoware/install/system_monitor/lib/libmem_monitor_lib.so
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/vector_map_tf_generator' in container '/map/map_container'
+[component_container_mt-20] [INFO] [1754827989.200026040] [system.system_monitor.system_monitor.system_monitor_container]: Found class: rclcpp_components::NodeFactoryTemplate<MemMonitor>
+[component_container_mt-20] [INFO] [1754827989.200105206] [system.system_monitor.system_monitor.system_monitor_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<MemMonitor>
+[component_container-12] [INFO] [1754827989.202282257] [map.vector_map_tf_generator]: broadcast static tf. map_frame:map, viewer_frame:viewer, x:89648.2, y:43157.2, z:6.5
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/mem_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[component_container_mt-20] [INFO] [1754827989.220581115] [system.system_monitor.system_monitor.system_monitor_container]: Load Library: /autoware/install/system_monitor/lib/libprocess_monitor_lib.so
+[component_container_mt-20] [INFO] [1754827989.222766799] [system.system_monitor.system_monitor.system_monitor_container]: Found class: rclcpp_components::NodeFactoryTemplate<ProcessMonitor>
+[component_container_mt-20] [INFO] [1754827989.222838092] [system.system_monitor.system_monitor.system_monitor_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<ProcessMonitor>
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/process_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[component_container_mt-20] [INFO] [1754827989.242244099] [system.system_monitor.system_monitor.system_monitor_container]: Load Library: /autoware/install/system_monitor/lib/libvoltage_monitor_lib.so
+[component_container_mt-20] [INFO] [1754827989.244365862] [system.system_monitor.system_monitor.system_monitor_container]: Found class: rclcpp_components::NodeFactoryTemplate<VoltageMonitor>
+[component_container_mt-20] [INFO] [1754827989.244445745] [system.system_monitor.system_monitor.system_monitor_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<VoltageMonitor>
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/voltage_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[rviz2-15] QPainter::begin: Paint device returned engine == 0, type: 2
+[rviz2-15] QPainter::setPen: Painter not active
+[rviz2-15] [INFO] [1754827989.584581872] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-15] [INFO] [1754827989.584748957] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-15] [INFO] [1754827989.634935333] [rviz2]: Stereo is NOT SUPPORTED
+[simple_pure_pursuit-11] [INFO] [1754827989.976834648] [simple_pure_pursuit_node]: odometry is not available
+[rviz2-15] QObject::connect: No such signal QLineEdit::valueChanged(std::string)
+[simple_pure_pursuit-11] [INFO] [1754827990.987189025] [simple_pure_pursuit_node]: odometry is not available
+[ekf_localizer-7] [WARN] [1754827991.176406689] [localization.ekf_localizer]: The node is not activated. Provide initial pose to pose_initializer
+[simple_pure_pursuit-11] [INFO] [1754827991.996974409] [simple_pure_pursuit_node]: odometry is not available
+[goal_pose_setter_node-14] [INFO] [1754827992.261361578] [goal_pose_setter]: Call localization trigger
+[goal_pose_setter_node-14] [INFO] [1754827992.396314025] [goal_pose_setter]: Complete localization trigger
+[interactive_server-10] [INFO] [1754827993.998393396] [editor_tool_server]: Loading CSV file: /aichallenge/workspace/src/aichallenge-trajectory-editor/csv/centerline_15km.csv
+[interactive_server-10] [ERROR] [1754827993.998592489] [editor_tool_server]: Failed to open file: /aichallenge/workspace/src/aichallenge-trajectory-editor/csv/centerline_15km.csv
+[simple_pure_pursuit-11] [INFO] [1754827994.006948712] [simple_pure_pursuit_node]: trajectory points is empty
+[relay-16] [WARN] [1754828007.412328172] [initial_pose_relay]: Some, but not all, publishers on topic /initialpose offer 'transient local' durability. Falling back to 'volatile' durability in orderto connect to all publishers.
+[ekf_localizer-7] [WARN] [1754828007.579438163] [localization.ekf_localizer]: The Mahalanobis distance 2190210480.5289 is over the limit 10000.0000.
+[rviz2-15] OpenCV: FFMPEG: tag 0x34363268/'h264' is not supported with codec id 27 and format 'mp4 / MP4 (MPEG-4 Part 14)'
+[rviz2-15] OpenCV: FFMPEG: fallback to use tag 0x31637661/'avc1'
+[simple_trajectory_generator_node-9] [INFO] [1754828046.972437696] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754828107.972980527] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754828168.973800529] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754828229.974396703] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754828290.975072755] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754828351.976104700] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
