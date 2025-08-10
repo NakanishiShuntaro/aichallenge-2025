@@ -1053,3 +1053,7 @@ if __name__ == "__main__":
         sweep_run()
     else:
         main()
+
+#    docker exec <container> bash -lc 'if [ -f /aichallenge/workspace/install/setup.bash ]; then source /aichallenge/workspace/install/setup.bash; elif [ -f /autoware/install/setup.bash ]; then source /autoware/install/setup.bash; fi; ros2 topic list | grep -E "(kinematic_state|/vehicle/status/twist|/localization/twist)"'
+#    docker exec <container> bash -lc 'if [ -f /aichallenge/workspace/install/setup.bash ]; then source /aichallenge/workspace/install/setup.bash; elif [ -f /autoware/install/setup.bash ]; then source /autoware/install/setup.bash; fi; ros2 topic echo -n 1 /vehicle/status/twist --field twist.linear.x'
+
