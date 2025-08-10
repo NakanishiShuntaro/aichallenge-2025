@@ -1,0 +1,4 @@
+wandb: Creating sweep from: sweep.yaml
+wandb: Creating sweep with ID: z2jtj0vg
+wandb: View sweep at: https://wandb.ai/nakanishi-shuntaro-638-kyushu-university/aichallenge-2025/sweeps/z2jtj0vg
+wandb: Run sweep agent with: wandb agent nakanishi-shuntaro-638-kyushu-university/aichallenge-2025/z2jtj0vg
