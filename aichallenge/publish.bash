@@ -63,31 +63,38 @@ wait_localization_ready() {
 #            w: 0.4788
 set_initial_pose() {
     echo "Setting initial pose..."
-    timeout 20s bash -c '
-    ros2 topic pub -1 /initialpose geometry_msgs/msg/PoseWithCovarianceStamped "{ 
-      header: {
-        frame_id: \"map\"
-      },
-      pose: {
-        pose: {
-          position: {
-            x: 89634.00,
-            y: 43129.00,
-            z: 0.0
-          },
-          orientation: {
-            x: 0.0,
-            y: 0.0,
-            z: 0.8000,
-            w: 0.4000
-          }
-        }
-      }
-    }"' >/dev/null
-    if [ $? -eq 124 ]; then
-        echo "Warning: Initial pose publication timed out after 20s"
-    else
+    # QoS を明示（reliable / transient_local）し、取りこぼしを減らす
+    # 推奨初期姿勢（Assignment 1）に合わせる
+    # position: x=89633.29, y=43127.57 （zは0.0のまま）
+    # orientation: z=0.8778, w=0.4788
+    local payload='{
+      header: {frame_id: "map"},
+      pose: {pose: {position: {x: 89633.29, y: 43127.57, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.8778, w: 0.4788}}}
+    }'
+
+    local tries=0
+    local max_tries=3
+    local ok=0
+    while [ $tries -lt $max_tries ]; do
+        timeout 20s bash -lc "ros2 topic pub -1 \
+          --qos-reliability reliable \
+          --qos-durability transient_local \
+          --qos-history keep_last \
+          --qos-depth 1 \
+          /initialpose geometry_msgs/msg/PoseWithCovarianceStamped '${payload}'" >/dev/null
+        rc=$?
+        if [ $rc -eq 0 ]; then
+            ok=1
+            break
+        fi
+        tries=$((tries + 1))
+        echo "Retry initial pose ($tries/$max_tries)"
+        sleep 1
+    done
+    if [ $ok -eq 1 ]; then
         echo "Initial pose set successfully"
+    else
+        echo "Warning: Initial pose publication failed"
     fi
 }
 
