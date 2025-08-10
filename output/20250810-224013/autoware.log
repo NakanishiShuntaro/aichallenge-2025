@@ -1,0 +1,155 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2025-08-10-22-40-19-825534-ubuntu-HP-Laptop-14s-dq5xxx-152
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: The arguments for aichallenge_system_launch.
+[INFO] [launch.user]:  - simulation: true
+[INFO] [launch.user]:  - use_sim_time: true
+[INFO] [launch.user]:  - sensor_model: racing_kart_sensor_kit
+[INFO] [launch.user]:  - launch_vehicle_interface: true
+[INFO] [launch.user]:  - rviz config: /aichallenge/workspace/install/aichallenge_system_launch/share/aichallenge_system_launch/config/autoware.rviz
+[INFO] [launch.user]: The arguments for aichallenge_submit_launch.
+[INFO] [launch.user]:  - simulation: true
+[INFO] [launch.user]:  - use_sim_time: true
+[INFO] [launch.user]:  - sensor_model: racing_kart_sensor_kit
+[INFO] [launch.user]:  - launch_vehicle_interface: true
+[INFO] [launch.user]: echo launch param use_sim_time: true launch_vehicle_interface: true sensor_model: racing_kart_sensor_kit
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/lanelet2_map_loader' in container '/map/map_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/lanelet2_map_visualization' in container '/map/map_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/cpu_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/vector_map_tf_generator' in container '/map/map_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/mem_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/process_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [robot_state_publisher-1]: process started with pid [259]
+[INFO] [vehicle_velocity_converter-2]: process started with pid [261]
+[INFO] [imu_corrector-3]: process started with pid [263]
+[INFO] [gnss_poser-4]: process started with pid [265]
+[INFO] [gyro_odometer-5]: process started with pid [267]
+[INFO] [imu_gnss_poser_node-6]: process started with pid [269]
+[INFO] [ekf_localizer-7]: process started with pid [271]
+[INFO] [twist2accel-8]: process started with pid [273]
+[INFO] [simple_trajectory_generator_node-9]: process started with pid [275]
+[INFO] [interactive_server-10]: process started with pid [277]
+[INFO] [simple_pure_pursuit-11]: process started with pid [279]
+[INFO] [component_container-12]: process started with pid [282]
+[INFO] [raw_vehicle_cmd_converter_node-13]: process started with pid [284]
+[INFO] [goal_pose_setter_node-14]: process started with pid [287]
+[INFO] [rviz2-15]: process started with pid [318]
+[INFO] [relay-16]: process started with pid [321]
+[INFO] [control_mode_adapter.py-17]: process started with pid [323]
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/voltage_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [actuation_cmd_converter-18]: process started with pid [365]
+[INFO] [relay-19]: process started with pid [382]
+[INFO] [component_container_mt-20]: process started with pid [405]
+[robot_state_publisher-1] [INFO] [1754833224.816848720] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1754833224.817108234] [robot_state_publisher]: got segment gnss_link
+[robot_state_publisher-1] [INFO] [1754833224.817151089] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-1] [INFO] [1754833224.817178128] [robot_state_publisher]: got segment sensor_kit_base_link
+[gyro_odometer-5] [WARN] [1754833225.039815128] [localization.gyro_odometer]: Twist msg is not subscribed
+[simple_trajectory_generator_node-9] [INFO] [1754833224.982655700] [planning.scenario_planning.simple_trajectory_generator]: csv_path parameter changed from '' to '/aichallenge/workspace/install/simple_trajectory_generator/share/simple_trajectory_generator/data/raceline_awsim_15km.csv'
+[simple_trajectory_generator_node-9] [INFO] [1754833224.988879404] [planning.scenario_planning.simple_trajectory_generator]: Successfully loaded new trajectory from CSV: /aichallenge/workspace/install/simple_trajectory_generator/share/simple_trajectory_generator/data/raceline_awsim_15km.csv with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754833224.989005814] [planning.scenario_planning.simple_trajectory_generator]: z parameter changed to 6.500000
+[simple_trajectory_generator_node-9] [INFO] [1754833224.990207568] [planning.scenario_planning.simple_trajectory_generator]: Loaded trajectory from CSV with 121 points
+[interactive_server-10] [INFO] [1754833224.863579553] [editor_tool_server]: Waiting for 5.000000 seconds before loading CSV and publishing markers.
+[rviz2-15] QPainter::begin: Paint device returned engine == 0, type: 2
+[rviz2-15] QPainter::setPen: Painter not active
+[goal_pose_setter_node-14] [INFO] [1754833228.170394808] [goal_pose_setter]: Call localization trigger
+[ekf_localizer-7] [WARN] [1754833228.388603124] [localization.ekf_localizer]: The node is not activated. Provide initial pose to pose_initializer
+[goal_pose_setter_node-14] [INFO] [1754833228.471482984] [goal_pose_setter]: Call localization trigger
+[goal_pose_setter_node-14] [INFO] [1754833228.482604341] [goal_pose_setter]: Complete localization trigger
+[gyro_odometer-5] [ERROR] [1754833228.537159947] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[rviz2-15] [INFO] [1754833228.958965470] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-15] [INFO] [1754833228.959370190] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[goal_pose_setter_node-14] [INFO] [1754833229.059330975] [goal_pose_setter]: Complete localization trigger
+[rviz2-15] [INFO] [1754833229.363184468] [rviz2]: Stereo is NOT SUPPORTED
+[gyro_odometer-5] [ERROR] [1754833229.512969894] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 1.639999963[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833229.848077901] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.249999995[sec], tolerance 0.2[sec]
+[interactive_server-10] [INFO] [1754833229.906447530] [editor_tool_server]: Loading CSV file: /aichallenge/workspace/src/aichallenge-trajectory-editor/csv/centerline_15km.csv
+[interactive_server-10] [ERROR] [1754833229.906626900] [editor_tool_server]: Failed to open file: /aichallenge/workspace/src/aichallenge-trajectory-editor/csv/centerline_15km.csv
+[simple_pure_pursuit-11] [INFO] [1754833229.919257616] [simple_pure_pursuit_node]: trajectory points is empty
+[ekf_localizer-7] [WARN] [1754833230.670736762] [localization.ekf_localizer]: The Mahalanobis distance 185293.5487 is over the limit 10000.0000.
+[gyro_odometer-5] [ERROR] [1754833233.712897695] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.409999991[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833234.143014155] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.214999995[sec], tolerance 0.2[sec]
+[rviz2-15] QObject::connect: No such signal QLineEdit::valueChanged(std::string)
+[gyro_odometer-5] [ERROR] [1754833235.839927686] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833235.852803603] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.234999995[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833236.995733617] [localization.ekf_localizer]: The Mahalanobis distance 678275.4016 is over the limit 10000.0000.
+[gyro_odometer-5] [ERROR] [1754833243.819000100] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.309999994[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833244.173109890] [localization.ekf_localizer]: Twist time stamp is inappropriate, set delay to 0[s]. delay = -0.015
+[gyro_odometer-5] [ERROR] [1754833250.058401831] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.259999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833258.585886240] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.359999992[sec], tolerance 0.2[sec]
+[relay-16] [WARN] [1754833260.264081749] [initial_pose_relay]: Some, but not all, publishers on topic /initialpose offer 'transient local' durability. Falling back to 'volatile' durability in orderto connect to all publishers.
+[relay-16] [WARN] [1754833260.362206582] [initial_pose_relay]: Some, but not all, publishers on topic /initialpose offer 'transient local' durability. Falling back to 'volatile' durability in orderto connect to all publishers.
+[rviz2-15] [WARN] [1754833260.493760007] [rviz2]: Negative eigenvalue found for position. Is the covariance matrix correct (positive semidefinite)?
+[ekf_localizer-7] [WARN] [1754833260.670628996] [localization.ekf_localizer]: The Mahalanobis distance 256293987.3829 is over the limit 10000.0000.
+[ekf_localizer-7] [WARN] [1754833262.760150940] [localization.ekf_localizer]: The Mahalanobis distance 60624306.5256 is over the limit 10000.0000.
+[gyro_odometer-5] [ERROR] [1754833266.319934121] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.219999995[sec], tolerance 0.2[sec]
+[rviz2-15] OpenCV: FFMPEG: tag 0x34363268/'h264' is not supported with codec id 27 and format 'mp4 / MP4 (MPEG-4 Part 14)'
+[rviz2-15] OpenCV: FFMPEG: fallback to use tag 0x31637661/'avc1'
+[gyro_odometer-5] [ERROR] [1754833281.584300581] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.224999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833281.584556226] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.229999995[sec], tolerance 0.2[sec]
+[simple_trajectory_generator_node-9] [INFO] [1754833284.986628144] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[gyro_odometer-5] [ERROR] [1754833288.211413703] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833288.212748045] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833294.814741197] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833294.839914861] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.234999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833297.078812522] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833307.168410956] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833331.449330771] [localization.gyro_odometer]: Imu msg is timeout. twist_dt: 0.349999992[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833341.228549297] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833342.292621542] [localization.ekf_localizer]: Twist time stamp is inappropriate, set delay to 0[s]. delay = -0.020
+[gyro_odometer-5] [ERROR] [1754833342.930972397] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.204999996[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833344.669330763] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.204999995[sec], tolerance 0.2[sec]
+[simple_trajectory_generator_node-9] [INFO] [1754833346.981102468] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[gyro_odometer-5] [ERROR] [1754833350.286412343] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833351.124401407] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.224999995[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833352.392030931] [localization.ekf_localizer]: Twist time stamp is inappropriate, set delay to 0[s]. delay = -0.010
+[ekf_localizer-7] [WARN] [1754833363.799777049] [localization.ekf_localizer]: Pose delay exceeds the compensation limit, ignored. delay: 1.347[s], limit = extend_state_step * ekf_dt : 1.330[s]
+[gyro_odometer-5] [ERROR] [1754833364.207678509] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833365.816803235] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833365.817292575] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.294999993[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833367.556259917] [localization.ekf_localizer]: Twist time stamp is inappropriate, set delay to 0[s]. delay = -0.005
+[gyro_odometer-5] [ERROR] [1754833368.372048688] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833368.377425861] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.234999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833375.501328690] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.209999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833375.522416401] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833378.374851275] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.259999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833382.546767862] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.219999995[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833383.121917762] [localization.ekf_localizer]: Twist time stamp is inappropriate, set delay to 0[s]. delay = -0.050
+[gyro_odometer-5] [ERROR] [1754833383.956775040] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833383.962845811] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.249999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833389.411133669] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.204999996[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833396.852796793] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833398.957834274] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.224999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833400.233784565] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.219999996[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833400.233990687] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999996[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833405.649849939] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.249999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833407.243160050] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.299999993[sec], tolerance 0.2[sec]
+[simple_trajectory_generator_node-9] [INFO] [1754833407.989658520] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[gyro_odometer-5] [ERROR] [1754833411.794112409] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833413.330560166] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.284999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833415.924788766] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.269999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833422.272457228] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.204999996[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833429.797902837] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.389999991[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833429.929261627] [localization.gyro_odometer]: Imu msg is timeout. twist_dt: 0.279999994[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833432.606120725] [localization.ekf_localizer]: Twist time stamp is inappropriate, set delay to 0[s]. delay = -0.025
+[gyro_odometer-5] [ERROR] [1754833433.244622992] [localization.gyro_odometer]: Imu msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833447.814977943] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.209999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833451.827291380] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.349999992[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833462.689555665] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.234999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833463.999076135] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.249999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833466.015023844] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.209999996[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833467.497108914] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.254999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833469.507728607] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.209999995[sec], tolerance 0.2[sec]
+[simple_trajectory_generator_node-9] [INFO] [1754833470.019752383] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[gyro_odometer-5] [ERROR] [1754833471.834284027] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.269999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833473.229418719] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.214999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833481.560492655] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.229999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833481.571705677] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.239999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833486.402947637] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.249999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833500.268770231] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.264999994[sec], tolerance 0.2[sec]
+[ekf_localizer-7] [WARN] [1754833500.825599396] [localization.ekf_localizer]: Twist time stamp is inappropriate, set delay to 0[s]. delay = -0.020
+[gyro_odometer-5] [ERROR] [1754833502.925811957] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833502.951070237] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.364999992[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833507.589842818] [localization.gyro_odometer]: Twist msg is timeout. twist_dt: 0.224999994[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833510.210089856] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
+[gyro_odometer-5] [ERROR] [1754833517.937122508] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.229999995[sec], tolerance 0.2[sec]
+[simple_trajectory_generator_node-9] [INFO] [1754833530.970167832] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points

@@ -5,14 +5,14 @@
 #1 DONE 0.0s
 
 #2 [internal] load metadata for ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
-#2 DONE 0.7s
+#2 DONE 1.1s
 
-#3 [common 1/9] FROM ghcr.io/automotiveaichallenge/autoware-universe:humble-latest@sha256:116eee823ac503ab612020aa1314904bad6991e921dbaacf0fd4f5dfe45550a9
-#3 CACHED
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
 
-#4 [internal] load .dockerignore
-#4 transferring context: 2B done
-#4 DONE 0.0s
+#4 [common 1/9] FROM ghcr.io/automotiveaichallenge/autoware-universe:humble-latest@sha256:116eee823ac503ab612020aa1314904bad6991e921dbaacf0fd4f5dfe45550a9
+#4 CACHED
 
 #5 [internal] load build context
 #5 transferring context: 3.12MB 0.2s done
@@ -22,595 +22,550 @@
 #6 DONE 0.0s
 
 #7 [common 3/9] RUN apt-get update &&   apt-get install -y --no-install-recommends /tmp/zenoh-bridge-ros2dds_1.4.0_amd64.deb &&   rm -f /tmp/zenoh-bridge-ros2dds_1.4.0_amd64.deb &&   rm -rf /var/lib/apt/lists/*
-#7 1.345 Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-#7 1.356 Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-#7 1.453 Get:3 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
-#7 1.768 Get:4 http://packages.ros.org/ros2/ubuntu jammy/main Sources [1709 kB]
-#7 2.956 Ign:5 https://s3.amazonaws.com/autonomoustuff-repo jammy InRelease
-#7 3.194 Get:6 https://s3.amazonaws.com/autonomoustuff-repo jammy Release [2922 B]
-#7 3.603 Ign:7 https://s3.amazonaws.com/autonomoustuff-repo jammy Release.gpg
-#7 3.824 Get:8 https://s3.amazonaws.com/autonomoustuff-repo jammy/main amd64 Packages [2239 B]
-#7 3.989 Get:9 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [5103 kB]
-#7 4.142 Get:10 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-#7 4.687 Get:11 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
-#7 5.043 Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
-#7 6.171 Get:13 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
-#7 6.198 Get:14 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [48.5 kB]
-#7 6.207 Get:15 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1270 kB]
-#7 6.482 Get:16 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
-#7 6.507 Get:17 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
-#7 6.857 Get:18 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3207 kB]
-#7 10.37 Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [75.9 kB]
-#7 10.38 Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3518 kB]
-#7 10.95 Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1575 kB]
-#7 11.18 Get:22 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [5290 kB]
-#7 12.11 Get:23 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.2 kB]
-#7 12.12 Get:24 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.2 kB]
-#7 15.21 Get:25 http://packages.ros.org/ros2/ubuntu jammy/main amd64 Packages [1681 kB]
-#7 21.92 Fetched 44.0 MB in 21s (2065 kB/s)
-#7 21.92 Reading package lists...
-#7 22.59 Reading package lists...
-#7 23.28 Building dependency tree...
-#7 23.41 Reading state information...
-#7 23.56 The following NEW packages will be installed:
-#7 23.56   zenoh-bridge-ros2dds
-#7 23.60 0 upgraded, 1 newly installed, 0 to remove and 349 not upgraded.
-#7 23.60 Need to get 0 B/4812 kB of archives.
-#7 23.60 After this operation, 17.2 MB of additional disk space will be used.
-#7 23.60 Get:1 /tmp/zenoh-bridge-ros2dds_1.4.0_amd64.deb zenoh-bridge-ros2dds amd64 1.4.0 [4812 kB]
-#7 23.78 debconf: delaying package configuration, since apt-utils is not installed
-#7 23.83 Selecting previously unselected package zenoh-bridge-ros2dds.
-#7 23.83 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 146575 files and directories currently installed.)
-#7 24.04 Preparing to unpack .../zenoh-bridge-ros2dds_1.4.0_amd64.deb ...
-#7 24.04 Unpacking zenoh-bridge-ros2dds (1.4.0) ...
-#7 24.37 Setting up zenoh-bridge-ros2dds (1.4.0) ...
-#7 24.38 WARNING: 'systemctl' not found - cannot install zenoh-bridge-ros2dds as a service.
-#7 24.38 /usr/bin/systemctl
-#7 DONE 24.4s
+#7 3.510 Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+#7 3.591 Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+#7 4.545 Ign:3 https://s3.amazonaws.com/autonomoustuff-repo jammy InRelease
+#7 4.777 Get:4 https://s3.amazonaws.com/autonomoustuff-repo jammy Release [2922 B]
+#7 5.002 Ign:5 https://s3.amazonaws.com/autonomoustuff-repo jammy Release.gpg
+#7 5.243 Get:6 https://s3.amazonaws.com/autonomoustuff-repo jammy/main amd64 Packages [2239 B]
+#7 5.571 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+#7 5.853 Get:8 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+#7 5.881 Get:9 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
+#7 5.946 Get:10 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3207 kB]
+#7 6.162 Get:11 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+#7 6.483 Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
+#7 7.345 Get:13 http://packages.ros.org/ros2/ubuntu jammy/main Sources [1709 kB]
+#7 7.701 Get:14 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+#7 8.293 Get:15 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [48.5 kB]
+#7 8.300 Get:16 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1270 kB]
+#7 8.802 Get:17 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [5103 kB]
+#7 11.28 Get:18 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+#7 11.33 Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3518 kB]
+#7 11.65 Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [75.9 kB]
+#7 11.65 Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [5290 kB]
+#7 12.30 Get:22 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1575 kB]
+#7 12.49 Get:23 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.2 kB]
+#7 12.49 Get:24 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.2 kB]
+#7 23.59 Get:25 http://packages.ros.org/ros2/ubuntu jammy/main amd64 Packages [1681 kB]
+#7 31.09 Fetched 44.0 MB in 28s (1550 kB/s)
+#7 31.09 Reading package lists...
+#7 34.75 Reading package lists...
+#7 38.09 Building dependency tree...
+#7 38.73 Reading state information...
+#7 39.53 The following NEW packages will be installed:
+#7 39.53   zenoh-bridge-ros2dds
+#7 39.63 0 upgraded, 1 newly installed, 0 to remove and 349 not upgraded.
+#7 39.63 Need to get 0 B/4812 kB of archives.
+#7 39.63 After this operation, 17.2 MB of additional disk space will be used.
+#7 39.63 Get:1 /tmp/zenoh-bridge-ros2dds_1.4.0_amd64.deb zenoh-bridge-ros2dds amd64 1.4.0 [4812 kB]
+#7 40.58 debconf: delaying package configuration, since apt-utils is not installed
+#7 40.80 Selecting previously unselected package zenoh-bridge-ros2dds.
+#7 40.80 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 146575 files and directories currently installed.)
+#7 41.42 Preparing to unpack .../zenoh-bridge-ros2dds_1.4.0_amd64.deb ...
+#7 41.42 Unpacking zenoh-bridge-ros2dds (1.4.0) ...
+#7 42.90 Setting up zenoh-bridge-ros2dds (1.4.0) ...
+#7 42.91 /usr/bin/systemctl
+#7 42.91 WARNING: 'systemctl' not found - cannot install zenoh-bridge-ros2dds as a service.
+#7 DONE 43.1s
 
 #8 [common 4/9] COPY packages.txt /tmp/packages.txt
-#8 DONE 0.0s
+#8 DONE 0.1s
 
 #9 [common 5/9] RUN apt-get update &&   xargs -a /tmp/packages.txt apt-get install -y --no-install-recommends &&   rm -rf /var/lib/apt/lists/*
-#9 0.670 Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-#9 0.670 Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-#9 0.670 Get:3 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
-#9 1.712 Ign:4 https://s3.amazonaws.com/autonomoustuff-repo jammy InRelease
-#9 1.897 Get:5 http://packages.ros.org/ros2/ubuntu jammy/main Sources [1709 kB]
-#9 1.910 Get:6 https://s3.amazonaws.com/autonomoustuff-repo jammy Release [2922 B]
-#9 2.102 Ign:7 https://s3.amazonaws.com/autonomoustuff-repo jammy Release.gpg
-#9 2.299 Get:8 https://s3.amazonaws.com/autonomoustuff-repo jammy/main amd64 Packages [2239 B]
-#9 2.618 Get:9 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3207 kB]
-#9 2.809 Get:10 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-#9 3.061 Get:11 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
-#9 3.312 Get:12 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
-#9 4.121 Get:13 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [5103 kB]
-#9 5.364 Get:14 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [48.5 kB]
-#9 5.364 Get:15 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1270 kB]
-#9 7.756 Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
-#9 8.236 Get:17 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
-#9 8.238 Get:18 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
-#9 8.240 Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1575 kB]
-#9 8.305 Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [75.9 kB]
-#9 8.676 Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [5290 kB]
-#9 10.80 Get:22 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3518 kB]
-#9 11.56 Get:23 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.2 kB]
-#9 11.74 Get:24 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.2 kB]
-#9 15.43 Get:25 http://packages.ros.org/ros2/ubuntu jammy/main amd64 Packages [1681 kB]
-#9 20.09 Fetched 44.0 MB in 20s (2206 kB/s)
-#9 20.09 Reading package lists...
-#9 20.75 Reading package lists...
-#9 21.42 Building dependency tree...
-#9 21.55 Reading state information...
-#9 21.70 iproute2 is already the newest version (5.15.0-1ubuntu2).
-#9 21.70 iproute2 set to manually installed.
-#9 21.70 libgl1-mesa-dri is already the newest version (23.2.1-1ubuntu3.1~22.04.3).
-#9 21.70 libgl1-mesa-dri set to manually installed.
-#9 21.70 The following additional packages will be installed:
-#9 21.70   gir1.2-atk-1.0 gir1.2-freedesktop gir1.2-gdkpixbuf-2.0 gir1.2-gtk-3.0
-#9 21.70   gir1.2-harfbuzz-0.0 gir1.2-pango-1.0 gir1.2-vte-2.91 ieee-data
-#9 21.70   libpangoxft-1.0-0 libvte-2.91-0 libvte-2.91-common python3-cairo
-#9 21.70   python3-gi-cairo python3-pydot ros-humble-qt-dotgraph
-#9 21.70 Recommended packages:
-#9 21.70   libwww-perl gir1.2-keybinder-3.0 gir1.2-notify-0.7 xdg-utils
-#9 21.75 The following NEW packages will be installed:
-#9 21.75   arp-scan gir1.2-atk-1.0 gir1.2-freedesktop gir1.2-gdkpixbuf-2.0
-#9 21.75   gir1.2-gtk-3.0 gir1.2-harfbuzz-0.0 gir1.2-pango-1.0 gir1.2-vte-2.91
-#9 21.75   ieee-data libgl1-mesa-glx libpangoxft-1.0-0 libvte-2.91-0 libvte-2.91-common
-#9 21.75   python3-cairo python3-gi-cairo python3-pydot ros-humble-qt-dotgraph
-#9 21.75   ros-humble-rqt-graph ros-humble-rqt-tf-tree terminator wmctrl
-#9 22.18 0 upgraded, 21 newly installed, 0 to remove and 349 not upgraded.
-#9 22.18 Need to get 3438 kB of archives.
-#9 22.18 After this operation, 19.3 MB of additional disk space will be used.
-#9 22.18 Get:1 http://packages.ros.org/ros2/ubuntu jammy/main amd64 ros-humble-qt-dotgraph amd64 2.2.4-1jammy.20250718.233620 [15.9 kB]
-#9 22.25 Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 gir1.2-atk-1.0 amd64 2.36.0-3build1 [21.0 kB]
-#9 22.58 Get:3 http://packages.ros.org/ros2/ubuntu jammy/main amd64 ros-humble-rqt-graph amd64 1.3.1-1jammy.20250719.040213 [43.3 kB]
-#9 22.79 Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 gir1.2-freedesktop amd64 1.72.0-1 [22.3 kB]
-#9 23.92 Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-gdkpixbuf-2.0 amd64 2.42.8+dfsg-1ubuntu0.4 [9494 B]
-#9 23.92 Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-harfbuzz-0.0 amd64 2.7.4-1ubuntu3.2 [31.6 kB]
-#9 23.97 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpangoxft-1.0-0 amd64 1.50.6+ds-2ubuntu1 [31.0 kB]
-#9 24.22 Get:8 http://packages.ros.org/ros2/ubuntu jammy/main amd64 ros-humble-rqt-tf-tree amd64 1.0.5-1jammy.20250719.040527 [15.4 kB]
-#9 24.24 Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-pango-1.0 amd64 1.50.6+ds-2ubuntu1 [44.0 kB]
-#9 24.53 Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-gtk-3.0 amd64 3.24.33-1ubuntu2.2 [240 kB]
-#9 24.96 Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libvte-2.91-common amd64 0.68.0-1ubuntu0.1 [9408 B]
-#9 24.97 Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libvte-2.91-0 amd64 0.68.0-1ubuntu0.1 [214 kB]
-#9 25.16 Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-vte-2.91 amd64 0.68.0-1ubuntu0.1 [10.7 kB]
-#9 25.16 Get:14 http://archive.ubuntu.com/ubuntu jammy/main amd64 ieee-data all 20210605.1 [1887 kB]
-#9 25.82 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libgl1-mesa-glx amd64 23.0.4-0ubuntu1~22.04.1 [5584 B]
-#9 25.82 Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 python3-cairo amd64 1.20.1-3build1 [73.7 kB]
-#9 25.82 Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 python3-gi-cairo amd64 3.42.1-0ubuntu1 [8184 B]
-#9 25.82 Get:18 http://archive.ubuntu.com/ubuntu jammy/universe amd64 python3-pydot all 1.4.2-1build1 [25.8 kB]
-#9 25.82 Get:19 http://archive.ubuntu.com/ubuntu jammy/universe amd64 terminator all 2.1.1-1 [372 kB]
-#9 25.83 Get:20 http://archive.ubuntu.com/ubuntu jammy/universe amd64 wmctrl amd64 1.07-7build1 [20.0 kB]
-#9 25.83 Get:21 http://archive.ubuntu.com/ubuntu jammy/universe amd64 arp-scan amd64 1.9.7-2 [338 kB]
-#9 26.01 debconf: delaying package configuration, since apt-utils is not installed
-#9 26.04 Fetched 3438 kB in 4s (844 kB/s)
-#9 26.05 Selecting previously unselected package gir1.2-atk-1.0:amd64.
-#9 26.05 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 146581 files and directories currently installed.)
-#9 26.10 Preparing to unpack .../00-gir1.2-atk-1.0_2.36.0-3build1_amd64.deb ...
-#9 26.10 Unpacking gir1.2-atk-1.0:amd64 (2.36.0-3build1) ...
-#9 26.13 Selecting previously unselected package gir1.2-freedesktop:amd64.
-#9 26.14 Preparing to unpack .../01-gir1.2-freedesktop_1.72.0-1_amd64.deb ...
-#9 26.14 Unpacking gir1.2-freedesktop:amd64 (1.72.0-1) ...
-#9 26.16 Selecting previously unselected package gir1.2-gdkpixbuf-2.0:amd64.
-#9 26.17 Preparing to unpack .../02-gir1.2-gdkpixbuf-2.0_2.42.8+dfsg-1ubuntu0.4_amd64.deb ...
-#9 26.17 Unpacking gir1.2-gdkpixbuf-2.0:amd64 (2.42.8+dfsg-1ubuntu0.4) ...
+#9 1.026 Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+#9 1.026 Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+#9 1.127 Get:3 http://packages.ros.org/ros2/ubuntu jammy InRelease [4682 B]
+#9 1.636 Get:4 http://packages.ros.org/ros2/ubuntu jammy/main Sources [1709 kB]
+#9 1.720 Ign:5 https://s3.amazonaws.com/autonomoustuff-repo jammy InRelease
+#9 1.966 Get:6 https://s3.amazonaws.com/autonomoustuff-repo jammy Release [2922 B]
+#9 2.103 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+#9 2.208 Ign:8 https://s3.amazonaws.com/autonomoustuff-repo jammy Release.gpg
+#9 2.288 Get:9 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [5103 kB]
+#9 2.338 Get:10 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+#9 2.444 Get:11 https://s3.amazonaws.com/autonomoustuff-repo jammy/main amd64 Packages [2239 B]
+#9 2.634 Get:12 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+#9 2.885 Get:13 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+#9 4.199 Get:14 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [48.5 kB]
+#9 4.206 Get:15 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3207 kB]
+#9 5.360 Get:16 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1270 kB]
+#9 7.221 Get:17 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
+#9 7.480 Get:18 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+#9 7.518 Get:19 http://packages.ros.org/ros2/ubuntu jammy/main amd64 Packages [1681 kB]
+#9 7.535 Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [75.9 kB]
+#9 7.554 Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [5290 kB]
+#9 8.255 Get:22 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1575 kB]
+#9 8.471 Get:23 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3518 kB]
+#9 8.925 Get:24 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [83.2 kB]
+#9 8.925 Get:25 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.2 kB]
+#9 13.44 Fetched 44.0 MB in 13s (3417 kB/s)
+#9 13.44 Reading package lists...
+#9 16.75 Reading package lists...
+#9 19.53 Building dependency tree...
+#9 20.03 Reading state information...
+#9 20.69 iproute2 is already the newest version (5.15.0-1ubuntu2).
+#9 20.69 iproute2 set to manually installed.
+#9 20.69 libgl1-mesa-dri is already the newest version (23.2.1-1ubuntu3.1~22.04.3).
+#9 20.69 libgl1-mesa-dri set to manually installed.
+#9 20.69 The following additional packages will be installed:
+#9 20.69   gir1.2-atk-1.0 gir1.2-freedesktop gir1.2-gdkpixbuf-2.0 gir1.2-gtk-3.0
+#9 20.69   gir1.2-harfbuzz-0.0 gir1.2-pango-1.0 gir1.2-vte-2.91 ieee-data
+#9 20.70   libpangoxft-1.0-0 libvte-2.91-0 libvte-2.91-common python3-cairo
+#9 20.70   python3-gi-cairo python3-pydot ros-humble-qt-dotgraph
+#9 20.70 Recommended packages:
+#9 20.70   libwww-perl gir1.2-keybinder-3.0 gir1.2-notify-0.7 xdg-utils
+#9 20.92 The following NEW packages will be installed:
+#9 20.92   arp-scan gir1.2-atk-1.0 gir1.2-freedesktop gir1.2-gdkpixbuf-2.0
+#9 20.92   gir1.2-gtk-3.0 gir1.2-harfbuzz-0.0 gir1.2-pango-1.0 gir1.2-vte-2.91
+#9 20.93   ieee-data libgl1-mesa-glx libpangoxft-1.0-0 libvte-2.91-0 libvte-2.91-common
+#9 20.93   python3-cairo python3-gi-cairo python3-pydot ros-humble-qt-dotgraph
+#9 20.93   ros-humble-rqt-graph ros-humble-rqt-tf-tree terminator wmctrl
+#9 21.51 0 upgraded, 21 newly installed, 0 to remove and 349 not upgraded.
+#9 21.51 Need to get 3438 kB of archives.
+#9 21.51 After this operation, 19.3 MB of additional disk space will be used.
+#9 21.51 Get:1 http://packages.ros.org/ros2/ubuntu jammy/main amd64 ros-humble-qt-dotgraph amd64 2.2.4-1jammy.20250718.233620 [15.9 kB]
+#9 21.81 Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 gir1.2-atk-1.0 amd64 2.36.0-3build1 [21.0 kB]
+#9 21.91 Get:3 http://packages.ros.org/ros2/ubuntu jammy/main amd64 ros-humble-rqt-graph amd64 1.3.1-1jammy.20250719.040213 [43.3 kB]
+#9 22.12 Get:4 http://packages.ros.org/ros2/ubuntu jammy/main amd64 ros-humble-rqt-tf-tree amd64 1.0.5-1jammy.20250719.040527 [15.4 kB]
+#9 22.22 Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 gir1.2-freedesktop amd64 1.72.0-1 [22.3 kB]
+#9 22.29 Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-gdkpixbuf-2.0 amd64 2.42.8+dfsg-1ubuntu0.4 [9494 B]
+#9 22.32 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-harfbuzz-0.0 amd64 2.7.4-1ubuntu3.2 [31.6 kB]
+#9 23.35 Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpangoxft-1.0-0 amd64 1.50.6+ds-2ubuntu1 [31.0 kB]
+#9 23.35 Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-pango-1.0 amd64 1.50.6+ds-2ubuntu1 [44.0 kB]
+#9 23.55 Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-gtk-3.0 amd64 3.24.33-1ubuntu2.2 [240 kB]
+#9 23.95 Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libvte-2.91-common amd64 0.68.0-1ubuntu0.1 [9408 B]
+#9 23.96 Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libvte-2.91-0 amd64 0.68.0-1ubuntu0.1 [214 kB]
+#9 24.10 Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-vte-2.91 amd64 0.68.0-1ubuntu0.1 [10.7 kB]
+#9 24.10 Get:14 http://archive.ubuntu.com/ubuntu jammy/main amd64 ieee-data all 20210605.1 [1887 kB]
+#9 24.50 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libgl1-mesa-glx amd64 23.0.4-0ubuntu1~22.04.1 [5584 B]
+#9 24.50 Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 python3-cairo amd64 1.20.1-3build1 [73.7 kB]
+#9 24.51 Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 python3-gi-cairo amd64 3.42.1-0ubuntu1 [8184 B]
+#9 24.51 Get:18 http://archive.ubuntu.com/ubuntu jammy/universe amd64 python3-pydot all 1.4.2-1build1 [25.8 kB]
+#9 24.51 Get:19 http://archive.ubuntu.com/ubuntu jammy/universe amd64 terminator all 2.1.1-1 [372 kB]
+#9 24.55 Get:20 http://archive.ubuntu.com/ubuntu jammy/universe amd64 wmctrl amd64 1.07-7build1 [20.0 kB]
+#9 24.56 Get:21 http://archive.ubuntu.com/ubuntu jammy/universe amd64 arp-scan amd64 1.9.7-2 [338 kB]
+#9 25.42 debconf: delaying package configuration, since apt-utils is not installed
+#9 25.56 Fetched 3438 kB in 4s (942 kB/s)
+#9 25.66 Selecting previously unselected package gir1.2-atk-1.0:amd64.
+#9 25.66 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 146581 files and directories currently installed.)
+#9 25.92 Preparing to unpack .../00-gir1.2-atk-1.0_2.36.0-3build1_amd64.deb ...
+#9 25.93 Unpacking gir1.2-atk-1.0:amd64 (2.36.0-3build1) ...
+#9 26.00 Selecting previously unselected package gir1.2-freedesktop:amd64.
+#9 26.05 Preparing to unpack .../01-gir1.2-freedesktop_1.72.0-1_amd64.deb ...
+#9 26.05 Unpacking gir1.2-freedesktop:amd64 (1.72.0-1) ...
+#9 26.13 Selecting previously unselected package gir1.2-gdkpixbuf-2.0:amd64.
+#9 26.15 Preparing to unpack .../02-gir1.2-gdkpixbuf-2.0_2.42.8+dfsg-1ubuntu0.4_amd64.deb ...
+#9 26.15 Unpacking gir1.2-gdkpixbuf-2.0:amd64 (2.42.8+dfsg-1ubuntu0.4) ...
 #9 26.20 Selecting previously unselected package gir1.2-harfbuzz-0.0:amd64.
-#9 26.21 Preparing to unpack .../03-gir1.2-harfbuzz-0.0_2.7.4-1ubuntu3.2_amd64.deb ...
-#9 26.21 Unpacking gir1.2-harfbuzz-0.0:amd64 (2.7.4-1ubuntu3.2) ...
-#9 26.23 Selecting previously unselected package libpangoxft-1.0-0:amd64.
-#9 26.24 Preparing to unpack .../04-libpangoxft-1.0-0_1.50.6+ds-2ubuntu1_amd64.deb ...
-#9 26.24 Unpacking libpangoxft-1.0-0:amd64 (1.50.6+ds-2ubuntu1) ...
-#9 26.27 Selecting previously unselected package gir1.2-pango-1.0:amd64.
-#9 26.28 Preparing to unpack .../05-gir1.2-pango-1.0_1.50.6+ds-2ubuntu1_amd64.deb ...
-#9 26.28 Unpacking gir1.2-pango-1.0:amd64 (1.50.6+ds-2ubuntu1) ...
-#9 26.30 Selecting previously unselected package gir1.2-gtk-3.0:amd64.
-#9 26.31 Preparing to unpack .../06-gir1.2-gtk-3.0_3.24.33-1ubuntu2.2_amd64.deb ...
-#9 26.31 Unpacking gir1.2-gtk-3.0:amd64 (3.24.33-1ubuntu2.2) ...
-#9 26.34 Selecting previously unselected package libvte-2.91-common.
-#9 26.34 Preparing to unpack .../07-libvte-2.91-common_0.68.0-1ubuntu0.1_amd64.deb ...
-#9 26.34 Unpacking libvte-2.91-common (0.68.0-1ubuntu0.1) ...
-#9 26.37 Selecting previously unselected package libvte-2.91-0:amd64.
-#9 26.38 Preparing to unpack .../08-libvte-2.91-0_0.68.0-1ubuntu0.1_amd64.deb ...
-#9 26.38 Unpacking libvte-2.91-0:amd64 (0.68.0-1ubuntu0.1) ...
-#9 26.41 Selecting previously unselected package gir1.2-vte-2.91:amd64.
-#9 26.42 Preparing to unpack .../09-gir1.2-vte-2.91_0.68.0-1ubuntu0.1_amd64.deb ...
-#9 26.42 Unpacking gir1.2-vte-2.91:amd64 (0.68.0-1ubuntu0.1) ...
-#9 26.44 Selecting previously unselected package ieee-data.
-#9 26.45 Preparing to unpack .../10-ieee-data_20210605.1_all.deb ...
-#9 26.46 Unpacking ieee-data (20210605.1) ...
-#9 26.58 Selecting previously unselected package libgl1-mesa-glx:amd64.
-#9 26.59 Preparing to unpack .../11-libgl1-mesa-glx_23.0.4-0ubuntu1~22.04.1_amd64.deb ...
-#9 26.59 Unpacking libgl1-mesa-glx:amd64 (23.0.4-0ubuntu1~22.04.1) ...
-#9 26.62 Selecting previously unselected package python3-cairo:amd64.
-#9 26.62 Preparing to unpack .../12-python3-cairo_1.20.1-3build1_amd64.deb ...
-#9 26.63 Unpacking python3-cairo:amd64 (1.20.1-3build1) ...
-#9 26.66 Selecting previously unselected package python3-gi-cairo.
-#9 26.67 Preparing to unpack .../13-python3-gi-cairo_3.42.1-0ubuntu1_amd64.deb ...
-#9 26.67 Unpacking python3-gi-cairo (3.42.1-0ubuntu1) ...
-#9 26.69 Selecting previously unselected package python3-pydot.
-#9 26.70 Preparing to unpack .../14-python3-pydot_1.4.2-1build1_all.deb ...
-#9 26.70 Unpacking python3-pydot (1.4.2-1build1) ...
-#9 26.72 Selecting previously unselected package ros-humble-qt-dotgraph.
-#9 26.73 Preparing to unpack .../15-ros-humble-qt-dotgraph_2.2.4-1jammy.20250718.233620_amd64.deb ...
-#9 26.73 Unpacking ros-humble-qt-dotgraph (2.2.4-1jammy.20250718.233620) ...
-#9 26.76 Selecting previously unselected package ros-humble-rqt-graph.
-#9 26.77 Preparing to unpack .../16-ros-humble-rqt-graph_1.3.1-1jammy.20250719.040213_amd64.deb ...
-#9 26.77 Unpacking ros-humble-rqt-graph (1.3.1-1jammy.20250719.040213) ...
-#9 26.80 Selecting previously unselected package ros-humble-rqt-tf-tree.
-#9 26.81 Preparing to unpack .../17-ros-humble-rqt-tf-tree_1.0.5-1jammy.20250719.040527_amd64.deb ...
-#9 26.81 Unpacking ros-humble-rqt-tf-tree (1.0.5-1jammy.20250719.040527) ...
-#9 26.84 Selecting previously unselected package terminator.
-#9 26.85 Preparing to unpack .../18-terminator_2.1.1-1_all.deb ...
-#9 26.85 Unpacking terminator (2.1.1-1) ...
-#9 26.91 Selecting previously unselected package wmctrl.
-#9 26.92 Preparing to unpack .../19-wmctrl_1.07-7build1_amd64.deb ...
-#9 26.92 Unpacking wmctrl (1.07-7build1) ...
-#9 26.95 Selecting previously unselected package arp-scan.
-#9 26.96 Preparing to unpack .../20-arp-scan_1.9.7-2_amd64.deb ...
-#9 26.96 Unpacking arp-scan (1.9.7-2) ...
-#9 27.02 Setting up gir1.2-freedesktop:amd64 (1.72.0-1) ...
-#9 27.02 Setting up python3-cairo:amd64 (1.20.1-3build1) ...
-#9 27.13 Setting up libpangoxft-1.0-0:amd64 (1.50.6+ds-2ubuntu1) ...
-#9 27.13 Setting up libvte-2.91-common (0.68.0-1ubuntu0.1) ...
-#9 27.14 Setting up gir1.2-gdkpixbuf-2.0:amd64 (2.42.8+dfsg-1ubuntu0.4) ...
-#9 27.14 Setting up gir1.2-atk-1.0:amd64 (2.36.0-3build1) ...
-#9 27.14 Setting up python3-pydot (1.4.2-1build1) ...
-#9 27.25 Setting up libvte-2.91-0:amd64 (0.68.0-1ubuntu0.1) ...
-#9 27.25 Setting up wmctrl (1.07-7build1) ...
-#9 27.25 Setting up gir1.2-harfbuzz-0.0:amd64 (2.7.4-1ubuntu3.2) ...
-#9 27.26 Setting up gir1.2-pango-1.0:amd64 (1.50.6+ds-2ubuntu1) ...
-#9 27.26 Setting up libgl1-mesa-glx:amd64 (23.0.4-0ubuntu1~22.04.1) ...
-#9 27.26 Setting up ieee-data (20210605.1) ...
-#9 27.28 Setting up python3-gi-cairo (3.42.1-0ubuntu1) ...
-#9 27.28 Setting up arp-scan (1.9.7-2) ...
-#9 27.28 Setting up ros-humble-qt-dotgraph (2.2.4-1jammy.20250718.233620) ...
-#9 27.29 Setting up gir1.2-gtk-3.0:amd64 (3.24.33-1ubuntu2.2) ...
-#9 27.29 Setting up gir1.2-vte-2.91:amd64 (0.68.0-1ubuntu0.1) ...
-#9 27.29 Setting up terminator (2.1.1-1) ...
-#9 27.31 update-alternatives: using /usr/bin/terminator to provide /usr/bin/x-terminal-emulator (x-terminal-emulator) in auto mode
-#9 27.31 update-alternatives: warning: skip creation of /usr/share/man/man1/x-terminal-emulator.1.gz because associated file /usr/share/man/man1/terminator.1.gz (of link group x-terminal-emulator) doesn't exist
-#9 27.44 Setting up ros-humble-rqt-graph (1.3.1-1jammy.20250719.040213) ...
-#9 27.45 Setting up ros-humble-rqt-tf-tree (1.0.5-1jammy.20250719.040527) ...
-#9 27.45 Processing triggers for hicolor-icon-theme (0.17-2) ...
-#9 27.48 Processing triggers for libc-bin (2.35-0ubuntu3.10) ...
-#9 27.70 Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
-#9 DONE 27.8s
+#9 26.22 Preparing to unpack .../03-gir1.2-harfbuzz-0.0_2.7.4-1ubuntu3.2_amd64.deb ...
+#9 26.23 Unpacking gir1.2-harfbuzz-0.0:amd64 (2.7.4-1ubuntu3.2) ...
+#9 26.32 Selecting previously unselected package libpangoxft-1.0-0:amd64.
+#9 26.34 Preparing to unpack .../04-libpangoxft-1.0-0_1.50.6+ds-2ubuntu1_amd64.deb ...
+#9 26.35 Unpacking libpangoxft-1.0-0:amd64 (1.50.6+ds-2ubuntu1) ...
+#9 26.47 Selecting previously unselected package gir1.2-pango-1.0:amd64.
+#9 26.49 Preparing to unpack .../05-gir1.2-pango-1.0_1.50.6+ds-2ubuntu1_amd64.deb ...
+#9 26.49 Unpacking gir1.2-pango-1.0:amd64 (1.50.6+ds-2ubuntu1) ...
+#9 26.71 Selecting previously unselected package gir1.2-gtk-3.0:amd64.
+#9 26.74 Preparing to unpack .../06-gir1.2-gtk-3.0_3.24.33-1ubuntu2.2_amd64.deb ...
+#9 26.75 Unpacking gir1.2-gtk-3.0:amd64 (3.24.33-1ubuntu2.2) ...
+#9 26.97 Selecting previously unselected package libvte-2.91-common.
+#9 27.02 Preparing to unpack .../07-libvte-2.91-common_0.68.0-1ubuntu0.1_amd64.deb ...
+#9 27.02 Unpacking libvte-2.91-common (0.68.0-1ubuntu0.1) ...
+#9 27.11 Selecting previously unselected package libvte-2.91-0:amd64.
+#9 27.15 Preparing to unpack .../08-libvte-2.91-0_0.68.0-1ubuntu0.1_amd64.deb ...
+#9 27.16 Unpacking libvte-2.91-0:amd64 (0.68.0-1ubuntu0.1) ...
+#9 27.25 Selecting previously unselected package gir1.2-vte-2.91:amd64.
+#9 27.29 Preparing to unpack .../09-gir1.2-vte-2.91_0.68.0-1ubuntu0.1_amd64.deb ...
+#9 27.30 Unpacking gir1.2-vte-2.91:amd64 (0.68.0-1ubuntu0.1) ...
+#9 27.47 Selecting previously unselected package ieee-data.
+#9 27.51 Preparing to unpack .../10-ieee-data_20210605.1_all.deb ...
+#9 27.55 Unpacking ieee-data (20210605.1) ...
+#9 28.23 Selecting previously unselected package libgl1-mesa-glx:amd64.
+#9 28.25 Preparing to unpack .../11-libgl1-mesa-glx_23.0.4-0ubuntu1~22.04.1_amd64.deb ...
+#9 28.25 Unpacking libgl1-mesa-glx:amd64 (23.0.4-0ubuntu1~22.04.1) ...
+#9 28.35 Selecting previously unselected package python3-cairo:amd64.
+#9 28.37 Preparing to unpack .../12-python3-cairo_1.20.1-3build1_amd64.deb ...
+#9 28.37 Unpacking python3-cairo:amd64 (1.20.1-3build1) ...
+#9 28.47 Selecting previously unselected package python3-gi-cairo.
+#9 28.50 Preparing to unpack .../13-python3-gi-cairo_3.42.1-0ubuntu1_amd64.deb ...
+#9 28.50 Unpacking python3-gi-cairo (3.42.1-0ubuntu1) ...
+#9 28.55 Selecting previously unselected package python3-pydot.
+#9 28.57 Preparing to unpack .../14-python3-pydot_1.4.2-1build1_all.deb ...
+#9 28.57 Unpacking python3-pydot (1.4.2-1build1) ...
+#9 28.67 Selecting previously unselected package ros-humble-qt-dotgraph.
+#9 28.71 Preparing to unpack .../15-ros-humble-qt-dotgraph_2.2.4-1jammy.20250718.233620_amd64.deb ...
+#9 28.72 Unpacking ros-humble-qt-dotgraph (2.2.4-1jammy.20250718.233620) ...
+#9 28.90 Selecting previously unselected package ros-humble-rqt-graph.
+#9 28.92 Preparing to unpack .../16-ros-humble-rqt-graph_1.3.1-1jammy.20250719.040213_amd64.deb ...
+#9 28.93 Unpacking ros-humble-rqt-graph (1.3.1-1jammy.20250719.040213) ...
+#9 29.08 Selecting previously unselected package ros-humble-rqt-tf-tree.
+#9 29.12 Preparing to unpack .../17-ros-humble-rqt-tf-tree_1.0.5-1jammy.20250719.040527_amd64.deb ...
+#9 29.13 Unpacking ros-humble-rqt-tf-tree (1.0.5-1jammy.20250719.040527) ...
+#9 29.30 Selecting previously unselected package terminator.
+#9 29.34 Preparing to unpack .../18-terminator_2.1.1-1_all.deb ...
+#9 29.34 Unpacking terminator (2.1.1-1) ...
+#9 29.59 Selecting previously unselected package wmctrl.
+#9 29.62 Preparing to unpack .../19-wmctrl_1.07-7build1_amd64.deb ...
+#9 29.62 Unpacking wmctrl (1.07-7build1) ...
+#9 29.73 Selecting previously unselected package arp-scan.
+#9 29.76 Preparing to unpack .../20-arp-scan_1.9.7-2_amd64.deb ...
+#9 29.77 Unpacking arp-scan (1.9.7-2) ...
+#9 30.12 Setting up gir1.2-freedesktop:amd64 (1.72.0-1) ...
+#9 30.14 Setting up python3-cairo:amd64 (1.20.1-3build1) ...
+#9 30.59 Setting up libpangoxft-1.0-0:amd64 (1.50.6+ds-2ubuntu1) ...
+#9 30.59 Setting up libvte-2.91-common (0.68.0-1ubuntu0.1) ...
+#9 30.60 Setting up gir1.2-gdkpixbuf-2.0:amd64 (2.42.8+dfsg-1ubuntu0.4) ...
+#9 30.61 Setting up gir1.2-atk-1.0:amd64 (2.36.0-3build1) ...
+#9 30.62 Setting up python3-pydot (1.4.2-1build1) ...
+#9 31.15 Setting up libvte-2.91-0:amd64 (0.68.0-1ubuntu0.1) ...
+#9 31.16 Setting up wmctrl (1.07-7build1) ...
+#9 31.17 Setting up gir1.2-harfbuzz-0.0:amd64 (2.7.4-1ubuntu3.2) ...
+#9 31.17 Setting up gir1.2-pango-1.0:amd64 (1.50.6+ds-2ubuntu1) ...
+#9 31.18 Setting up libgl1-mesa-glx:amd64 (23.0.4-0ubuntu1~22.04.1) ...
+#9 31.18 Setting up ieee-data (20210605.1) ...
+#9 31.22 Setting up python3-gi-cairo (3.42.1-0ubuntu1) ...
+#9 31.22 Setting up arp-scan (1.9.7-2) ...
+#9 31.23 Setting up ros-humble-qt-dotgraph (2.2.4-1jammy.20250718.233620) ...
+#9 31.24 Setting up gir1.2-gtk-3.0:amd64 (3.24.33-1ubuntu2.2) ...
+#9 31.24 Setting up gir1.2-vte-2.91:amd64 (0.68.0-1ubuntu0.1) ...
+#9 31.25 Setting up terminator (2.1.1-1) ...
+#9 31.34 update-alternatives: using /usr/bin/terminator to provide /usr/bin/x-terminal-emulator (x-terminal-emulator) in auto mode
+#9 31.34 update-alternatives: warning: skip creation of /usr/share/man/man1/x-terminal-emulator.1.gz because associated file /usr/share/man/man1/terminator.1.gz (of link group x-terminal-emulator) doesn't exist
+#9 32.03 Setting up ros-humble-rqt-graph (1.3.1-1jammy.20250719.040213) ...
+#9 32.04 Setting up ros-humble-rqt-tf-tree (1.0.5-1jammy.20250719.040527) ...
+#9 32.05 Processing triggers for hicolor-icon-theme (0.17-2) ...
+#9 32.12 Processing triggers for libc-bin (2.35-0ubuntu3.10) ...
+#9 32.77 Processing triggers for mailcap (3.70+nmu1ubuntu1) ...
+#9 DONE 33.0s
 
 #10 [common 6/9] COPY requirements.txt .
 #10 DONE 0.0s
 
 #11 [common 7/9] RUN pip install --no-cache-dir -r requirements.txt
-#11 0.952 Collecting cvxpy
-#11 1.066   Downloading cvxpy-1.7.1-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (1.2 MB)
-#11 1.285      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 5.7 MB/s eta 0:00:00
-#11 1.602 Collecting numpy==1.26.4
-#11 1.631   Downloading numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
-#11 5.865      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 5.9 MB/s eta 0:00:00
-#11 5.884 Requirement already satisfied: matplotlib in /usr/lib/python3/dist-packages (from -r requirements.txt (line 3)) (3.5.1)
-#11 5.884 Requirement already satisfied: scipy in /usr/lib/python3/dist-packages (from -r requirements.txt (line 4)) (1.8.0)
-#11 6.098 Collecting ecos
-#11 6.118   Downloading ecos-2.0.14-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (218 kB)
-#11 6.156      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 218.9/218.9 KB 6.6 MB/s eta 0:00:00
-#11 6.159 Requirement already satisfied: pandas in /usr/lib/python3/dist-packages (from -r requirements.txt (line 6)) (1.3.5)
-#11 6.386 Collecting plotly
-#11 6.408   Downloading plotly-6.2.0-py3-none-any.whl (9.6 MB)
-#11 8.757      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.6/9.6 MB 4.1 MB/s eta 0:00:00
-#11 8.990 Collecting kaleido
-#11 9.012   Downloading kaleido-1.0.0-py3-none-any.whl (51 kB)
-#11 9.017      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.5/51.5 KB 14.6 MB/s eta 0:00:00
-#11 9.352 Collecting wandb
-#11 9.388   Downloading wandb-0.21.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (22.4 MB)
-#11 13.85      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 22.4/22.4 MB 4.9 MB/s eta 0:00:00
-#11 14.08 Collecting scipy
-#11 14.10   Downloading scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.7 MB)
-#11 20.62      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 37.7/37.7 MB 5.5 MB/s eta 0:00:00
-#11 20.93 Collecting osqp>=0.6.2
-#11 20.95   Downloading osqp-1.0.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (344 kB)
-#11 21.00      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 344.6/344.6 KB 7.0 MB/s eta 0:00:00
-#11 21.25 Collecting scs>=3.2.4.post1
-#11 21.27   Downloading scs-3.2.7.post2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.4 MB)
-#11 22.77      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.4/10.4 MB 7.0 MB/s eta 0:00:00
-#11 22.99 Collecting clarabel>=0.5.0
-#11 23.01   Downloading clarabel-0.11.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
-#11 23.16      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 7.5 MB/s eta 0:00:00
-#11 23.22 Requirement already satisfied: packaging in /root/.local/lib/python3.10/site-packages (from plotly->-r requirements.txt (line 7)) (25.0)
-#11 23.46 Collecting narwhals>=1.15.1
-#11 23.48   Downloading narwhals-2.0.1-py3-none-any.whl (385 kB)
-#11 23.52      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 385.4/385.4 KB 8.9 MB/s eta 0:00:00
-#11 23.72 Collecting logistro>=1.0.8
-#11 23.76   Downloading logistro-1.1.0-py3-none-any.whl (7.9 kB)
-#11 24.38 Collecting orjson>=3.10.15
-#11 24.40   Downloading orjson-3.11.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (131 kB)
-#11 24.41      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.1/131.1 KB 9.7 MB/s eta 0:00:00
-#11 24.63 Collecting choreographer>=1.0.5
-#11 24.64   Downloading choreographer-1.0.9-py3-none-any.whl (51 kB)
-#11 24.65      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.3/51.3 KB 10.5 MB/s eta 0:00:00
-#11 24.95 Collecting pydantic<3
-#11 25.03   Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)
-#11 25.19      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 444.8/444.8 KB 2.8 MB/s eta 0:00:00
-#11 25.45 Collecting sentry-sdk>=2.0.0
-#11 25.47   Downloading sentry_sdk-2.34.1-py2.py3-none-any.whl (357 kB)
-#11 25.52      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 357.7/357.7 KB 8.1 MB/s eta 0:00:00
-#11 25.84 Collecting protobuf!=4.21.0,!=5.28.0,<7,>=3.19.0
-#11 25.86   Downloading protobuf-6.31.1-cp39-abi3-manylinux2014_x86_64.whl (321 kB)
-#11 25.91      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 321.1/321.1 KB 6.6 MB/s eta 0:00:00
-#11 25.91 Requirement already satisfied: pyyaml in /usr/lib/python3/dist-packages (from wandb->-r requirements.txt (line 9)) (5.4.1)
-#11 25.91 Requirement already satisfied: platformdirs in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (4.3.8)
-#11 25.91 Requirement already satisfied: click!=8.0.0,>=7.1 in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (8.2.1)
-#11 25.91 Requirement already satisfied: requests<3,>=2.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.32.3)
-#11 25.91 Requirement already satisfied: typing-extensions<5,>=4.8 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (4.14.0)
-#11 25.98 Collecting gitpython!=3.1.29,>=1.0.0
-#11 25.99   Downloading gitpython-3.1.45-py3-none-any.whl (208 kB)
-#11 26.02      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 208.2/208.2 KB 12.1 MB/s eta 0:00:00
-#11 26.32 Collecting simplejson>=3.19.3
-#11 26.34   Downloading simplejson-3.20.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (138 kB)
-#11 26.36      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 138.0/138.0 KB 8.6 MB/s eta 0:00:00
-#11 26.55 Collecting cffi
-#11 26.57   Downloading cffi-1.17.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (446 kB)
-#11 26.63      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 446.2/446.2 KB 8.0 MB/s eta 0:00:00
-#11 26.85 Collecting gitdb<5,>=4.0.1
-#11 26.87   Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
-#11 26.88      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 KB 23.9 MB/s eta 0:00:00
-#11 26.90 Requirement already satisfied: jinja2 in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (3.0.3)
-#11 26.90 Requirement already satisfied: setuptools in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (59.6.0)
-#11 26.94 Collecting joblib
-#11 26.96   Downloading joblib-1.5.1-py3-none-any.whl (307 kB)
-#11 27.03      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.7/307.7 KB 4.6 MB/s eta 0:00:00
-#11 27.08 Collecting annotated-types>=0.6.0
-#11 27.10   Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
-#11 28.24 Collecting pydantic-core==2.33.2
-#11 28.27   Downloading pydantic_core-2.33.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
-#11 28.56      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 6.8 MB/s eta 0:00:00
-#11 28.61 Collecting typing-inspection>=0.4.0
-#11 28.63   Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)
-#11 28.64 Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2.4.0)
-#11 28.64 Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.10)
-#11 28.65 Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2025.4.26)
-#11 28.65 Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.4.2)
-#11 28.72 Collecting smmap<6,>=3.0.1
-#11 28.74   Downloading smmap-5.0.2-py3-none-any.whl (24 kB)
-#11 28.79 Collecting pycparser
-#11 28.88   Downloading pycparser-2.22-py3-none-any.whl (117 kB)
-#11 28.89      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.6/117.6 KB 18.5 MB/s eta 0:00:00
-#11 29.25 Installing collected packages: typing-inspection, smmap, simplejson, sentry-sdk, pydantic-core, pycparser, protobuf, orjson, numpy, narwhals, logistro, joblib, annotated-types, scipy, pydantic, plotly, gitdb, choreographer, cffi, scs, osqp, kaleido, gitpython, ecos, clarabel, wandb, cvxpy
-#11 29.27   Attempting uninstall: simplejson
-#11 29.27     Found existing installation: simplejson 3.17.6
-#11 29.27     Not uninstalling simplejson at /usr/lib/python3/dist-packages, outside environment /usr
-#11 29.27     Can't uninstall 'simplejson'. No files were found to uninstall.
-#11 29.63   Attempting uninstall: numpy
-#11 29.63     Found existing installation: numpy 1.21.5
-#11 29.63     Not uninstalling numpy at /usr/lib/python3/dist-packages, outside environment /usr
-#11 29.63     Can't uninstall 'numpy'. No files were found to uninstall.
-#11 30.98   Attempting uninstall: scipy
-#11 30.98     Found existing installation: scipy 1.8.0
-#11 30.98     Not uninstalling scipy at /usr/lib/python3/dist-packages, outside environment /usr
-#11 30.98     Can't uninstall 'scipy'. No files were found to uninstall.
-#11 35.99 Successfully installed annotated-types-0.7.0 cffi-1.17.1 choreographer-1.0.9 clarabel-0.11.1 cvxpy-1.7.1 ecos-2.0.14 gitdb-4.0.12 gitpython-3.1.45 joblib-1.5.1 kaleido-1.0.0 logistro-1.1.0 narwhals-2.0.1 numpy-1.26.4 orjson-3.11.1 osqp-1.0.4 plotly-6.2.0 protobuf-6.31.1 pycparser-2.22 pydantic-2.11.7 pydantic-core-2.33.2 scipy-1.15.3 scs-3.2.7.post2 sentry-sdk-2.34.1 simplejson-3.20.1 smmap-5.0.2 typing-inspection-0.4.1 wandb-0.21.1
-#11 35.99 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-#11 DONE 36.4s
+#11 3.828 Collecting cvxpy
+#11 4.160   Downloading cvxpy-1.7.1-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (1.2 MB)
+#11 4.390      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 6.2 MB/s eta 0:00:00
+#11 6.099 Collecting numpy==1.26.4
+#11 6.124   Downloading numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+#11 9.728      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 5.5 MB/s eta 0:00:00
+#11 9.807 Requirement already satisfied: matplotlib in /usr/lib/python3/dist-packages (from -r requirements.txt (line 3)) (3.5.1)
+#11 9.807 Requirement already satisfied: scipy in /usr/lib/python3/dist-packages (from -r requirements.txt (line 4)) (1.8.0)
+#11 9.992 Collecting ecos
+#11 10.03   Downloading ecos-2.0.14-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (218 kB)
+#11 10.07      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 218.9/218.9 KB 6.8 MB/s eta 0:00:00
+#11 10.08 Requirement already satisfied: pandas in /usr/lib/python3/dist-packages (from -r requirements.txt (line 6)) (1.3.5)
+#11 10.35 Collecting plotly
+#11 10.40   Downloading plotly-6.2.0-py3-none-any.whl (9.6 MB)
+#11 12.03      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.6/9.6 MB 5.9 MB/s eta 0:00:00
+#11 12.22 Collecting kaleido
+#11 12.24   Downloading kaleido-1.0.0-py3-none-any.whl (51 kB)
+#11 12.25      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.5/51.5 KB 41.0 MB/s eta 0:00:00
+#11 13.04 Collecting wandb
+#11 13.08   Downloading wandb-0.21.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (22.4 MB)
+#11 16.47      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 22.4/22.4 MB 6.8 MB/s eta 0:00:00
+#11 17.76 Collecting scipy
+#11 17.78   Downloading scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.7 MB)
+#11 23.43      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 37.7/37.7 MB 6.8 MB/s eta 0:00:00
+#11 23.74 Collecting clarabel>=0.5.0
+#11 23.78   Downloading clarabel-0.11.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
+#11 24.00      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 5.6 MB/s eta 0:00:00
+#11 24.24 Collecting scs>=3.2.4.post1
+#11 24.26   Downloading scs-3.2.7.post2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.4 MB)
+#11 25.85      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.4/10.4 MB 6.7 MB/s eta 0:00:00
+#11 26.39 Collecting osqp>=0.6.2
+#11 26.42   Downloading osqp-1.0.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (344 kB)
+#11 26.46      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 344.6/344.6 KB 10.2 MB/s eta 0:00:00
+#11 26.89 Requirement already satisfied: packaging in /root/.local/lib/python3.10/site-packages (from plotly->-r requirements.txt (line 7)) (25.0)
+#11 27.36 Collecting narwhals>=1.15.1
+#11 27.39   Downloading narwhals-2.0.1-py3-none-any.whl (385 kB)
+#11 27.43      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 385.4/385.4 KB 10.5 MB/s eta 0:00:00
+#11 27.51 Collecting logistro>=1.0.8
+#11 27.54   Downloading logistro-1.1.0-py3-none-any.whl (7.9 kB)
+#11 27.62 Collecting choreographer>=1.0.5
+#11 27.64   Downloading choreographer-1.0.9-py3-none-any.whl (51 kB)
+#11 27.65      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.3/51.3 KB 57.2 MB/s eta 0:00:00
+#11 29.70 Collecting orjson>=3.10.15
+#11 29.72   Downloading orjson-3.11.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (131 kB)
+#11 29.75      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.1/131.1 KB 7.5 MB/s eta 0:00:00
+#11 31.02 Collecting pydantic<3
+#11 31.05   Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)
+#11 31.12      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 444.8/444.8 KB 8.5 MB/s eta 0:00:00
+#11 31.13 Requirement already satisfied: platformdirs in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (4.3.8)
+#11 31.13 Requirement already satisfied: requests<3,>=2.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.32.3)
+#11 31.13 Requirement already satisfied: pyyaml in /usr/lib/python3/dist-packages (from wandb->-r requirements.txt (line 9)) (5.4.1)
+#11 31.55 Collecting gitpython!=3.1.29,>=1.0.0
+#11 31.57   Downloading gitpython-3.1.45-py3-none-any.whl (208 kB)
+#11 31.63      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 208.2/208.2 KB 8.6 MB/s eta 0:00:00
+#11 31.64 Requirement already satisfied: typing-extensions<5,>=4.8 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (4.14.0)
+#11 33.18 Collecting protobuf!=4.21.0,!=5.28.0,<7,>=3.19.0
+#11 33.20   Downloading protobuf-6.31.1-cp39-abi3-manylinux2014_x86_64.whl (321 kB)
+#11 33.24      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 321.1/321.1 KB 10.7 MB/s eta 0:00:00
+#11 33.63 Collecting sentry-sdk>=2.0.0
+#11 33.66   Downloading sentry_sdk-2.34.1-py2.py3-none-any.whl (357 kB)
+#11 33.70      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 357.7/357.7 KB 10.1 MB/s eta 0:00:00
+#11 33.71 Requirement already satisfied: click!=8.0.0,>=7.1 in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (8.2.1)
+#11 34.47 Collecting simplejson>=3.19.3
+#11 34.47   Downloading simplejson-3.20.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (138 kB)
+#11 34.47      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 138.0/138.0 KB 27.5 MB/s eta 0:00:00
+#11 35.41 Collecting cffi
+#11 35.44   Downloading cffi-1.17.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (446 kB)
+#11 35.55      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 446.2/446.2 KB 5.2 MB/s eta 0:00:00
+#11 35.95 Collecting gitdb<5,>=4.0.1
+#11 35.98   Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
+#11 35.99      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 KB 12.1 MB/s eta 0:00:00
+#11 36.37 Collecting joblib
+#11 36.40   Downloading joblib-1.5.1-py3-none-any.whl (307 kB)
+#11 36.47      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.7/307.7 KB 4.9 MB/s eta 0:00:00
+#11 36.48 Requirement already satisfied: jinja2 in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (3.0.3)
+#11 36.48 Requirement already satisfied: setuptools in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (59.6.0)
+#11 36.63 Collecting typing-inspection>=0.4.0
+#11 36.68   Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)
+#11 42.71 Collecting pydantic-core==2.33.2
+#11 42.75   Downloading pydantic_core-2.33.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+#11 43.05      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 6.7 MB/s eta 0:00:00
+#11 43.13 Collecting annotated-types>=0.6.0
+#11 43.16   Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+#11 43.20 Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2025.4.26)
+#11 43.21 Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.10)
+#11 43.22 Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2.4.0)
+#11 43.22 Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.4.2)
+#11 43.75 Collecting smmap<6,>=3.0.1
+#11 43.77   Downloading smmap-5.0.2-py3-none-any.whl (24 kB)
+#11 43.92 Collecting pycparser
+#11 43.95   Downloading pycparser-2.22-py3-none-any.whl (117 kB)
+#11 43.96      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.6/117.6 KB 21.0 MB/s eta 0:00:00
+#11 46.55 Installing collected packages: typing-inspection, smmap, simplejson, sentry-sdk, pydantic-core, pycparser, protobuf, orjson, numpy, narwhals, logistro, joblib, annotated-types, scipy, pydantic, plotly, gitdb, choreographer, cffi, scs, osqp, kaleido, gitpython, ecos, clarabel, wandb, cvxpy
+#11 46.63   Attempting uninstall: simplejson
+#11 46.64     Found existing installation: simplejson 3.17.6
+#11 46.64     Not uninstalling simplejson at /usr/lib/python3/dist-packages, outside environment /usr
+#11 46.64     Can't uninstall 'simplejson'. No files were found to uninstall.
+#11 48.22   Attempting uninstall: numpy
+#11 48.23     Found existing installation: numpy 1.21.5
+#11 48.23     Not uninstalling numpy at /usr/lib/python3/dist-packages, outside environment /usr
+#11 48.23     Can't uninstall 'numpy'. No files were found to uninstall.
+#11 54.69   Attempting uninstall: scipy
+#11 54.69     Found existing installation: scipy 1.8.0
+#11 54.70     Not uninstalling scipy at /usr/lib/python3/dist-packages, outside environment /usr
+#11 54.70     Can't uninstall 'scipy'. No files were found to uninstall.
+#11 79.23 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#11 79.23 Successfully installed annotated-types-0.7.0 cffi-1.17.1 choreographer-1.0.9 clarabel-0.11.1 cvxpy-1.7.1 ecos-2.0.14 gitdb-4.0.12 gitpython-3.1.45 joblib-1.5.1 kaleido-1.0.0 logistro-1.1.0 narwhals-2.0.1 numpy-1.26.4 orjson-3.11.1 osqp-1.0.4 plotly-6.2.0 protobuf-6.31.1 pycparser-2.22 pydantic-2.11.7 pydantic-core-2.33.2 scipy-1.15.3 scs-3.2.7.post2 sentry-sdk-2.34.1 simplejson-3.20.1 smmap-5.0.2 typing-inspection-0.4.1 wandb-0.21.1
+#11 DONE 79.9s
 
 #12 [common 8/9] RUN pip install -r requirements.txt
-#12 0.407 Requirement already satisfied: cvxpy in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 1)) (1.7.1)
-#12 0.408 Requirement already satisfied: numpy==1.26.4 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 2)) (1.26.4)
-#12 0.409 Requirement already satisfied: matplotlib in /usr/lib/python3/dist-packages (from -r requirements.txt (line 3)) (3.5.1)
-#12 0.409 Requirement already satisfied: scipy in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 4)) (1.15.3)
-#12 0.410 Requirement already satisfied: ecos in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 5)) (2.0.14)
-#12 0.410 Requirement already satisfied: pandas in /usr/lib/python3/dist-packages (from -r requirements.txt (line 6)) (1.3.5)
-#12 0.411 Requirement already satisfied: plotly in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 7)) (6.2.0)
-#12 0.411 Requirement already satisfied: kaleido in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 8)) (1.0.0)
-#12 0.412 Requirement already satisfied: wandb in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 9)) (0.21.1)
-#12 0.429 Requirement already satisfied: scs>=3.2.4.post1 in /usr/local/lib/python3.10/dist-packages (from cvxpy->-r requirements.txt (line 1)) (3.2.7.post2)
-#12 0.430 Requirement already satisfied: osqp>=0.6.2 in /usr/local/lib/python3.10/dist-packages (from cvxpy->-r requirements.txt (line 1)) (1.0.4)
-#12 0.430 Requirement already satisfied: clarabel>=0.5.0 in /usr/local/lib/python3.10/dist-packages (from cvxpy->-r requirements.txt (line 1)) (0.11.1)
-#12 0.461 Requirement already satisfied: packaging in /root/.local/lib/python3.10/site-packages (from plotly->-r requirements.txt (line 7)) (25.0)
-#12 0.462 Requirement already satisfied: narwhals>=1.15.1 in /usr/local/lib/python3.10/dist-packages (from plotly->-r requirements.txt (line 7)) (2.0.1)
-#12 0.464 Requirement already satisfied: choreographer>=1.0.5 in /usr/local/lib/python3.10/dist-packages (from kaleido->-r requirements.txt (line 8)) (1.0.9)
-#12 0.464 Requirement already satisfied: orjson>=3.10.15 in /usr/local/lib/python3.10/dist-packages (from kaleido->-r requirements.txt (line 8)) (3.11.1)
-#12 0.465 Requirement already satisfied: logistro>=1.0.8 in /usr/local/lib/python3.10/dist-packages (from kaleido->-r requirements.txt (line 8)) (1.1.0)
-#12 0.500 Requirement already satisfied: requests<3,>=2.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.32.3)
-#12 0.500 Requirement already satisfied: platformdirs in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (4.3.8)
-#12 0.501 Requirement already satisfied: gitpython!=3.1.29,>=1.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (3.1.45)
-#12 0.501 Requirement already satisfied: sentry-sdk>=2.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.34.1)
-#12 0.502 Requirement already satisfied: typing-extensions<5,>=4.8 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (4.14.0)
-#12 0.502 Requirement already satisfied: pyyaml in /usr/lib/python3/dist-packages (from wandb->-r requirements.txt (line 9)) (5.4.1)
-#12 0.503 Requirement already satisfied: protobuf!=4.21.0,!=5.28.0,<7,>=3.19.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (6.31.1)
-#12 0.503 Requirement already satisfied: pydantic<3 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.11.7)
-#12 0.504 Requirement already satisfied: click!=8.0.0,>=7.1 in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (8.2.1)
-#12 0.506 Requirement already satisfied: simplejson>=3.19.3 in /usr/local/lib/python3.10/dist-packages (from choreographer>=1.0.5->kaleido->-r requirements.txt (line 8)) (3.20.1)
-#12 0.508 Requirement already satisfied: cffi in /usr/local/lib/python3.10/dist-packages (from clarabel>=0.5.0->cvxpy->-r requirements.txt (line 1)) (1.17.1)
-#12 0.517 Requirement already satisfied: gitdb<5,>=4.0.1 in /usr/local/lib/python3.10/dist-packages (from gitpython!=3.1.29,>=1.0.0->wandb->-r requirements.txt (line 9)) (4.0.12)
-#12 0.530 Requirement already satisfied: setuptools in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (59.6.0)
-#12 0.530 Requirement already satisfied: jinja2 in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (3.0.3)
-#12 0.530 Requirement already satisfied: joblib in /usr/local/lib/python3.10/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (1.5.1)
-#12 0.535 Requirement already satisfied: annotated-types>=0.6.0 in /usr/local/lib/python3.10/dist-packages (from pydantic<3->wandb->-r requirements.txt (line 9)) (0.7.0)
-#12 0.536 Requirement already satisfied: pydantic-core==2.33.2 in /usr/local/lib/python3.10/dist-packages (from pydantic<3->wandb->-r requirements.txt (line 9)) (2.33.2)
-#12 0.537 Requirement already satisfied: typing-inspection>=0.4.0 in /usr/local/lib/python3.10/dist-packages (from pydantic<3->wandb->-r requirements.txt (line 9)) (0.4.1)
-#12 0.544 Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.4.2)
-#12 0.544 Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2.4.0)
-#12 0.545 Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.10)
-#12 0.545 Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2025.4.26)
-#12 0.586 Requirement already satisfied: smmap<6,>=3.0.1 in /usr/local/lib/python3.10/dist-packages (from gitdb<5,>=4.0.1->gitpython!=3.1.29,>=1.0.0->wandb->-r requirements.txt (line 9)) (5.0.2)
-#12 0.596 Requirement already satisfied: pycparser in /usr/local/lib/python3.10/dist-packages (from cffi->clarabel>=0.5.0->cvxpy->-r requirements.txt (line 1)) (2.22)
-#12 0.785 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-#12 DONE 0.8s
+#12 0.869 Requirement already satisfied: cvxpy in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 1)) (1.7.1)
+#12 0.870 Requirement already satisfied: numpy==1.26.4 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 2)) (1.26.4)
+#12 0.871 Requirement already satisfied: matplotlib in /usr/lib/python3/dist-packages (from -r requirements.txt (line 3)) (3.5.1)
+#12 0.872 Requirement already satisfied: scipy in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 4)) (1.15.3)
+#12 0.872 Requirement already satisfied: ecos in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 5)) (2.0.14)
+#12 0.873 Requirement already satisfied: pandas in /usr/lib/python3/dist-packages (from -r requirements.txt (line 6)) (1.3.5)
+#12 0.873 Requirement already satisfied: plotly in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 7)) (6.2.0)
+#12 0.874 Requirement already satisfied: kaleido in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 8)) (1.0.0)
+#12 0.875 Requirement already satisfied: wandb in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 9)) (0.21.1)
+#12 0.931 Requirement already satisfied: clarabel>=0.5.0 in /usr/local/lib/python3.10/dist-packages (from cvxpy->-r requirements.txt (line 1)) (0.11.1)
+#12 0.933 Requirement already satisfied: osqp>=0.6.2 in /usr/local/lib/python3.10/dist-packages (from cvxpy->-r requirements.txt (line 1)) (1.0.4)
+#12 0.934 Requirement already satisfied: scs>=3.2.4.post1 in /usr/local/lib/python3.10/dist-packages (from cvxpy->-r requirements.txt (line 1)) (3.2.7.post2)
+#12 1.040 Requirement already satisfied: narwhals>=1.15.1 in /usr/local/lib/python3.10/dist-packages (from plotly->-r requirements.txt (line 7)) (2.0.1)
+#12 1.041 Requirement already satisfied: packaging in /root/.local/lib/python3.10/site-packages (from plotly->-r requirements.txt (line 7)) (25.0)
+#12 1.048 Requirement already satisfied: choreographer>=1.0.5 in /usr/local/lib/python3.10/dist-packages (from kaleido->-r requirements.txt (line 8)) (1.0.9)
+#12 1.049 Requirement already satisfied: orjson>=3.10.15 in /usr/local/lib/python3.10/dist-packages (from kaleido->-r requirements.txt (line 8)) (3.11.1)
+#12 1.051 Requirement already satisfied: logistro>=1.0.8 in /usr/local/lib/python3.10/dist-packages (from kaleido->-r requirements.txt (line 8)) (1.1.0)
+#12 1.180 Requirement already satisfied: click!=8.0.0,>=7.1 in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (8.2.1)
+#12 1.181 Requirement already satisfied: pydantic<3 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.11.7)
+#12 1.183 Requirement already satisfied: typing-extensions<5,>=4.8 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (4.14.0)
+#12 1.185 Requirement already satisfied: sentry-sdk>=2.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.34.1)
+#12 1.186 Requirement already satisfied: pyyaml in /usr/lib/python3/dist-packages (from wandb->-r requirements.txt (line 9)) (5.4.1)
+#12 1.188 Requirement already satisfied: gitpython!=3.1.29,>=1.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (3.1.45)
+#12 1.189 Requirement already satisfied: requests<3,>=2.0.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (2.32.3)
+#12 1.193 Requirement already satisfied: protobuf!=4.21.0,!=5.28.0,<7,>=3.19.0 in /usr/local/lib/python3.10/dist-packages (from wandb->-r requirements.txt (line 9)) (6.31.1)
+#12 1.194 Requirement already satisfied: platformdirs in /root/.local/lib/python3.10/site-packages (from wandb->-r requirements.txt (line 9)) (4.3.8)
+#12 1.200 Requirement already satisfied: simplejson>=3.19.3 in /usr/local/lib/python3.10/dist-packages (from choreographer>=1.0.5->kaleido->-r requirements.txt (line 8)) (3.20.1)
+#12 1.206 Requirement already satisfied: cffi in /usr/local/lib/python3.10/dist-packages (from clarabel>=0.5.0->cvxpy->-r requirements.txt (line 1)) (1.17.1)
+#12 1.240 Requirement already satisfied: gitdb<5,>=4.0.1 in /usr/local/lib/python3.10/dist-packages (from gitpython!=3.1.29,>=1.0.0->wandb->-r requirements.txt (line 9)) (4.0.12)
+#12 1.287 Requirement already satisfied: jinja2 in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (3.0.3)
+#12 1.288 Requirement already satisfied: setuptools in /usr/lib/python3/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (59.6.0)
+#12 1.289 Requirement already satisfied: joblib in /usr/local/lib/python3.10/dist-packages (from osqp>=0.6.2->cvxpy->-r requirements.txt (line 1)) (1.5.1)
+#12 1.309 Requirement already satisfied: pydantic-core==2.33.2 in /usr/local/lib/python3.10/dist-packages (from pydantic<3->wandb->-r requirements.txt (line 9)) (2.33.2)
+#12 1.310 Requirement already satisfied: typing-inspection>=0.4.0 in /usr/local/lib/python3.10/dist-packages (from pydantic<3->wandb->-r requirements.txt (line 9)) (0.4.1)
+#12 1.312 Requirement already satisfied: annotated-types>=0.6.0 in /usr/local/lib/python3.10/dist-packages (from pydantic<3->wandb->-r requirements.txt (line 9)) (0.7.0)
+#12 1.333 Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2025.4.26)
+#12 1.334 Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (2.4.0)
+#12 1.336 Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.10)
+#12 1.337 Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.0.0->wandb->-r requirements.txt (line 9)) (3.4.2)
+#12 1.482 Requirement already satisfied: smmap<6,>=3.0.1 in /usr/local/lib/python3.10/dist-packages (from gitdb<5,>=4.0.1->gitpython!=3.1.29,>=1.0.0->wandb->-r requirements.txt (line 9)) (5.0.2)
+#12 1.517 Requirement already satisfied: pycparser in /usr/local/lib/python3.10/dist-packages (from cffi->clarabel>=0.5.0->cvxpy->-r requirements.txt (line 1)) (2.22)
+#12 2.208 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#12 DONE 2.3s
 
 #13 [common 9/9] COPY vehicle/cyclonedds.xml /opt/autoware/cyclonedds.xml
 #13 DONE 0.0s
 
 #14 [eval  1/11] RUN mkdir /ws
-#14 DONE 0.1s
+#14 DONE 0.2s
 
 #15 [eval  2/11] RUN git clone --depth 1 https://github.com/AutomotiveAIChallenge/aichallenge-2025 /ws/repository
-#15 0.156 Cloning into '/ws/repository'...
-#15 DONE 3.5s
+#15 0.176 Cloning into '/ws/repository'...
+#15 DONE 3.7s
 
 #16 [eval  3/11] RUN mv /ws/repository/aichallenge /aichallenge
-#16 DONE 0.2s
+#16 DONE 0.4s
 
 #17 [eval  4/11] RUN rm -rf /aichallenge/simulator
 #17 DONE 0.2s
 
 #18 [eval  5/11] RUN rm -rf /aichallenge/workspace/src/aichallenge_submit
-#18 DONE 0.2s
+#18 DONE 0.3s
 
 #19 [eval  6/11] RUN chmod 757 /aichallenge
-#19 DONE 0.1s
+#19 DONE 0.2s
 
 #20 [eval  7/11] COPY aichallenge/simulator/ /aichallenge/simulator/
-#20 DONE 0.8s
+#20 DONE 1.4s
 
-#21 [eval  6/11] RUN chmod 757 /aichallenge
-#21 CACHED
+#21 [eval  8/11] COPY submit/aichallenge_submit.tar.gz /ws
+#21 DONE 0.0s
 
-#22 [eval  3/11] RUN mv /ws/repository/aichallenge /aichallenge
-#22 CACHED
+#22 [eval  9/11] RUN tar zxf /ws/aichallenge_submit.tar.gz -C /aichallenge/workspace/src
+#22 DONE 0.3s
 
-#23 [common 8/9] RUN pip install -r requirements.txt
-#23 CACHED
+#23 [eval 10/11] RUN rm -rf /ws
+#23 DONE 0.3s
 
-#24 [common 9/9] COPY vehicle/cyclonedds.xml /opt/autoware/cyclonedds.xml
-#24 CACHED
+#24 [eval 11/11] RUN bash -c '   source /autoware/install/setup.bash;   cd /aichallenge/workspace;   rosdep update;   rosdep install -y -r -i --from-paths src --ignore-src --rosdistro $ROS_DISTRO;   colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release'
+#24 1.003 Warning: running 'rosdep update' as root is not recommended.
+#24 1.003   You should run 'sudo rosdep fix-permissions' and invoke 'rosdep update' again without sudo.
+#24 16.42 reading in sources list data from /etc/ros/rosdep/sources.list.d
+#24 16.42 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
+#24 16.42 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+#24 16.42 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+#24 16.42 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+#24 16.42 Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
+#24 16.42 Hit https://s3.amazonaws.com/autonomoustuff-repo/autonomoustuff-public-humble.yaml
+#24 16.42 Query rosdistro index https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml
+#24 16.42 Skip end-of-life distro "ardent"
+#24 16.42 Skip end-of-life distro "bouncy"
+#24 16.42 Skip end-of-life distro "crystal"
+#24 16.42 Skip end-of-life distro "dashing"
+#24 16.42 Skip end-of-life distro "eloquent"
+#24 16.42 Skip end-of-life distro "foxy"
+#24 16.42 Skip end-of-life distro "galactic"
+#24 16.42 Skip end-of-life distro "groovy"
+#24 16.42 Add distro "humble"
+#24 16.42 Skip end-of-life distro "hydro"
+#24 16.42 Skip end-of-life distro "indigo"
+#24 16.42 Skip end-of-life distro "iron"
+#24 16.42 Skip end-of-life distro "jade"
+#24 16.42 Add distro "jazzy"
+#24 16.42 Add distro "kilted"
+#24 16.42 Skip end-of-life distro "kinetic"
+#24 16.42 Skip end-of-life distro "lunar"
+#24 16.42 Skip end-of-life distro "melodic"
+#24 16.42 Skip end-of-life distro "noetic"
+#24 16.42 Add distro "rolling"
+#24 16.42 updated cache in /root/.ros/rosdep/sources.cache
+#24 17.53 ERROR: the following packages/stacks could not have their rosdep keys resolved
+#24 17.53 to system dependencies:
+#24 17.53 aichallenge_submit_launch: Cannot locate rosdep definition for [generic_type_utility]
+#24 17.53 racing_kart_gnss_poser: Cannot locate rosdep definition for [racing_kart_msgs]
+#24 17.53 Continuing to install resolvable dependencies...
+#24 17.53 #All required rosdeps installed successfully
+#24 19.12 [1.290s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+#24 19.12 	'gyro_odometer' is in: /autoware/install/gyro_odometer
+#24 19.12 If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+#24 19.12 If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+#24 19.12 
+#24 19.12 If you understand the risks and want to override a package anyways, add the following to the command line:
+#24 19.12 	--allow-overriding gyro_odometer
+#24 19.12 
+#24 19.12 This may be promoted to an error in a future release of colcon-override-check.
+#24 19.15 Starting >>> editor_tool_srvs
+#24 19.18 Starting >>> goal_pose_setter
+#24 19.20 Starting >>> gyro_odometer
+#24 19.23 Starting >>> imu_corrector
+#24 19.26 Starting >>> imu_gnss_poser
+#24 19.28 Starting >>> path_to_trajectory
+#24 19.30 Starting >>> racing_kart_description
+#24 19.33 Starting >>> racing_kart_sensor_kit_description
+#24 19.36 Starting >>> simple_pure_pursuit
+#24 19.40 Starting >>> aichallenge_awsim_adapter
+#24 19.45 Starting >>> autoware_overlay_rviz_plugin
+#24 19.48 Starting >>> racing_kart_gnss_poser
+#24 32.12 Finished <<< racing_kart_sensor_kit_description [12.8s]
+#24 32.13 Starting >>> simple_trajectory_generator
+#24 32.39 Finished <<< racing_kart_description [13.1s]
+#24 91.26 [Processing: aichallenge_awsim_adapter, autoware_overlay_rviz_plugin, editor_tool_srvs, goal_pose_setter, gyro_odometer, imu_corrector, imu_gnss_poser, path_to_trajectory, racing_kart_gnss_poser, simple_pure_pursuit, simple_trajectory_generator]
+#24 91.26 Finished <<< simple_trajectory_generator [59.1s]
+#24 110.1 --- stderr: goal_pose_setter
+#24 110.1 In file included from /usr/include/boost/math/tools/cxx03_warn.hpp:9,
+#24 110.1                  from /usr/include/boost/math/constants/constants.hpp:11,
+#24 110.1                  from /usr/include/boost/geometry/util/math.hpp:29,
+#24 110.1                  from /usr/include/boost/geometry/util/is_inverse_spheroidal_coordinates.hpp:19,
+#24 110.1                  from /usr/include/boost/geometry/algorithms/detail/assign_values.hpp:42,
+#24 110.1                  from /usr/include/boost/geometry/algorithms/detail/assign_box_corners.hpp:21,
+#24 110.1                  from /usr/include/boost/geometry/algorithms/convert.hpp:38,
+#24 110.1                  from /usr/include/boost/geometry/geometries/box.hpp:22,
+#24 110.1                  from /usr/include/boost/geometry/geometries/geometries.hpp:25,
+#24 110.1                  from /autoware/install/tier4_autoware_utils/include/tier4_autoware_utils/geometry/boost_geometry.hpp:19,
+#24 110.1                  from /autoware/install/tier4_autoware_utils/include/tier4_autoware_utils/tier4_autoware_utils.hpp:18,
+#24 110.1                  from /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.hpp:25,
+#24 110.1                  from /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp:1:
+#24 110.1 /usr/include/boost/detail/no_exceptions_support.hpp:17:1: note: ‘#pragma message: This header is deprecated. Use <boost/core/no_exceptions_support.hpp> instead.’
+#24 110.1    17 | BOOST_HEADER_DEPRECATED("<boost/core/no_exceptions_support.hpp>")
+#24 110.1       | ^~~~~~~~~~~~~~~~~~~~~~~
+#24 110.1 /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp: In constructor ‘GoalPosePublisher::GoalPosePublisher()’:
+#24 110.1 /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp:5:16: warning: variable ‘rt_qos’ set but not used [-Wunused-but-set-variable]
+#24 110.1     5 |     const auto rt_qos = rclcpp::QoS(rclcpp::KeepLast(1)).reliable().transient_local();
+#24 110.1       |                ^~~~~~
+#24 110.1 /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp:6:16: warning: variable ‘rv_qos’ set but not used [-Wunused-but-set-variable]
+#24 110.1     6 |     const auto rv_qos = rclcpp::QoS(rclcpp::KeepLast(1)).reliable().durability_volatile();
+#24 110.1       |                ^~~~~~
+#24 110.1 ---
+#24 110.1 Finished <<< goal_pose_setter [1min 31s]
+#24 116.1 Finished <<< path_to_trajectory [1min 37s]
+#24 134.6 Finished <<< imu_gnss_poser [1min 55s]
+#24 135.4 Finished <<< editor_tool_srvs [1min 56s]
+#24 135.4 Starting >>> editor_tool_server
+#24 135.5 Starting >>> rviz_editor_plugins
+#24 152.5 Finished <<< simple_pure_pursuit [2min 13s]
+#24 154.8 Finished <<< aichallenge_awsim_adapter [2min 15s]
+#24 156.9 Finished <<< imu_corrector [2min 18s]
+#24 182.9 Finished <<< racing_kart_gnss_poser [2min 43s]
+#24 191.0 --- stderr: editor_tool_server
+#24 191.0 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp: In member function ‘void editor_tool_server::EditorToolServer::SaveCsvSrv(std::shared_ptr<editor_tool_srvs::srv::SaveCsv_Request_<std::allocator<void> > >, std::shared_ptr<editor_tool_srvs::srv::SaveCsv_Response_<std::allocator<void> > >)’:
+#24 191.0 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp:233:63: warning: unused parameter ‘response’ [-Wunused-parameter]
+#24 191.0   233 |     std::shared_ptr<editor_tool_srvs::srv::SaveCsv::Response> response)
+#24 191.0       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+#24 191.0 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp: In member function ‘void editor_tool_server::EditorToolServer::processFeedback(const ConstSharedPtr&)’:
+#24 191.0 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp:285:47: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<visualization_msgs::msg::Marker_<std::allocator<void> >, std::allocator<visualization_msgs::msg::Marker_<std::allocator<void> > > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+#24 191.0   285 |           if (p_sel_idx1_ >= 0 && p_sel_idx1_ < trajectory_markers_.size()) {
+#24 191.0       |                                   ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#24 191.0 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp:359:43: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<visualization_msgs::msg::Marker_<std::allocator<void> >, std::allocator<visualization_msgs::msg::Marker_<std::allocator<void> > > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+#24 191.0   359 |           if (sel_idx1_ >= 0 && sel_idx1_ < trajectory_markers_.size()) {
+#24 191.0       |                                 ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#24 191.0 ---
+#24 191.0 Finished <<< editor_tool_server [55.6s]
+#24 228.1 [Processing: autoware_overlay_rviz_plugin, gyro_odometer, rviz_editor_plugins]
+#24 228.1 Finished <<< rviz_editor_plugins [1min 33s]
+#24 301.0 [Processing: autoware_overlay_rviz_plugin, gyro_odometer]
+#24 301.0 [Processing: autoware_overlay_rviz_plugin, gyro_odometer]
+#24 301.0 Finished <<< gyro_odometer [4min 42s]
+#24 301.0 Starting >>> aichallenge_submit_launch
+#24 306.7 Finished <<< aichallenge_submit_launch [5.65s]
+#24 306.7 Starting >>> aichallenge_system_launch
+#24 310.2 --- stderr: autoware_overlay_rviz_plugin
+#24 310.2 /aichallenge/workspace/src/aichallenge_system/autoware_overlay_rviz_plugin/src/speed_limit_display.cpp: In member function ‘void autoware_overlay_rviz_plugin::SpeedLimitDisplay::drawSpeedLimitIndicator(QPainter&, const QRectF&, const QColor&, const QColor&, const QColor&, const QColor&, float)’:
+#24 310.2 /aichallenge/workspace/src/aichallenge_system/autoware_overlay_rviz_plugin/src/speed_limit_display.cpp:75:15: warning: unused parameter ‘bg_alpha’ [-Wunused-parameter]
+#24 310.2    75 |   const float bg_alpha)
+#24 310.2       |   ~~~~~~~~~~~~^~~~~~~~
+#24 310.2 ---
+#24 310.2 Finished <<< autoware_overlay_rviz_plugin [4min 51s]
+#24 311.3 Finished <<< aichallenge_system_launch [4.61s]
+#24 311.4 
+#24 311.4 Summary: 17 packages finished [4min 53s]
+#24 311.4   3 packages had stderr output: autoware_overlay_rviz_plugin editor_tool_server goal_pose_setter
+#24 DONE 311.6s
 
-#25 [common 2/9] COPY ./vehicle/zenoh-bridge-ros2dds_1.4.0_amd64.deb /tmp/
-#25 CACHED
-
-#26 [common 6/9] COPY requirements.txt .
-#26 CACHED
-
-#27 [common 5/9] RUN apt-get update &&   xargs -a /tmp/packages.txt apt-get install -y --no-install-recommends &&   rm -rf /var/lib/apt/lists/*
-#27 CACHED
-
-#28 [common 4/9] COPY packages.txt /tmp/packages.txt
-#28 CACHED
-
-#29 [common 7/9] RUN pip install --no-cache-dir -r requirements.txt
-#29 CACHED
-
-#30 [eval  5/11] RUN rm -rf /aichallenge/workspace/src/aichallenge_submit
-#30 CACHED
-
-#31 [eval  1/11] RUN mkdir /ws
-#31 CACHED
-
-#32 [eval  4/11] RUN rm -rf /aichallenge/simulator
-#32 CACHED
-
-#33 [common 3/9] RUN apt-get update &&   apt-get install -y --no-install-recommends /tmp/zenoh-bridge-ros2dds_1.4.0_amd64.deb &&   rm -f /tmp/zenoh-bridge-ros2dds_1.4.0_amd64.deb &&   rm -rf /var/lib/apt/lists/*
-#33 CACHED
-
-#34 [eval  7/11] COPY aichallenge/simulator/ /aichallenge/simulator/
-#34 CACHED
-
-#35 [eval  2/11] RUN git clone --depth 1 https://github.com/AutomotiveAIChallenge/aichallenge-2025 /ws/repository
-#35 CACHED
-
-#36 [eval  8/11] COPY submit/aichallenge_submit.tar.gz /ws
-#36 DONE 0.1s
-
-#37 [eval  9/11] RUN tar zxf /ws/aichallenge_submit.tar.gz -C /aichallenge/workspace/src
-#37 DONE 1.3s
-
-#38 [eval 10/11] RUN rm -rf /ws
-#38 DONE 0.4s
-
-#39 [eval 11/11] RUN bash -c '   source /autoware/install/setup.bash;   cd /aichallenge/workspace;   rosdep update;   rosdep install -y -r -i --from-paths src --ignore-src --rosdistro $ROS_DISTRO;   colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release'
-#39 2.284 Warning: running 'rosdep update' as root is not recommended.
-#39 2.284   You should run 'sudo rosdep fix-permissions' and invoke 'rosdep update' again without sudo.
-#39 28.21 reading in sources list data from /etc/ros/rosdep/sources.list.d
-#39 28.21 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
-#39 28.21 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
-#39 28.21 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
-#39 28.21 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
-#39 28.21 Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
-#39 28.21 Hit https://s3.amazonaws.com/autonomoustuff-repo/autonomoustuff-public-humble.yaml
-#39 28.21 Query rosdistro index https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml
-#39 28.21 Skip end-of-life distro "ardent"
-#39 28.21 Skip end-of-life distro "bouncy"
-#39 28.21 Skip end-of-life distro "crystal"
-#39 28.21 Skip end-of-life distro "dashing"
-#39 28.21 Skip end-of-life distro "eloquent"
-#39 28.21 Skip end-of-life distro "foxy"
-#39 28.21 Skip end-of-life distro "galactic"
-#39 28.21 Skip end-of-life distro "groovy"
-#39 28.21 Add distro "humble"
-#39 28.21 Skip end-of-life distro "hydro"
-#39 28.21 Skip end-of-life distro "indigo"
-#39 28.21 Skip end-of-life distro "iron"
-#39 28.21 Skip end-of-life distro "jade"
-#39 28.21 Add distro "jazzy"
-#39 28.21 Add distro "kilted"
-#39 28.21 Skip end-of-life distro "kinetic"
-#39 28.21 Skip end-of-life distro "lunar"
-#39 28.21 Skip end-of-life distro "melodic"
-#39 28.21 Skip end-of-life distro "noetic"
-#39 28.21 Add distro "rolling"
-#39 28.21 updated cache in /root/.ros/rosdep/sources.cache
-#39 29.94 ERROR: the following packages/stacks could not have their rosdep keys resolved
-#39 29.94 to system dependencies:
-#39 29.94 racing_kart_gnss_poser: Cannot locate rosdep definition for [racing_kart_msgs]
-#39 29.94 aichallenge_submit_launch: Cannot locate rosdep definition for [generic_type_utility]
-#39 29.94 Continuing to install resolvable dependencies...
-#39 29.94 #All required rosdeps installed successfully
-#39 32.12 [1.790s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
-#39 32.12 	'gyro_odometer' is in: /autoware/install/gyro_odometer
-#39 32.12 If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
-#39 32.12 If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
-#39 32.12 
-#39 32.12 If you understand the risks and want to override a package anyways, add the following to the command line:
-#39 32.12 	--allow-overriding gyro_odometer
-#39 32.12 
-#39 32.12 This may be promoted to an error in a future release of colcon-override-check.
-#39 32.16 Starting >>> editor_tool_srvs
-#39 32.22 Starting >>> goal_pose_setter
-#39 32.27 Starting >>> gyro_odometer
-#39 32.34 Starting >>> imu_corrector
-#39 32.39 Starting >>> imu_gnss_poser
-#39 32.48 Starting >>> path_to_trajectory
-#39 32.53 Starting >>> racing_kart_description
-#39 32.57 Starting >>> racing_kart_sensor_kit_description
-#39 32.60 Starting >>> simple_pure_pursuit
-#39 32.64 Starting >>> aichallenge_awsim_adapter
-#39 32.68 Starting >>> autoware_overlay_rviz_plugin
-#39 32.72 Starting >>> racing_kart_gnss_poser
-#39 43.91 Finished <<< racing_kart_sensor_kit_description [11.3s]
-#39 43.91 Starting >>> simple_trajectory_generator
-#39 44.07 Finished <<< racing_kart_description [11.5s]
-#39 109.5 [Processing: aichallenge_awsim_adapter, autoware_overlay_rviz_plugin, editor_tool_srvs, goal_pose_setter, gyro_odometer, imu_corrector, imu_gnss_poser, path_to_trajectory, racing_kart_gnss_poser, simple_pure_pursuit, simple_trajectory_generator]
-#39 109.5 [Processing: aichallenge_awsim_adapter, autoware_overlay_rviz_plugin, editor_tool_srvs, goal_pose_setter, gyro_odometer, imu_corrector, imu_gnss_poser, path_to_trajectory, racing_kart_gnss_poser, simple_pure_pursuit, simple_trajectory_generator]
-#39 109.5 Finished <<< path_to_trajectory [1min 17s]
-#39 109.9 Finished <<< simple_trajectory_generator [1min 6s]
-#39 115.5 --- stderr: goal_pose_setter
-#39 115.5 In file included from /usr/include/boost/math/tools/cxx03_warn.hpp:9,
-#39 115.5                  from /usr/include/boost/math/constants/constants.hpp:11,
-#39 115.5                  from /usr/include/boost/geometry/util/math.hpp:29,
-#39 115.5                  from /usr/include/boost/geometry/util/is_inverse_spheroidal_coordinates.hpp:19,
-#39 115.5                  from /usr/include/boost/geometry/algorithms/detail/assign_values.hpp:42,
-#39 115.5                  from /usr/include/boost/geometry/algorithms/detail/assign_box_corners.hpp:21,
-#39 115.5                  from /usr/include/boost/geometry/algorithms/convert.hpp:38,
-#39 115.5                  from /usr/include/boost/geometry/geometries/box.hpp:22,
-#39 115.5                  from /usr/include/boost/geometry/geometries/geometries.hpp:25,
-#39 115.5                  from /autoware/install/tier4_autoware_utils/include/tier4_autoware_utils/geometry/boost_geometry.hpp:19,
-#39 115.5                  from /autoware/install/tier4_autoware_utils/include/tier4_autoware_utils/tier4_autoware_utils.hpp:18,
-#39 115.5                  from /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.hpp:25,
-#39 115.5                  from /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp:1:
-#39 115.5 /usr/include/boost/detail/no_exceptions_support.hpp:17:1: note: ‘#pragma message: This header is deprecated. Use <boost/core/no_exceptions_support.hpp> instead.’
-#39 115.5    17 | BOOST_HEADER_DEPRECATED("<boost/core/no_exceptions_support.hpp>")
-#39 115.5       | ^~~~~~~~~~~~~~~~~~~~~~~
-#39 115.5 /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp: In constructor ‘GoalPosePublisher::GoalPosePublisher()’:
-#39 115.5 /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp:5:16: warning: variable ‘rt_qos’ set but not used [-Wunused-but-set-variable]
-#39 115.5     5 |     const auto rt_qos = rclcpp::QoS(rclcpp::KeepLast(1)).reliable().transient_local();
-#39 115.5       |                ^~~~~~
-#39 115.5 /aichallenge/workspace/src/aichallenge_submit/goal_pose_setter/src/goal_pose_setter_node.cpp:6:16: warning: variable ‘rv_qos’ set but not used [-Wunused-but-set-variable]
-#39 115.5     6 |     const auto rv_qos = rclcpp::QoS(rclcpp::KeepLast(1)).reliable().durability_volatile();
-#39 115.5       |                ^~~~~~
-#39 115.5 ---
-#39 115.6 Finished <<< goal_pose_setter [1min 23s]
-#39 124.8 Finished <<< editor_tool_srvs [1min 33s]
-#39 124.8 Starting >>> editor_tool_server
-#39 124.9 Starting >>> rviz_editor_plugins
-#39 125.1 Finished <<< imu_gnss_poser [1min 33s]
-#39 139.7 Finished <<< simple_pure_pursuit [1min 47s]
-#39 143.0 Finished <<< imu_corrector [1min 51s]
-#39 152.5 Finished <<< aichallenge_awsim_adapter [2min 0s]
-#39 163.8 --- stderr: editor_tool_server
-#39 163.8 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp: In member function ‘void editor_tool_server::EditorToolServer::SaveCsvSrv(std::shared_ptr<editor_tool_srvs::srv::SaveCsv_Request_<std::allocator<void> > >, std::shared_ptr<editor_tool_srvs::srv::SaveCsv_Response_<std::allocator<void> > >)’:
-#39 163.8 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp:233:63: warning: unused parameter ‘response’ [-Wunused-parameter]
-#39 163.8   233 |     std::shared_ptr<editor_tool_srvs::srv::SaveCsv::Response> response)
-#39 163.8       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-#39 163.8 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp: In member function ‘void editor_tool_server::EditorToolServer::processFeedback(const ConstSharedPtr&)’:
-#39 163.8 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp:285:47: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<visualization_msgs::msg::Marker_<std::allocator<void> >, std::allocator<visualization_msgs::msg::Marker_<std::allocator<void> > > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
-#39 163.8   285 |           if (p_sel_idx1_ >= 0 && p_sel_idx1_ < trajectory_markers_.size()) {
-#39 163.8       |                                   ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#39 163.8 /aichallenge/workspace/src/aichallenge_submit/aichallenge-trajectory-editor/editor_tool_server/src/interactive_server.cpp:359:43: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<visualization_msgs::msg::Marker_<std::allocator<void> >, std::allocator<visualization_msgs::msg::Marker_<std::allocator<void> > > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
-#39 163.8   359 |           if (sel_idx1_ >= 0 && sel_idx1_ < trajectory_markers_.size()) {
-#39 163.8       |                                 ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#39 163.8 ---
-#39 163.8 Finished <<< editor_tool_server [39.0s]
-#39 166.0 Finished <<< racing_kart_gnss_poser [2min 13s]
-#39 193.7 Finished <<< rviz_editor_plugins [1min 9s]
-#39 270.3 --- stderr: autoware_overlay_rviz_plugin
-#39 270.3 /aichallenge/workspace/src/aichallenge_system/autoware_overlay_rviz_plugin/src/speed_limit_display.cpp: In member function ‘void autoware_overlay_rviz_plugin::SpeedLimitDisplay::drawSpeedLimitIndicator(QPainter&, const QRectF&, const QColor&, const QColor&, const QColor&, const QColor&, float)’:
-#39 270.3 /aichallenge/workspace/src/aichallenge_system/autoware_overlay_rviz_plugin/src/speed_limit_display.cpp:75:15: warning: unused parameter ‘bg_alpha’ [-Wunused-parameter]
-#39 270.3    75 |   const float bg_alpha)
-#39 270.3       |   ~~~~~~~~~~~~^~~~~~~~
-#39 270.3 ---
-#39 270.3 [Processing: autoware_overlay_rviz_plugin, gyro_odometer]
-#39 270.3 [Processing: autoware_overlay_rviz_plugin, gyro_odometer]
-#39 270.3 Finished <<< autoware_overlay_rviz_plugin [3min 58s]
-#39 275.6 Finished <<< gyro_odometer [4min 3s]
-#39 275.6 Starting >>> aichallenge_submit_launch
-#39 280.2 Finished <<< aichallenge_submit_launch [4.56s]
-#39 280.2 Starting >>> aichallenge_system_launch
-#39 284.4 Finished <<< aichallenge_system_launch [4.20s]
-#39 284.5 
-#39 284.5 Summary: 17 packages finished [4min 14s]
-#39 284.5   3 packages had stderr output: autoware_overlay_rviz_plugin editor_tool_server goal_pose_setter
-#39 DONE 284.7s
-
-#40 exporting to image
-#40 exporting layers
-#40 exporting layers 1.0s done
-#40 writing image sha256:48aaac6f9420a213a4ede7825130442bdca636f05a01925714846619349511f8 done
-#40 naming to docker.io/library/aichallenge-2025-eval-ubuntu done
-#40 DONE 1.0s
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 5.3s done
+#25 writing image sha256:793011b4dab59f1514a2c649a9a33ac19bec469c0db7f830880a18422a1a4c0e done
+#25 naming to docker.io/library/aichallenge-2025-eval-ubuntu done
+#25 DONE 5.3s

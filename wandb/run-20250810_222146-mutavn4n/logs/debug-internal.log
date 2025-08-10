@@ -1,0 +1,6 @@
+{"time":"2025-08-10T22:21:46.996443937+09:00","level":"INFO","msg":"stream: starting","core version":"0.21.1"}
+{"time":"2025-08-10T22:21:47.354156504+09:00","level":"INFO","msg":"stream: created new stream","id":"mutavn4n"}
+{"time":"2025-08-10T22:21:47.354299596+09:00","level":"INFO","msg":"stream: started","id":"mutavn4n"}
+{"time":"2025-08-10T22:21:47.354372106+09:00","level":"INFO","msg":"writer: started","stream_id":"mutavn4n"}
+{"time":"2025-08-10T22:21:47.354432846+09:00","level":"INFO","msg":"handler: started","stream_id":"mutavn4n"}
+{"time":"2025-08-10T22:21:47.354602272+09:00","level":"INFO","msg":"sender: started","stream_id":"mutavn4n"}
