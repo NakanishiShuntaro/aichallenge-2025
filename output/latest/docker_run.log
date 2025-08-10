@@ -1,0 +1,105 @@
+Process ID file: /tmp/tmp.FQ6VpMZfOF
+Start AWSIM
+AWSIM PID: 66
+Start Autoware
+Autoware PID: 130
+Move window
+AWSIM and RViz windows found
+Check if screen capture is ready
+System is ready, executing publish commands...
+Move window
+AWSIM and RViz windows found
+Setting initial pose...
+Initial pose set successfully
+Requesting control mode change...
+Control mode change requested successfully
+Capturing screen...
+Screen capture requested successfully
+Start rosbag
+ROS Bag PID: 1430
+Rosbag recording started successfully
+/aichallenge/run_simulator.bash: line 25:    83 Segmentation fault      (core dumped) $AWSIM_DIRECTORY/AWSIM.x86_64 "${opts[@]}"
+Stop screen capture
+Capturing screen...
+Screen capture requested successfully
+Convert result
+Termination signal received. Cleaning up...
+Stop rosbag
+Attempting graceful rosbag shutdown...
+Rosbag did not terminate gracefully, forcing kill
+/aichallenge/run_evaluation.bash: line 71:  1430 Killed                  nohup /aichallenge/record_rosbag.bash > /dev/null 2>&1
+Cleaning up any remaining rosbag processes...
+Shutting down ROS2 nodes gracefully...
+Shutting down node: /actuation_cmd_converter
+Shutting down node: /actuation_cmd_converter
+Shutting down node: /control_mode_adapter
+Shutting down node: /control_mode_adapter
+Shutting down node: /editor_tool_server
+Shutting down node: /editor_tool_server
+Shutting down node: /goal_pose_setter
+Shutting down node: /goal_pose_setter
+Shutting down node: /initial_pose_relay
+Shutting down node: /initial_pose_relay
+Shutting down node: /launch_ros_153
+Shutting down node: /launch_ros_162
+Shutting down node: /localization/ekf_localizer
+Shutting down node: /localization/ekf_localizer
+Shutting down node: /localization/gyro_odometer
+Shutting down node: /localization/gyro_odometer
+Shutting down node: /localization/imu_gnss_poser
+Shutting down node: /localization/imu_gnss_poser
+Shutting down node: /localization/transform_listener_impl_570e437ca870
+Shutting down node: /localization/transform_listener_impl_5d2bb7dcabd0
+Shutting down node: /localization/twist2accel
+Shutting down node: /localization/twist2accel
+Shutting down node: /map/lanelet2_map_loader
+Shutting down node: /map/lanelet2_map_loader
+Shutting down node: /map/lanelet2_map_visualization
+Shutting down node: /map/lanelet2_map_visualization
+Shutting down node: /map/map_container
+Shutting down node: /map/map_container
+Shutting down node: /map/vector_map_tf_generator
+Shutting down node: /map/vector_map_tf_generator
+Shutting down node: /planning/scenario_planning/simple_trajectory_generator
+Shutting down node: /planning/scenario_planning/simple_trajectory_generator
+Shutting down node: /raw_vehicle_cmd_converter
+Shutting down node: /raw_vehicle_cmd_converter
+Shutting down node: /relay_velocity
+Shutting down node: /relay_velocity
+Shutting down node: /robot_state_publisher
+Shutting down node: /robot_state_publisher
+Shutting down node: /rviz2
+Shutting down node: /rviz2
+Shutting down node: /sensing/gnss/racing_kart_gnss_poser
+Shutting down node: /sensing/gnss/racing_kart_gnss_poser
+Shutting down node: /sensing/gnss/transform_listener_impl_5a38c67951a8
+Shutting down node: /sensing/gnss/transform_listener_impl_603a42b8c1a8
+Shutting down node: /sensing/imu/imu_corrector
+Shutting down node: /sensing/imu/imu_corrector
+Shutting down node: /sensing/imu/transform_listener_impl_556d526d5480
+Shutting down node: /sensing/imu/transform_listener_impl_63d0fb7a0090
+Shutting down node: /sensing/vehicle_velocity_converter_node
+Shutting down node: /sensing/vehicle_velocity_converter_node
+Shutting down node: /simple_pure_pursuit_node
+Shutting down node: /simple_pure_pursuit_node
+hutting down node: /simple_pure_pursuit_node
+Shutting down node: /simple_pure_pursuit_node
+Shutting down node: /system/system_monitor/cpu_monitor
+Shutting down node: /system/system_monitor/cpu_monitor
+Shutting down node: /system/system_monitor/mem_monitor
+Shutting down node: /system/system_monitor/mem_monitor
+Shutting down node: /system/system_monitor/process_monitor
+Shutting down node: /system/system_monitor/process_monitor
+Shutting down node: /system/system_monitor/system_monitor/system_monitor_container
+Shutting down node: /system/system_monitor/system_monitor/system_monitor_container
+Shutting down node: /system/system_monitor/voltage_monitor
+Shutting down node: /system/system_monitor/voltage_monitor
+Shutting down node: /transform_listener_impl_57e7e9fd7250
+Shutting down node: /transform_listener_impl_59135a68d550
+Stop Autoware
+Sending SIGTERM to PID 129
+Stop AWSIM
+Compress rosbag
+Waiting for rosbag files to be fully written...
+Postprocess result
+[INFO] [1754831729.765829375] [rosbag2_storage]: Opened database 'rosbag2_autoware/rosbag2_autoware_0.db3' for READ_ONLY.
