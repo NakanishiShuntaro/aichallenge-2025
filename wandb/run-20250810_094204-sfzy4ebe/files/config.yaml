@@ -1,0 +1,40 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            ht9n55ghbq3lq6sflatook1ecj6f7f2f:
+                codePath: optuna_minimize_sum_laps.py
+                codePathLocal: optuna_minimize_sum_laps.py
+                cpu_count: 10
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "501809635328"
+                        used: "58075623424"
+                email: nakanishi.shuntaro.638@s.kyushu-u.ac.jp
+                executable: /home/ubuntu/aichallenge-2025/.venv/bin/python3
+                git:
+                    commit: f12440e06a64dcb6b08f9588a409e0c559344474
+                    remote: git@github.com:NakanishiShuntaro/aichallenge-2025.git
+                host: ubuntu-HP-Laptop-14s-dq5xxx
+                memory:
+                    total: "16425717760"
+                os: Linux-6.14.0-27-generic-x86_64-with-glibc2.39
+                program: /home/ubuntu/aichallenge-2025/optuna_minimize_sum_laps.py
+                python: CPython 3.13.6
+                root: /home/ubuntu/aichallenge-2025
+                startedAt: "2025-08-10T00:42:04.007469Z"
+                writerId: ht9n55ghbq3lq6sflatook1ecj6f7f2f
+        m: []
+        python_version: 3.13.6
+        t:
+            "1":
+                - 105
+            "2":
+                - 105
+            "3":
+                - 2
+            "4": 3.13.6
+            "5": 0.21.1
+            "12": 0.21.1
+            "13": linux-x86_64

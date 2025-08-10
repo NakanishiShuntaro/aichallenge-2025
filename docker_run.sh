@@ -48,4 +48,7 @@ if [ -z "$container_name_env" ]; then
   container_name_env="aichallenge-2025-$(date "+%Y-%m-%d-%H-%M-%S")"
 fi
 
+# Write out the chosen container name so external tools can reference it reliably
+echo "$container_name_env" > "$LOG_DIR/container_name"
+
 rocker ${opts} --x11 --devices /dev/dri --user --net host --privileged --name "$container_name_env" --volume ${volume} -- "aichallenge-2025-${target}-${USER}" 2>&1 | tee "$LOG_FILE"

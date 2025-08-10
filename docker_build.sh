@@ -15,8 +15,9 @@ case "${target}" in
     ;;
 esac
 
-sudo modprobe msr
-sudo setfacl -m u:"$(whoami)":r /dev/cpu/*/msr
+# Run sudo steps non-interactively; if not allowed, skip without prompting
+sudo -n modprobe msr 2>/dev/null || echo "[WARN] Skipping 'sudo modprobe msr' (no passwordless sudo)"
+sudo -n setfacl -m u:"$(whoami)":r /dev/cpu/*/msr 2>/dev/null || echo "[WARN] Skipping 'sudo setfacl /dev/cpu/*/msr' (no passwordless sudo)"
 
 LOG_DIR="output/latest"
 mkdir -p $LOG_DIR

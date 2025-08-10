@@ -1,7 +1,6 @@
 program: wandb_minimize_sum_laps.py
 command:
-  - ${env}
-  - ${interpreter}
+  - /home/ubuntu/aichallenge-2025/.venv/bin/python
   - ${program}
   - --sweep
 project: aichallenge-2025

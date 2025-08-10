@@ -1,0 +1,32 @@
+wandb_version: 1
+
+accel_lowpass_gain:
+  value: 0.8266599802631072
+extend_state_step:
+  value: 156
+external_target_vel:
+  value: 26.19805227522802
+lookahead_gain:
+  value: 0.34829311425091886
+lookahead_min_distance:
+  value: 1.5616671458200777
+pose_additional_delay_var:
+  value: 0.6064622741238941
+pose_smoothing_steps:
+  value: 4
+proc_stddev_vx_c:
+  value: 18.781982463824715
+proc_stddev_wz_c:
+  value: 0.7200091780751543
+speed_proportional_gain:
+  value: 1.2160534764749562
+steering_tire_angle_gain_var:
+  value: 1.654342207766755
+stop_hold_sec:
+  value: 18
+stop_threshold:
+  value: 0.15811630886604094
+tf_rate:
+  value: 47.49327530296675
+twist_smoothing_steps:
+  value: 1

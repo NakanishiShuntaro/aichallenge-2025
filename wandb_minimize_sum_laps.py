@@ -1,3 +1,4 @@
+#!/home/ubuntu/aichallenge-2025/.venv/bin/python
 """
 W&B Sweep を使用して、Autoware のターン走行における 6 周ラップタイム合計の最小化を行うスクリプトです。
 Docker を用いて評価実行し、各試行のメトリクスとアーティファクトを W&B に記録します。
@@ -215,14 +216,27 @@ def _get_current_speed_mps(container_name: str) -> float | None:
 
     twist.twist.linear.{x,y} を取得し、sqrt(x^2 + y^2) を返す。取得失敗時は None。
     """
+    debug = os.environ.get("SPEED_MONITOR_DEBUG", "1") == "1"
+    
     try:
+        # Prefer Autoware workspace setup if available, else fallback to system install
+        source_cmd = (
+            "if [ -f /aichallenge/workspace/install/setup.bash ]; then "
+            "source /aichallenge/workspace/install/setup.bash; "
+            "elif [ -f /autoware/install/setup.bash ]; then "
+            "source /autoware/install/setup.bash; fi"
+        )
+        
+        if debug:
+            print(f"[speed] Getting speed data from container: {container_name}")
+            
         cmd_x = [
             "docker",
             "exec",
             container_name,
             "bash",
             "-lc",
-            "source /autoware/install/setup.bash >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.x 2>/dev/null | tr -d '\r'",
+            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.x 2>/dev/null | tr -d '\r'",
         ]
         cmd_y = [
             "docker",
@@ -230,20 +244,47 @@ def _get_current_speed_mps(container_name: str) -> float | None:
             container_name,
             "bash",
             "-lc",
-            "source /autoware/install/setup.bash >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.y 2>/dev/null | tr -d '\r'",
+            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.y 2>/dev/null | tr -d '\r'",
         ]
-        res_x = subprocess.run(cmd_x, capture_output=True, text=True, timeout=5)
-        res_y = subprocess.run(cmd_y, capture_output=True, text=True, timeout=5)
+        
+        res_x = subprocess.run(cmd_x, capture_output=True, text=True, timeout=10)
+        res_y = subprocess.run(cmd_y, capture_output=True, text=True, timeout=10)
+        
+        if debug:
+            print(f"[speed] Command results: vx_rc={res_x.returncode}, vy_rc={res_y.returncode}")
+            if res_x.returncode != 0:
+                print(f"[speed] vx command error: stderr='{res_x.stderr.strip()}'")
+            if res_y.returncode != 0:
+                print(f"[speed] vy command error: stderr='{res_y.stderr.strip()}'")
+        
         if res_x.returncode != 0 or res_y.returncode != 0:
+            if debug:
+                print(f"[speed] Failed to get speed data (return codes: vx={res_x.returncode}, vy={res_y.returncode})")
             return None
+            
         sx = res_x.stdout.strip()
         sy = res_y.stdout.strip()
+        
+        if debug:
+            print(f"[speed] Raw topic output: vx='{sx}', vy='{sy}'")
+        
         if not sx or not sy:
+            if debug:
+                print(f"[speed] Empty output from topic: vx='{sx}', vy='{sy}'")
             return None
+            
         vx = float(sx)
         vy = float(sy)
-        return math.hypot(vx, vy)
-    except Exception:
+        speed = math.hypot(vx, vy)
+        
+        if debug:
+            print(f"[speed] Parsed values: vx={vx:.6f}, vy={vy:.6f}, combined={speed:.6f} m/s")
+            
+        return speed
+        
+    except Exception as e:
+        if debug:
+            print(f"[speed] Exception getting speed: {e}")
         return None
 
 
@@ -554,37 +595,155 @@ def sweep_run() -> None:
             text=True,
         )
 
+        # Give the container and monitor a moment to initialize
+        time.sleep(5)
+
+        def _resolve_container_name(expected_name: str) -> str | None:
+            """Resolve actual running container name.
+
+            1) Try output/latest/container_name written by docker_run.sh
+            2) If not found, try exact expected_name
+            3) Fallback: pick running container that starts with 'aichallenge-2025-'
+            """
+            try:
+                latest_path = os.path.join("output", "latest", "container_name")
+                if os.path.exists(latest_path):
+                    with open(latest_path) as f:
+                        name = f.read().strip()
+                        if name:
+                            return name
+            except Exception:
+                pass
+            # Try expected_name
+            try:
+                out = subprocess.run(
+                    ["docker", "ps", "--format", "{{.Names}}"],
+                    capture_output=True,
+                    text=True,
+                    timeout=5,
+                )
+                if out.returncode == 0:
+                    names = [n.strip() for n in out.stdout.splitlines() if n.strip()]
+                    if expected_name in names:
+                        return expected_name
+                    # Fallback prefix search
+                    for n in names:
+                        if n.startswith("aichallenge-2025-"):
+                            return n
+            except Exception:
+                pass
+            return None
+
         def monitor_and_stop_on_slow_speed():
+            print("[monitor] Monitor thread started, initializing...")
             # 合成速度（sqrt(vx^2 + vy^2)）が threshold 未満の状態が hold_seconds 継続したら停止
             threshold = float(os.environ.get("SPEED_STOP_THRESHOLD", "0.1"))
             hold_seconds = float(os.environ.get("SPEED_STOP_HOLD_SEC", "15"))
             consecutive = 0.0
             interval = 1.0
+            resolved = None
+            debug = os.environ.get("SPEED_MONITOR_DEBUG", "1") == "1"
+            had_valid = False
+            last_speed: float | None = None
+            miss_cnt = 0
+            loop_count = 0
+            print(f"[monitor] Configured: threshold={threshold}, hold_seconds={hold_seconds}, debug={debug}")
+            print(f"[monitor] Environment variables: SPEED_STOP_THRESHOLD={os.environ.get('SPEED_STOP_THRESHOLD', 'not_set')}, SPEED_STOP_HOLD_SEC={os.environ.get('SPEED_STOP_HOLD_SEC', 'not_set')}")
+            
             while proc.poll() is None:
-                speed = _get_current_speed_mps(deterministic_name)
-                if speed is not None and abs(speed) < threshold:
-                    consecutive += interval
+                loop_count += 1
+                if debug and loop_count % 10 == 0:  # Every 10 seconds
+                    print(f"[monitor] Loop #{loop_count}: Still monitoring, proc status: {proc.poll()}")
+                
+                if resolved is None:
+                    resolved = _resolve_container_name(deterministic_name)
+                    if resolved is None:
+                        if debug and loop_count % 5 == 0:  # Every 5 seconds
+                            print(f"[monitor] Waiting for container (expected: {deterministic_name})")
+                        time.sleep(interval)
+                        continue
+                    else:
+                        print(f"[monitor] Container resolved: {resolved}")
+                        
+                speed = _get_current_speed_mps(resolved)
+                if speed is not None:
+                    had_valid = True
+                    last_speed = speed
+                    miss_cnt = 0
+                    if abs(speed) < threshold:
+                        consecutive += interval
+                        if debug:
+                            print(f"[monitor] LOW SPEED: {speed:.4f} m/s < {threshold} (consecutive: {consecutive:.1f}s/{hold_seconds}s)")
+                    else:
+                        if consecutive > 0:  # Only log when resetting from a low speed period
+                            print(f"[monitor] SPEED OK: {speed:.4f} m/s >= {threshold} (reset consecutive timer)")
+                        consecutive = 0.0
                 else:
-                    consecutive = 0.0
+                    # 取得失敗(None)が続く場合のフォールバック：
+                    # 一度でも有効値を取得済みかつ直近が低速域なら、ミス2回目以降は低速継続としてカウント
+                    miss_cnt += 1
+                    if debug:
+                        print(f"[monitor] Speed data miss #{miss_cnt} (last_speed: {last_speed})")
+                    if had_valid and last_speed is not None and abs(last_speed) < threshold and miss_cnt >= 2:
+                        consecutive += interval
+                        if debug:
+                            print(f"[monitor] Using fallback: assuming low speed continues (consecutive: {consecutive:.1f}s/{hold_seconds}s)")
+                    else:
+                        consecutive = 0.0
+
+                if debug:
+                    try:
+                        status = f"container={resolved} speed={speed} last={last_speed} consec={consecutive:.1f}s thresh={threshold} hold={hold_seconds}s loop={loop_count}"
+                        if loop_count % 30 == 0 or consecutive > 0:  # Every 30s or when low speed
+                            print(f"[monitor] Status: {status}")
+                    except Exception:
+                        pass
+                        
                 if consecutive >= hold_seconds:
-                    subprocess.run(
-                        ["docker", "stop", "-t", "5", deterministic_name],
-                        capture_output=True,
+                    print(f"[monitor] *** STOP CONDITION MET: {consecutive:.1f}s >= {hold_seconds}s ***")
+                    target = resolved or deterministic_name
+                    print(f"[monitor] Attempting to stop container: {target}")
+                    
+                    stop_res = subprocess.run(
+                        ["docker", "stop", "-t", "5", target], capture_output=True, text=True
                     )
+                    print(f"[monitor] docker stop result: rc={stop_res.returncode}, out='{stop_res.stdout.strip()}', err='{stop_res.stderr.strip() if stop_res.stderr else ''}'")
+                    
+                    # まだ動いているようなら kill を試す
+                    try:
+                        ps = subprocess.run(["docker", "ps", "--format", "{{.Names}}"], capture_output=True, text=True, timeout=5)
+                        if ps.returncode == 0 and target in [n.strip() for n in ps.stdout.splitlines()]:
+                            print(f"[monitor] Container {target} still running, attempting kill...")
+                            kill_res = subprocess.run(["docker", "kill", target], capture_output=True, text=True)
+                            print(f"[monitor] docker kill result: rc={kill_res.returncode}, out='{kill_res.stdout.strip()}', err='{kill_res.stderr.strip() if kill_res.stderr else ''}'")
+                        else:
+                            print(f"[monitor] Container {target} successfully stopped")
+                    except Exception as e:
+                        print(f"[monitor] Exception during kill attempt: {e}")
+                    
+                    print(f"[monitor] Stop sequence completed, exiting monitor loop")
                     break
                 time.sleep(interval)
 
-        monitor_thread = threading.Thread(
-            target=monitor_and_stop_on_slow_speed, daemon=True
-        )
-        monitor_thread.start()
+        # Start monitoring thread immediately after starting container
+        if os.getenv('ENABLE_AUTO_STOP', '1') == '1':
+            print("[monitor] Starting monitoring thread...")
+            monitor_thread = threading.Thread(
+                target=monitor_and_stop_on_slow_speed, daemon=True
+            )
+            monitor_thread.start()
+            print("[monitor] Monitor thread started")
+        else:
+            print("[monitor] Auto-stop disabled by ENABLE_AUTO_STOP=0")
 
         try:
             proc.wait(timeout=3600)
         except subprocess.TimeoutExpired:
-            subprocess.run(
-                ["docker", "stop", "-t", "5", deterministic_name], capture_output=True
+            # If timed out, resolve name and stop
+            target = (
+                _resolve_container_name(deterministic_name) or deterministic_name
             )
+            subprocess.run(["docker", "stop", "-t", "5", target], capture_output=True)
             proc.wait()
 
         if proc.returncode != 0:
