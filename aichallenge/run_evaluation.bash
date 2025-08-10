@@ -241,7 +241,7 @@ if [ -n "$existing_awsim_pids" ]; then
     pkill -KILL -f "/aichallenge/simulator/AWSIM/AWSIM.x86_64" 2>/dev/null || true
     sleep 1
 fi
-nohup /aichallenge/run_simulator.bash >/dev/null &
+nohup /aichallenge/run_simulator.bash endless >/dev/null &
 PID_AWSIM=$!
 echo "AWSIM PID: $PID_AWSIM"
 echo "$PID_AWSIM" >"$PID_FILE"

@@ -55,6 +55,52 @@ wait_localization_ready() {
     done
 }
 
+# Wait until map-related static TFs appear (map frame ready)
+wait_map_tf_ready() {
+    echo "Waiting for map static TF to become available..."
+    local timeout_seconds=90
+    local elapsed=0
+    while true; do
+        if timeout 5s bash -lc 'ros2 topic echo -n 1 /tf_static 2>/dev/null | grep -q "frame_id: map"'; then
+            echo "map frame is available in /tf_static"
+            break
+        fi
+        sleep 2
+        elapsed=$((elapsed + 2))
+        echo "Waiting for /tf_static (map)... (${elapsed}s elapsed)"
+        if [ $elapsed -ge $timeout_seconds ]; then
+            echo "Warning: map frame not observed in /tf_static after ${timeout_seconds}s. Continuing anyway..."
+            break
+        fi
+    done
+}
+
+# Wait until /clock is published (use_sim_time environments)
+wait_clock_ready() {
+    echo "Waiting for /clock to be published..."
+    local timeout_seconds=60
+    local elapsed=0
+    while true; do
+        if timeout 5s bash -lc 'ros2 topic echo -n 1 /clock >/dev/null 2>&1'; then
+            echo "/clock is available"
+            break
+        fi
+        sleep 2
+        elapsed=$((elapsed + 2))
+        echo "Waiting for /clock... (${elapsed}s elapsed)"
+        if [ $elapsed -ge $timeout_seconds ]; then
+            echo "Warning: /clock not observed after ${timeout_seconds}s. Continuing anyway..."
+            break
+        fi
+    done
+}
+
+# Verify TF from map to base_link is resolvable (short check)
+verify_map_to_base_link_tf() {
+    timeout 5s bash -lc 'ros2 run tf2_ros tf2_echo map base_link >/dev/null 2>&1'
+    return $?
+}
+
 # Function to set initial pose
 # Assignment 1 set correct initial pose
 #            x: 89633.29,
@@ -153,8 +199,11 @@ initial)
     set_initial_pose
     ;;
 all)
-    # Give system a bit more time to finish bring-up
-    sleep 15
+    # 待機: 画面キャプチャ・AWSIM・map静的TF・/clock の順に待つ
+    check_capture
+    check_awsim
+    wait_map_tf_ready
+    wait_clock_ready
     # Publish initial pose twice for robustness
     set_initial_pose
     sleep 3
@@ -162,6 +211,13 @@ all)
     request_control
     # Wait for localization readiness (do not hard-fail on timeout)
     wait_localization_ready
+    # 初期姿勢適用の確認を試み、未解決なら再送
+    if ! verify_map_to_base_link_tf; then
+        echo "map->base_link TF not resolved yet; re-sending initial pose"
+        set_initial_pose
+        sleep 2
+        verify_map_to_base_link_tf || echo "Warning: map->base_link TF still not resolved"
+    fi
     ;;
 help)
     usage
