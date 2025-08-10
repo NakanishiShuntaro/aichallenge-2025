@@ -169,6 +169,12 @@ move_window() {
     local has_gpu has_awsim has_rviz
     has_gpu=$(command -v nvidia-smi >/dev/null && echo 1 || echo 0)
 
+    # ヘッドレス環境ではウィンドウ待ちをスキップ
+    if [ -z "${DISPLAY:-}" ] || [ "$has_gpu" -eq 0 ]; then
+        echo "Headless or no DISPLAY detected, skip window management"
+        return 0
+    fi
+
     # Add timeout to prevent infinite hanging
     local timeout=60 # 60 seconds timeout
     local elapsed=0
@@ -225,6 +231,16 @@ fi
 
 # Start AWSIM with nohup
 echo "Start AWSIM"
+# Ensure no stale AWSIM instances are running to avoid parallel launches
+existing_awsim_pids=$(pgrep -f "/aichallenge/simulator/AWSIM/AWSIM.x86_64" || true)
+if [ -n "$existing_awsim_pids" ]; then
+    echo "Found existing AWSIM processes; terminating before start: $existing_awsim_pids"
+    # Try graceful then force
+    pkill -TERM -f "/aichallenge/simulator/AWSIM/AWSIM.x86_64" 2>/dev/null || true
+    sleep 1
+    pkill -KILL -f "/aichallenge/simulator/AWSIM/AWSIM.x86_64" 2>/dev/null || true
+    sleep 1
+fi
 nohup /aichallenge/run_simulator.bash >/dev/null &
 PID_AWSIM=$!
 echo "AWSIM PID: $PID_AWSIM"
@@ -284,6 +300,17 @@ fi
 
 # Wait for AWSIM to finish (this is the main process we're waiting for)
 wait "$PID_AWSIM"
+
+# AWSIM異常終了時の情報採取
+exit_code=$?
+if [ $exit_code -ne 0 ]; then
+    echo "AWSIM exited with non-zero status: $exit_code"
+    if [ -f /output/latest/AWSIM_Player.log ]; then
+        echo "========== Tail of AWSIM_Player.log =========="
+        tail -n 200 /output/latest/AWSIM_Player.log || true
+        echo "============================================="
+    fi
+fi
 
 # Stop recording rviz2
 echo "Stop screen capture"
