@@ -4,3 +4,9 @@
 {"time":"2025-08-10T22:21:47.354372106+09:00","level":"INFO","msg":"writer: started","stream_id":"mutavn4n"}
 {"time":"2025-08-10T22:21:47.354432846+09:00","level":"INFO","msg":"handler: started","stream_id":"mutavn4n"}
 {"time":"2025-08-10T22:21:47.354602272+09:00","level":"INFO","msg":"sender: started","stream_id":"mutavn4n"}
+{"time":"2025-08-10T22:47:38.650559231+09:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading output.log","runtime_seconds":0.812136596},{"desc":"uploading wandb-summary.json","runtime_seconds":0.812109448},{"desc":"uploading config.yaml","runtime_seconds":0.564379719}],"total_operations":3}}
+{"time":"2025-08-10T22:47:43.446974994+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-10T22:47:43.870620121+09:00","level":"INFO","msg":"stream: closing","id":"mutavn4n"}
+{"time":"2025-08-10T22:47:43.870734647+09:00","level":"INFO","msg":"handler: closed","stream_id":"mutavn4n"}
+{"time":"2025-08-10T22:47:43.870884176+09:00","level":"INFO","msg":"sender: closed","stream_id":"mutavn4n"}
+{"time":"2025-08-10T22:47:43.871176752+09:00","level":"INFO","msg":"stream: closed","id":"mutavn4n"}

@@ -4,3 +4,9 @@
 {"time":"2025-08-10T22:21:12.999758615+09:00","level":"INFO","msg":"handler: started","stream_id":"tgsvy8uw"}
 {"time":"2025-08-10T22:21:12.999756019+09:00","level":"INFO","msg":"sender: started","stream_id":"tgsvy8uw"}
 {"time":"2025-08-10T22:21:12.999742085+09:00","level":"INFO","msg":"writer: started","stream_id":"tgsvy8uw"}
+{"time":"2025-08-10T22:46:44.791042835+09:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading config.yaml","runtime_seconds":0.504778603,"progress":"2.2KB/2.2KB"}],"total_operations":1}}
+{"time":"2025-08-10T22:46:44.988381329+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-10T22:46:45.323983415+09:00","level":"INFO","msg":"stream: closing","id":"tgsvy8uw"}
+{"time":"2025-08-10T22:46:45.32417305+09:00","level":"INFO","msg":"handler: closed","stream_id":"tgsvy8uw"}
+{"time":"2025-08-10T22:46:45.324190526+09:00","level":"INFO","msg":"sender: closed","stream_id":"tgsvy8uw"}
+{"time":"2025-08-10T22:46:45.324289317+09:00","level":"INFO","msg":"stream: closed","id":"tgsvy8uw"}

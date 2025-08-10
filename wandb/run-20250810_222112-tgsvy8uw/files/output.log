@@ -587,3 +587,24 @@ XML parameters updated successfully (sweep)
 [speed] Command results: vx_rc=0, vy_rc=0
 [speed] Raw topic output: vx='', vy=''
 [speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #72 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-179376
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #73 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-179376
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=1
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=1, stderr='Error response from daemon: No such container: aichallenge-2025-eval-179376'
+[monitor] Speed data miss #74 (last_speed: None)
+Error during sweep run: [Errno 13] Permission denied: './output/20250810-222739/reference.launch.xml'

@@ -153,3 +153,4 @@
 [gyro_odometer-5] [ERROR] [1754833510.210089856] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.219999995[sec], tolerance 0.2[sec]
 [gyro_odometer-5] [ERROR] [1754833517.937122508] [localization.gyro_odometer]: Imu msg is timeout. imu_dt: 0.229999995[sec], tolerance 0.2[sec]
 [simple_trajectory_generator_node-9] [INFO] [1754833530.970167832] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754833591.966898906] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
