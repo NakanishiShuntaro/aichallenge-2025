@@ -526,9 +526,22 @@ def objective(trial):
         latest_folder = max(result_folders, key=os.path.getctime)
         result_file = os.path.join(latest_folder, "result-summary.json")
 
-        # 5. Save modified XML file to result folder
+        # 5. Save modified XML file to result folder（書き込み不可の可能性に備えフォールバック）
         result_xml_path = os.path.join(latest_folder, "reference.launch.xml")
-        shutil.copy2(launch_file_path, result_xml_path)
+        try:
+            # 可能ならフォルダに書き込み権限を付与
+            try:
+                os.chmod(latest_folder, 0o777)
+            except Exception:
+                pass
+            shutil.copy2(launch_file_path, result_xml_path)
+        except PermissionError:
+            alt_dir = os.path.join("./output", "artifacts")
+            os.makedirs(alt_dir, exist_ok=True)
+            result_xml_path = os.path.join(
+                alt_dir, f"reference.{int(time.time())}.launch.xml"
+            )
+            shutil.copy2(launch_file_path, result_xml_path)
         print(f"Modified XML saved to: {result_xml_path}")
 
         print(f"Reading results from: {result_file}")
@@ -943,8 +956,21 @@ def sweep_run() -> None:
 
         latest_folder = max(result_folders, key=os.path.getctime)
         result_file = os.path.join(latest_folder, "result-summary.json")
-        result_xml_path = os.path.join(latest_folder, "reference.launch.xml")
-        shutil.copy2(launch_file_path, result_xml_path)
+        result_xml_try = os.path.join(latest_folder, "reference.launch.xml")
+        try:
+            try:
+                os.chmod(latest_folder, 0o777)
+            except Exception:
+                pass
+            shutil.copy2(launch_file_path, result_xml_try)
+            result_xml_path = result_xml_try
+        except PermissionError:
+            alt_dir = os.path.join("./output", "artifacts")
+            os.makedirs(alt_dir, exist_ok=True)
+            result_xml_path = os.path.join(
+                alt_dir, f"reference.{int(time.time())}.launch.xml"
+            )
+            shutil.copy2(launch_file_path, result_xml_path)
         print(f"Modified XML saved to: {result_xml_path}")
 
         if not os.path.exists(result_file):
