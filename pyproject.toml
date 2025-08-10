@@ -10,7 +10,6 @@ dependencies = [
     "kaleido>=1.0.0",
     "matplotlib>=3.10.5",
     "numpy==1.26.4",
-    "optuna>=4.4.0",
     "pandas>=2.3.1",
     "plotly>=6.2.0",
     "scipy>=1.16.1",
