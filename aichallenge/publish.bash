@@ -34,6 +34,27 @@ request_control() {
     fi
 }
 
+wait_localization_ready() {
+    echo "Waiting for localization to become ready..."
+    local timeout_seconds=90
+    local elapsed=0
+    # Try to observe /localization/kinematic_state appearing and becoming readable
+    while true; do
+        # Try to get one sample of linear.x with relaxed QoS
+        if timeout 5s bash -lc 'ros2 topic echo -n 1 --qos-reliability best_effort --qos-durability volatile /localization/kinematic_state --field twist.twist.linear.x 2>/dev/null | grep -Eq "^-?[0-9]"'; then
+            echo "Localization topic is available"
+            break
+        fi
+        sleep 2
+        elapsed=$((elapsed + 2))
+        echo "Waiting for /localization/kinematic_state... (${elapsed}s elapsed)"
+        if [ $elapsed -ge $timeout_seconds ]; then
+            echo "Warning: localization not ready after ${timeout_seconds}s. Continuing anyway..."
+            break
+        fi
+    done
+}
+
 # Function to set initial pose
 # Assignment 1 set correct initial pose
 #            x: 89633.29,
@@ -125,9 +146,15 @@ initial)
     set_initial_pose
     ;;
 all)
-    sleep 10
+    # Give system a bit more time to finish bring-up
+    sleep 15
+    # Publish initial pose twice for robustness
+    set_initial_pose
+    sleep 3
     set_initial_pose
     request_control
+    # Wait for localization readiness (do not hard-fail on timeout)
+    wait_localization_ready
     ;;
 help)
     usage
