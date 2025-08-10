@@ -15,6 +15,7 @@ import importlib
 import json
 import math
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -211,6 +212,28 @@ def modify_xml_parameter(xml_file_path, parameter_updates):
     tree.write(xml_file_path, encoding="utf-8", xml_declaration=True)
 
 
+def _parse_linear_xy_from_yaml(text: str) -> tuple[float, float] | None:
+    """YAML出力から linear.x と linear.y を抽出するフォールバックパーサ。
+
+    例:
+      twist:
+        twist:
+          linear:
+            x: 0.0
+            y: 0.0
+    """
+    try:
+        m = re.search(
+            r"linear:\s*\n\s*x:\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)\s*\n\s*y:\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)",
+            text,
+        )
+        if not m:
+            return None
+        return float(m.group(1)), float(m.group(2))
+    except Exception:
+        return None
+
+
 def _get_current_speed_mps(container_name: str) -> float | None:
     """コンテナ内で /localization/kinematic_state の合成速度を1回取得する。
 
@@ -226,10 +249,11 @@ def _get_current_speed_mps(container_name: str) -> float | None:
             "elif [ -f /autoware/install/setup.bash ]; then "
             "source /autoware/install/setup.bash; fi"
         )
-        
+
         if debug:
             print(f"[speed] Getting speed data from container: {container_name}")
-            
+
+        # まずは --field でシンプルに取得
         cmd_x = [
             "docker",
             "exec",
@@ -246,42 +270,74 @@ def _get_current_speed_mps(container_name: str) -> float | None:
             "-lc",
             f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.y 2>/dev/null | tr -d '\r'",
         ]
-        
+
         res_x = subprocess.run(cmd_x, capture_output=True, text=True, timeout=10)
         res_y = subprocess.run(cmd_y, capture_output=True, text=True, timeout=10)
-        
+
         if debug:
             print(f"[speed] Command results: vx_rc={res_x.returncode}, vy_rc={res_y.returncode}")
             if res_x.returncode != 0:
                 print(f"[speed] vx command error: stderr='{res_x.stderr.strip()}'")
             if res_y.returncode != 0:
                 print(f"[speed] vy command error: stderr='{res_y.stderr.strip()}'")
-        
-        if res_x.returncode != 0 or res_y.returncode != 0:
+
+        if res_x.returncode == 0 and res_y.returncode == 0:
+            sx = res_x.stdout.strip()
+            sy = res_y.stdout.strip()
+
             if debug:
-                print(f"[speed] Failed to get speed data (return codes: vx={res_x.returncode}, vy={res_y.returncode})")
-            return None
-            
-        sx = res_x.stdout.strip()
-        sy = res_y.stdout.strip()
-        
+                print(f"[speed] Raw topic output: vx='{sx}', vy='{sy}'")
+
+            if sx and sy:
+                vx = float(sx)
+                vy = float(sy)
+                speed = math.hypot(vx, vy)
+
+                if debug:
+                    print(
+                        f"[speed] Parsed values: vx={vx:.6f}, vy={vy:.6f}, combined={speed:.6f} m/s"
+                    )
+
+                return speed
+            else:
+                if debug:
+                    print(
+                        f"[speed] Empty output from topic: vx='{sx}', vy='{sy}'"
+                    )
+
+        # フィールド取得に失敗、または空出力だった場合は YAML 全体を1回取得してパース
         if debug:
-            print(f"[speed] Raw topic output: vx='{sx}', vy='{sy}'")
-        
-        if not sx or not sy:
+            print("[speed] Falling back to YAML parse")
+        cmd_yaml = [
+            "docker",
+            "exec",
+            container_name,
+            "bash",
+            "-lc",
+            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state 2>/dev/null | tr -d '\r'",
+        ]
+        res = subprocess.run(cmd_yaml, capture_output=True, text=True, timeout=10)
+        if res.returncode != 0 or not res.stdout:
             if debug:
-                print(f"[speed] Empty output from topic: vx='{sx}', vy='{sy}'")
+                err = res.stderr.strip() if res.stderr else ""
+                print(
+                    f"[speed] YAML echo failed: rc={res.returncode}, stderr='{err}'"
+                )
             return None
-            
-        vx = float(sx)
-        vy = float(sy)
+
+        parsed = _parse_linear_xy_from_yaml(res.stdout)
+        if not parsed:
+            if debug:
+                print("[speed] YAML parse returned no values")
+            return None
+        vx, vy = parsed
         speed = math.hypot(vx, vy)
-        
         if debug:
-            print(f"[speed] Parsed values: vx={vx:.6f}, vy={vy:.6f}, combined={speed:.6f} m/s")
-            
+            print(
+                f"[speed] Parsed from YAML: vx={vx:.6f}, vy={vy:.6f}, combined={speed:.6f} m/s"
+            )
         return speed
-        
+
     except Exception as e:
         if debug:
             print(f"[speed] Exception getting speed: {e}")
