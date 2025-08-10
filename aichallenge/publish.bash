@@ -125,7 +125,7 @@ initial)
     set_initial_pose
     ;;
 all)
-    sleep 5
+    sleep 10
     set_initial_pose
     request_control
     ;;
