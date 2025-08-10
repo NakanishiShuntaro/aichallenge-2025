@@ -1,25 +1,53 @@
 """
-Optunaを使用して、Autowareのターン走行における6周のラップタイムの合計を最小化するスクリプトです。
-このスクリプトは、Dockerを使用してAutowareの評価を行い、最適なパラメータを探索します。
-各試行では、Dockerイメージのビルド、コンテナの実行、および結果の解析を行います。
+W&B Sweep を使用して、Autoware のターン走行における 6 周ラップタイム合計の最小化を行うスクリプトです。
+Docker を用いて評価実行し、各試行のメトリクスとアーティファクトを W&B に記録します。
 
-使い方:
-$ python3 optuna_minimize_sum_laps.py
-
-確認方法:
-$ optuna-dashboard sqlite:///autoware-turning.db
+使い方（W&B Sweep 推奨）:
+- スイープ作成:  wandb sweep sweep.yaml
+- エージェント:  wandb agent <SWEEP_ID>
+  （sweep.yaml は本スクリプトを `--sweep` 付きで起動します）
 """
 
-import optuna
-import subprocess
-import os
-import json
+import argparse
+import importlib
+from typing import Any, cast
+
+try:
+    wandb = cast(Any, importlib.import_module("wandb"))
+except Exception:
+
+    class _WandbStub:  # pragma: no cover - fallback for type-checkers
+        def init(self, *args, **kwargs):
+            class _Run:
+                def log_artifact(self, *a, **k):
+                    pass
+
+                def finish(self):
+                    pass
+
+            return _Run()
+
+        def log(self, *args, **kwargs):
+            pass
+
+        class Settings:
+            def __init__(self, *a, **k):
+                pass
+
+        class Artifact:
+            def __init__(self, *a, **k):
+                pass
+
+    wandb = cast(Any, _WandbStub())
 import glob
+import json
+import os
+import shutil
+import subprocess
+import sys
 import threading
 import time
-import sys
 import xml.etree.ElementTree as ET
-import shutil
 
 
 def spinner_animation(message, stop_event):
@@ -182,6 +210,11 @@ def modify_xml_parameter(xml_file_path, parameter_updates):
 
 
 def objective(trial):
+    run = None
+    wandb_entity = os.environ.get(
+        "WANDB_ENTITY", "nakanishi-shuntaro-638-kyushu-university"
+    )
+
     twist_smoothing_steps = trial.suggest_int("twist_smoothing_steps", 1, 5)
     pose_smoothing_steps = trial.suggest_int("pose_smoothing_steps", 1, 5)
     proc_stddev_vx_c = trial.suggest_float("proc_stddev_vx_c", 15.0, 25.0)
@@ -198,6 +231,31 @@ def objective(trial):
     extend_state_step = trial.suggest_int("extend_state_step", 50, 200)
     steering_tire_angle_gain_var = trial.suggest_float(
         "steering_tire_angle_gain_var", 1.0, 1.7
+    )
+
+    run = wandb.init(
+        project="aichallenge-2025",
+        entity=wandb_entity,
+        group="autoware-turning",
+        job_type="optuna",
+        name=f"trial-{trial.number}",
+        config={
+            "twist_smoothing_steps": twist_smoothing_steps,
+            "pose_smoothing_steps": pose_smoothing_steps,
+            "proc_stddev_vx_c": proc_stddev_vx_c,
+            "proc_stddev_wz_c": proc_stddev_wz_c,
+            "accel_lowpass_gain": accel_lowpass_gain,
+            "external_target_vel": external_target_vel,
+            "lookahead_gain": lookahead_gain,
+            "lookahead_min_distance": lookahead_min_distance,
+            "speed_proportional_gain": speed_proportional_gain,
+            "pose_additional_delay_var": pose_additional_delay_var,
+            "tf_rate": tf_rate,
+            "extend_state_step": extend_state_step,
+            "steering_tire_angle_gain_var": steering_tire_angle_gain_var,
+        },
+        reinit=True,
+        settings=wandb.Settings(start_method="thread"),
     )
 
     # Define paths
@@ -305,62 +363,259 @@ def objective(trial):
             total_time = sum(lap_times)
             print(f"Total lap time for 6 laps: {total_time}")
             print("=" * 50)
+            metrics = {f"lap_{i + 1}": t for i, t in enumerate(lap_times)}
+            metrics.update({"total_time": total_time})
+            try:
+                wandb.log(metrics)
+            except Exception as e:
+                print(f"Warning: failed to log metrics to W&B: {e}")
+
+            try:
+                artifact = wandb.Artifact(
+                    name=f"trial-{trial.number}-results", type="evaluation"
+                )
+                artifact.add_file(result_file, name="result-summary.json")
+                artifact.add_file(result_xml_path, name="reference.launch.xml")
+                run.log_artifact(artifact)
+            except Exception as e:
+                print(f"Warning: failed to log artifacts to W&B: {e}")
             return total_time
 
     except subprocess.TimeoutExpired:
         print("Process timed out")
+        try:
+            wandb.log({"total_time": 225.0, "status": "timeout"})
+        except Exception:
+            pass
         return 225.0
     except Exception as e:
         print(f"Error during evaluation: {e}")
+        try:
+            wandb.log({"total_time": 225.0, "status": "error"})
+        except Exception:
+            pass
         return 225.0
     finally:
         # Skip per-trial restoration - will be handled at script end
-        pass
+        if run is not None:
+            try:
+                run.finish()
+            except Exception:
+                pass
 
 
-def main():
-    # Create single backup at script start
+def sweep_run() -> None:
+    """W&B Sweep から呼び出す 1 トライアル分の実行。
+
+    wandb.config に与えられたハイパーパラメータで評価を実行し、
+    メトリクスとアーティファクトをログして終了します。
+    """
+    wandb_entity = os.environ.get(
+        "WANDB_ENTITY", "nakanishi-shuntaro-638-kyushu-university"
+    )
+    run = wandb.init(
+        project="aichallenge-2025",
+        entity=wandb_entity,
+        group="autoware-turning",
+        job_type="sweep",
+        settings=wandb.Settings(start_method="thread"),
+    )
+
+    cfg = wandb.config
+    # 期待パラメータが欠けている場合のフォールバック値（スイープ側で全て指定する想定）
+    twist_smoothing_steps = int(getattr(cfg, "twist_smoothing_steps", 3))
+    pose_smoothing_steps = int(getattr(cfg, "pose_smoothing_steps", 3))
+    proc_stddev_vx_c = float(getattr(cfg, "proc_stddev_vx_c", 20.0))
+    proc_stddev_wz_c = float(getattr(cfg, "proc_stddev_wz_c", 1.5))
+    accel_lowpass_gain = float(getattr(cfg, "accel_lowpass_gain", 0.5))
+    external_target_vel = float(getattr(cfg, "external_target_vel", 20.0))
+    lookahead_gain = float(getattr(cfg, "lookahead_gain", 0.5))
+    lookahead_min_distance = float(getattr(cfg, "lookahead_min_distance", 3.0))
+    speed_proportional_gain = float(getattr(cfg, "speed_proportional_gain", 1.0))
+    pose_additional_delay_var = float(getattr(cfg, "pose_additional_delay_var", 0.5))
+    tf_rate = float(getattr(cfg, "tf_rate", 30.0))
+    extend_state_step = int(getattr(cfg, "extend_state_step", 100))
+    steering_tire_angle_gain_var = float(
+        getattr(cfg, "steering_tire_angle_gain_var", 1.3)
+    )
+
     launch_file_path = "./aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml"
     output_dir = "./output"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-
     backup_path = backup_launch_file(launch_file_path, output_dir)
     print(f"Initial backup created at: {backup_path}")
 
     try:
-        study = optuna.create_study(
-            direction="minimize",
-            study_name="autoware-turning",
-            storage="sqlite:///autoware-turning.db",
-            load_if_exists=True,
+        parameter_updates = {
+            "twist_smoothing_steps": twist_smoothing_steps,
+            "pose_smoothing_steps": pose_smoothing_steps,
+            "proc_stddev_vx_c": proc_stddev_vx_c,
+            "proc_stddev_wz_c": proc_stddev_wz_c,
+            "accel_lowpass_gain": accel_lowpass_gain,
+            "external_target_vel": external_target_vel,
+            "lookahead_gain": lookahead_gain,
+            "lookahead_min_distance": lookahead_min_distance,
+            "speed_proportional_gain": speed_proportional_gain,
+            "pose_additional_delay_var": pose_additional_delay_var,
+            "tf_rate": tf_rate,
+            "extend_state_step": extend_state_step,
+            "steering_tire_angle_gain_var": steering_tire_angle_gain_var,
+        }
+        modify_xml_parameter(launch_file_path, parameter_updates)
+        print("XML parameters updated successfully (sweep)")
+
+        run_subprocess_with_spinner(
+            ["./create_submit_file.bash"],
+            "Creating submit file...",
+            capture_output=True,
+            text=True,
+            timeout=60,
         )
-        study.optimize(objective, n_trials=100)
+        build_result = run_subprocess_with_spinner(
+            ["./docker_build.sh", "eval"],
+            "Building Docker image...",
+            capture_output=True,
+            text=True,
+            timeout=1800,
+        )
+        if build_result.returncode != 0:
+            print(f"Docker build failed: {build_result.stderr}")
+            wandb.log({"total_time": 225.0, "status": "build_failed"})
+            return
 
-        print("=" * 50)
-        print("Study finished")
-        print("Number of trials:", len(study.trials))
-        print("Best trial:")
-        print("  Best parameters:", study.best_params)
-        print("  Best score     :", study.best_value)
-        print("=" * 50)
+        run_result = run_subprocess_with_spinner(
+            ["./docker_run.sh", "eval", "cpu"],
+            "Running Docker container...",
+            capture_output=True,
+            text=True,
+            timeout=3600,
+        )
+        if run_result.returncode != 0:
+            print(f"Docker run failed: {run_result.stderr}")
+            wandb.log({"total_time": 225.0, "status": "run_failed"})
+            return
 
-    except KeyboardInterrupt:
-        print("\nOptimization interrupted by user")
+        result_folders = glob.glob(
+            os.path.join(
+                output_dir,
+                "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]",
+            )
+        )
+        if not result_folders:
+            print("No result folders found")
+            wandb.log({"total_time": 225.0, "status": "no_result_folders"})
+            return
+
+        latest_folder = max(result_folders, key=os.path.getctime)
+        result_file = os.path.join(latest_folder, "result-summary.json")
+        result_xml_path = os.path.join(latest_folder, "reference.launch.xml")
+        shutil.copy2(launch_file_path, result_xml_path)
+        print(f"Modified XML saved to: {result_xml_path}")
+
+        if not os.path.exists(result_file):
+            print("Result file not found")
+            wandb.log({"total_time": 225.0, "status": "no_result_file"})
+            return
+
+        with open(result_file, "r") as f:
+            result = json.load(f)
+            print(f"Result data: {result}")
+
+            if "laps" not in result or not result["laps"]:
+                print("No laps data found")
+                wandb.log({"total_time": 225.0, "status": "no_laps"})
+                return
+
+            lap_times = result["laps"]
+            if len(lap_times) != 6:
+                print(f"Must complete exactly 6 laps, got {len(lap_times)} laps")
+                wandb.log({"total_time": 225.0, "status": "not_6_laps"})
+                return
+
+            total_time = sum(lap_times)
+            print(f"Total lap time for 6 laps: {total_time}")
+            print("=" * 50)
+
+            metrics = {f"lap_{i + 1}": t for i, t in enumerate(lap_times)}
+            metrics.update({"total_time": total_time})
+            try:
+                wandb.log(metrics)
+            except Exception as e:
+                print(f"Warning: failed to log metrics to W&B: {e}")
+
+            try:
+                artifact = wandb.Artifact(
+                    name=f"sweep-run-{run.id}-results", type="evaluation"
+                )
+                artifact.add_file(result_file, name="result-summary.json")
+                artifact.add_file(result_xml_path, name="reference.launch.xml")
+                run.log_artifact(artifact)
+            except Exception as e:
+                print(f"Warning: failed to log artifacts to W&B: {e}")
+
+    except subprocess.TimeoutExpired:
+        print("Process timed out")
+        try:
+            wandb.log({"total_time": 225.0, "status": "timeout"})
+        except Exception:
+            pass
     except Exception as e:
-        print(f"Error during optimization: {e}")
+        print(f"Error during sweep run: {e}")
+        try:
+            wandb.log({"total_time": 225.0, "status": "error"})
+        except Exception:
+            pass
     finally:
-        # Restore backup file at script end
-        if os.path.exists(backup_path):
-            if restore_launch_file(launch_file_path, backup_path):
-                print(f"Launch file restored from backup: {backup_path}")
-                # Clean up backup file
-                os.remove(backup_path)
-                print("Backup file cleaned up")
-            else:
-                print("Failed to restore launch file from backup")
-        print("=" * 50)
+        try:
+            run.finish()
+        except Exception:
+            pass
+        # Restore backup file at run end
+        try:
+            if os.path.exists(backup_path):
+                if restore_launch_file(launch_file_path, backup_path):
+                    print(f"Launch file restored from backup: {backup_path}")
+                    os.remove(backup_path)
+                    print("Backup file cleaned up")
+        except Exception as e:
+            print(f"Warning: failed to restore launch file: {e}")
+
+
+def main():
+    # Sweep 実行のエントリに一本化
+    sweep_run()
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sweep", action="store_true", help="Run as W&B sweep program")
+    parser.add_argument(
+        "--single", action="store_true", help="Run once with defaults for debugging"
+    )
+    args = parser.parse_args()
+    if args.sweep:
+        sweep_run()
+    elif args.single:
+        # デフォルト値で 1 回だけ実行（スイープ外のデバッグ用）
+        default_params = {
+            "twist_smoothing_steps": 3,
+            "pose_smoothing_steps": 3,
+            "proc_stddev_vx_c": 20.0,
+            "proc_stddev_wz_c": 1.5,
+            "accel_lowpass_gain": 0.5,
+            "external_target_vel": 20.0,
+            "lookahead_gain": 0.5,
+            "lookahead_min_distance": 3.0,
+            "speed_proportional_gain": 1.0,
+            "pose_additional_delay_var": 0.5,
+            "tf_rate": 30.0,
+            "extend_state_step": 100,
+            "steering_tire_angle_gain_var": 1.3,
+        }
+        # 実行は sweep_run と同じ流れのため、簡易に環境変数として渡すより直呼びが明快
+        # ここではパラメータ適用・実行ロジックを重複させず、sweep_run のコードパスを再利用する方針でもよい
+        # 現状は簡潔性を優先し、sweep_run を利用してください
+        sweep_run()
+    else:
+        main()

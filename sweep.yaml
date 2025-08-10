@@ -1,0 +1,66 @@
+program: optuna_minimize_sum_laps.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - --sweep
+project: aichallenge-2025
+entity: nakanishi-shuntaro-638-kyushu-university
+name: autoware-turning-sweep
+method: bayes
+metric:
+  name: total_time
+  goal: minimize
+parameters:
+  twist_smoothing_steps:
+    min: 1
+    max: 5
+    distribution: int_uniform
+  pose_smoothing_steps:
+    min: 1
+    max: 5
+    distribution: int_uniform
+  proc_stddev_vx_c:
+    min: 15.0
+    max: 25.0
+    distribution: uniform
+  proc_stddev_wz_c:
+    min: 0.5
+    max: 2.5
+    distribution: uniform
+  accel_lowpass_gain:
+    min: 0.1
+    max: 1.0
+    distribution: uniform
+  external_target_vel:
+    min: 5.0
+    max: 30.0
+    distribution: uniform
+  lookahead_gain:
+    min: 0.1
+    max: 1.0
+    distribution: uniform
+  lookahead_min_distance:
+    min: 1.0
+    max: 5.0
+    distribution: uniform
+  speed_proportional_gain:
+    min: 0.5
+    max: 3.0
+    distribution: uniform
+  pose_additional_delay_var:
+    min: 0.1
+    max: 1.0
+    distribution: uniform
+  tf_rate:
+    min: 10.0
+    max: 50.0
+    distribution: uniform
+  extend_state_step:
+    min: 50
+    max: 200
+    distribution: int_uniform
+  steering_tire_angle_gain_var:
+    min: 1.0
+    max: 1.7
+    distribution: uniform
