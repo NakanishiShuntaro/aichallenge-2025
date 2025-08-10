@@ -101,6 +101,20 @@ cleanup() {
     pkill -f "ros2 bag record" 2>/dev/null || true
     sleep 1
 
+    # Try to close RViz gracefully first
+    echo "Close RViz window/process if running..."
+    if command -v wmctrl >/dev/null 2>&1; then
+        wmctrl -c "RViz" 2>/dev/null || true
+        sleep 0.5
+    fi
+    if pgrep -f "rviz2" >/dev/null 2>&1; then
+        pkill -TERM -f "rviz2" 2>/dev/null || true
+        sleep 1
+        if pgrep -f "rviz2" >/dev/null 2>&1; then
+            pkill -KILL -f "rviz2" 2>/dev/null || true
+        fi
+    fi
+
     # shutdown ROS2 nodes
     echo "Shutting down ROS2 nodes gracefully..."
     ros2 node list 2>/dev/null | while read -r node; do
@@ -112,7 +126,16 @@ cleanup() {
     # Stop Autoware
     echo "Stop Autoware"
     if [[ -n $PID_AUTOWARE ]] && kill -0 "$PID_AUTOWARE" 2>/dev/null; then
-        graceful_shutdown "$PID_AUTOWARE" 3
+        # allow more time for ros2 launch to teardown RViz and children
+        graceful_shutdown "$PID_AUTOWARE" 10
+    fi
+    # Fallback: ensure ros2 launch is dead
+    if pgrep -f "ros2 launch .*aichallenge_system.launch.xml" >/dev/null 2>&1; then
+        pkill -TERM -f "ros2 launch .*aichallenge_system.launch.xml" 2>/dev/null || true
+        sleep 1
+        if pgrep -f "ros2 launch .*aichallenge_system.launch.xml" >/dev/null 2>&1; then
+            pkill -KILL -f "ros2 launch .*aichallenge_system.launch.xml" 2>/dev/null || true
+        fi
     fi
 
     # Stop AWSIM
