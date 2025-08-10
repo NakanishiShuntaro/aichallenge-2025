@@ -253,14 +253,14 @@ def _get_current_speed_mps(container_name: str) -> float | None:
         if debug:
             print(f"[speed] Getting speed data from container: {container_name}")
 
-        # まずは --field でシンプルに取得
+        # まずは --field でシンプルに取得（QoSを緩めて受信しやすくする）
         cmd_x = [
             "docker",
             "exec",
             container_name,
             "bash",
             "-lc",
-            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.x 2>/dev/null | tr -d '\r'",
+            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 --qos-reliability best_effort --qos-durability volatile /localization/kinematic_state --field twist.twist.linear.x 2>/dev/null | tr -d '\r'",
         ]
         cmd_y = [
             "docker",
@@ -268,7 +268,7 @@ def _get_current_speed_mps(container_name: str) -> float | None:
             container_name,
             "bash",
             "-lc",
-            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.y 2>/dev/null | tr -d '\r'",
+            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 --qos-reliability best_effort --qos-durability volatile /localization/kinematic_state --field twist.twist.linear.y 2>/dev/null | tr -d '\r'",
         ]
 
         res_x = subprocess.run(cmd_x, capture_output=True, text=True, timeout=20)
@@ -305,6 +305,52 @@ def _get_current_speed_mps(container_name: str) -> float | None:
                 if debug:
                     print(f"[speed] Empty output from topic: vx='{sx}', vy='{sy}'")
 
+        # 別トピックのフィールド取得を試す（車速系）
+        try_alt = False
+        if (res_x.returncode != 0 or not res_x.stdout.strip()) or (
+            res_y.returncode != 0 or not res_y.stdout.strip()
+        ):
+            try_alt = True
+        if try_alt:
+            alt_topic = "/vehicle/status/twist"
+            cmd2_x = [
+                "docker",
+                "exec",
+                container_name,
+                "bash",
+                "-lc",
+                f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 --qos-reliability best_effort --qos-durability volatile {alt_topic} --field twist.linear.x 2>/dev/null | tr -d '\r'",
+            ]
+            cmd2_y = [
+                "docker",
+                "exec",
+                container_name,
+                "bash",
+                "-lc",
+                f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 --qos-reliability best_effort --qos-durability volatile {alt_topic} --field twist.linear.y 2>/dev/null | tr -d '\r'",
+            ]
+            alt_x = subprocess.run(cmd2_x, capture_output=True, text=True, timeout=20)
+            alt_y = subprocess.run(cmd2_y, capture_output=True, text=True, timeout=20)
+            if debug:
+                print(
+                    f"[speed] Alt topic results: vx_rc={alt_x.returncode}, vy_rc={alt_y.returncode}"
+                )
+            if alt_x.returncode == 0 and alt_y.returncode == 0:
+                sx = alt_x.stdout.strip()
+                sy = alt_y.stdout.strip()
+                if sx and sy:
+                    try:
+                        vx = float(sx)
+                        vy = float(sy)
+                        speed = math.hypot(vx, vy)
+                        if debug:
+                            print(
+                                f"[speed] Alt parsed values: vx={vx:.6f}, vy={vy:.6f}, combined={speed:.6f} m/s"
+                            )
+                        return speed
+                    except Exception:
+                        pass
+
         # フィールド取得に失敗、または空出力だった場合は YAML 全体を1回取得してパース
         if debug:
             print("[speed] Falling back to YAML parse")
@@ -314,7 +360,7 @@ def _get_current_speed_mps(container_name: str) -> float | None:
             container_name,
             "bash",
             "-lc",
-            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state 2>/dev/null | tr -d '\r'",
+            f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 --qos-reliability best_effort --qos-durability volatile /localization/kinematic_state 2>/dev/null | tr -d '\r'",
         ]
         res = subprocess.run(cmd_yaml, capture_output=True, text=True, timeout=20)
         if res.returncode != 0 or not res.stdout:
