@@ -1,0 +1,164 @@
+2025-08-10 17:02:27,734 INFO    MainThread:746710 [wandb_setup.py:_flush():80] Current SDK version is 0.21.1
+2025-08-10 17:02:27,734 INFO    MainThread:746710 [wandb_setup.py:_flush():80] Configure stats pid to 746710
+2025-08-10 17:02:27,734 INFO    MainThread:746710 [wandb_setup.py:_flush():80] Loading settings from /home/ubuntu/.config/wandb/settings
+2025-08-10 17:02:27,734 INFO    MainThread:746710 [wandb_setup.py:_flush():80] Loading settings from /home/ubuntu/aichallenge-2025/wandb/settings
+2025-08-10 17:02:27,735 INFO    MainThread:746710 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-08-10 17:02:27,735 INFO    MainThread:746710 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /home/ubuntu/aichallenge-2025/wandb/run-20250810_170227-gbumfx61/logs/debug.log
+2025-08-10 17:02:27,735 INFO    MainThread:746710 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /home/ubuntu/aichallenge-2025/wandb/run-20250810_170227-gbumfx61/logs/debug-internal.log
+2025-08-10 17:02:27,735 INFO    MainThread:746710 [wandb_init.py:init():830] calling init triggers
+2025-08-10 17:02:27,735 INFO    MainThread:746710 [wandb_init.py:init():835] wandb.init called with sweep_config: {'accel_lowpass_gain': 0.12677658139436712, 'extend_state_step': 108, 'external_target_vel': 13.438854669799053, 'lookahead_gain': 0.761136217158604, 'lookahead_min_distance': 4.463811622549355, 'pose_additional_delay_var': 0.8426729968530793, 'pose_smoothing_steps': 4, 'proc_stddev_vx_c': 23.557379112828855, 'proc_stddev_wz_c': 1.310201296774545, 'speed_proportional_gain': 0.672076360414693, 'steering_tire_angle_gain_var': 1.2204348154686744, 'stop_hold_sec': 6, 'stop_threshold': 0.07697862308387939, 'tf_rate': 43.17824305283074, 'twist_smoothing_steps': 3}
+config: {'_wandb': {}}
+2025-08-10 17:02:27,735 INFO    MainThread:746710 [wandb_init.py:init():871] starting backend
+2025-08-10 17:02:27,948 INFO    MainThread:746710 [wandb_init.py:init():874] sending inform_init request
+2025-08-10 17:02:27,960 INFO    MainThread:746710 [wandb_init.py:init():882] backend started and connected
+2025-08-10 17:02:27,962 INFO    MainThread:746710 [wandb_run.py:_config_callback():1380] config_cb None None {'accel_lowpass_gain': 0.12677658139436712, 'extend_state_step': 108, 'external_target_vel': 13.438854669799053, 'lookahead_gain': 0.761136217158604, 'lookahead_min_distance': 4.463811622549355, 'pose_additional_delay_var': 0.8426729968530793, 'pose_smoothing_steps': 4, 'proc_stddev_vx_c': 23.557379112828855, 'proc_stddev_wz_c': 1.310201296774545, 'speed_proportional_gain': 0.672076360414693, 'steering_tire_angle_gain_var': 1.2204348154686744, 'stop_hold_sec': 6, 'stop_threshold': 0.07697862308387939, 'tf_rate': 43.17824305283074, 'twist_smoothing_steps': 3}
+2025-08-10 17:02:27,963 INFO    MainThread:746710 [wandb_init.py:init():953] updated telemetry
+2025-08-10 17:02:27,977 INFO    MainThread:746710 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout
+2025-08-10 17:02:28,953 INFO    MainThread:746710 [wandb_init.py:init():1029] starting run threads in backend
+2025-08-10 17:02:29,148 INFO    MainThread:746710 [wandb_run.py:_console_start():2494] atexit reg
+2025-08-10 17:02:29,149 INFO    MainThread:746710 [wandb_run.py:_redirect():2342] redirect: wrap_raw
+2025-08-10 17:02:29,149 INFO    MainThread:746710 [wandb_run.py:_redirect():2411] Wrapping output streams.
+2025-08-10 17:02:29,149 INFO    MainThread:746710 [wandb_run.py:_redirect():2434] Redirects installed.
+2025-08-10 17:02:29,152 INFO    MainThread:746710 [wandb_init.py:init():1075] run started, returning control to user process
+2025-08-10 17:08:32,991 INFO    MainThread:746710 [wandb_run.py:_finish():2260] finishing run nakanishi-shuntaro-638-kyushu-university/aichallenge-2025/gbumfx61
+2025-08-10 17:08:33,007 INFO    MainThread:746710 [wandb_run.py:_atexit_cleanup():2459] got exitcode: 0
+2025-08-10 17:08:33,012 INFO    MainThread:746710 [wandb_run.py:_restore():2441] restore
+2025-08-10 17:08:33,015 INFO    MainThread:746710 [wandb_run.py:_restore():2447] restore done
+2025-08-10 17:08:35,037 INFO    MainThread:746710 [wandb_run.py:_restore():2441] restore
+2025-08-10 17:08:35,038 INFO    MainThread:746710 [wandb_run.py:_restore():2447] restore done
+2025-08-10 17:08:35,038 ERROR   MainThread:746710 [wandb_run.py:_atexit_cleanup():2480] Problem finishing run
+Traceback (most recent call last):
+  File "/home/ubuntu/aichallenge-2025/wandb_minimize_sum_laps.py", line 830, in sweep_run
+    print("[monitor] Starting monitoring thread...")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/console_capture.py", line 168, in write_with_callbacks
+    n = orig_write(s)
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/aichallenge-2025/wandb_minimize_sum_laps.py", line 917, in sweep_run
+    print(f"Error during sweep run: {e}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/console_capture.py", line 168, in write_with_callbacks
+    n = orig_write(s)
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 2471, in _atexit_cleanup
+    self._on_finish()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 2723, in _on_finish
+    wait_with_progress(
+    ~~~~~~~~~~~~~~~~~~^
+        exit_handle,
+        ^^^^^^^^^^^^
+    ...<5 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 24, in wait_with_progress
+    return wait_all_with_progress(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        [handle],
+        ^^^^^^^^^
+    ...<2 lines>...
+        display_progress=display_progress,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )[0]
+    ^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 87, in wait_all_with_progress
+    return asyncio_compat.run(progress_loop_with_timeout)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/asyncio_compat.py", line 30, in run
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/asyncio_compat.py", line 74, in run
+    return asyncio.run(self._run_or_cancel(fn))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/asyncio_compat.py", line 98, in _run_or_cancel
+    return fn_task.result()
+           ~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 75, in progress_loop_with_timeout
+    with asyncio_compat.cancel_on_exit(display_progress()):
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 148, in __exit__
+    next(self.gen)
+    ~~~~^^^^^^^^^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/asyncio_compat.py", line 211, in cancel_on_exit
+    raise exception
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 2699, in _display_finish_stats
+    async with asyncio_compat.open_task_group() as task_group:
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 221, in __aexit__
+    await anext(self.gen)
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/asyncio_compat.py", line 193, in open_task_group
+    await task_group._wait_all()
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/asyncio_compat.py", line 162, in _wait_all
+    raise exc
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 2679, in loop_update_printer
+    progress_printer.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        [last_result.response.poll_exit_response],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/progress.py", line 108, in update
+    self._update_operation_stats(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        list(response.operation_stats for response in progress)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/progress.py", line 143, in _update_operation_stats
+    self._printer.display(line)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/printer.py", line 318, in display
+    self._display_fn_mapping(level)(text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/errors/term.py", line 172, in termlog
+    _log(
+    ~~~~^
+        string,
+        ^^^^^^^
+    ...<3 lines>...
+        silent=not _show_info,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/errors/term.py", line 358, in _log
+    click.echo(string, file=sys.stderr, nl=newline)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/click/utils.py", line 321, in echo
+    file.write(out)  # type: ignore
+    ~~~~~~~~~~^^^^^
+  File "/home/ubuntu/.local/share/uv/python/cpython-3.13.6-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/ubuntu/aichallenge-2025/.venv/lib/python3.13/site-packages/wandb/sdk/lib/console_capture.py", line 168, in write_with_callbacks
+    n = orig_write(s)
+OSError: [Errno 5] Input/output error
+2025-08-10 17:08:36,039 INFO    MsgRouterThr:746710 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

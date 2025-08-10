@@ -1,0 +1,80 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2025-08-10-17-16-03-687989-ubuntu-HP-Laptop-14s-dq5xxx-174
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: The arguments for aichallenge_system_launch.
+[INFO] [launch.user]:  - simulation: true
+[INFO] [launch.user]:  - use_sim_time: true
+[INFO] [launch.user]:  - sensor_model: racing_kart_sensor_kit
+[INFO] [launch.user]:  - launch_vehicle_interface: true
+[INFO] [launch.user]:  - rviz config: /aichallenge/workspace/install/aichallenge_system_launch/share/aichallenge_system_launch/config/autoware.rviz
+[INFO] [launch.user]: The arguments for aichallenge_submit_launch.
+[INFO] [launch.user]:  - simulation: true
+[INFO] [launch.user]:  - use_sim_time: true
+[INFO] [launch.user]:  - sensor_model: racing_kart_sensor_kit
+[INFO] [launch.user]:  - launch_vehicle_interface: true
+[INFO] [launch.user]: echo launch param use_sim_time: true launch_vehicle_interface: true sensor_model: racing_kart_sensor_kit
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/lanelet2_map_loader' in container '/map/map_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/lanelet2_map_visualization' in container '/map/map_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map/vector_map_tf_generator' in container '/map/map_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/cpu_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/mem_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/process_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [robot_state_publisher-1]: process started with pid [198]
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/system/system_monitor/voltage_monitor' in container '/system/system_monitor/system_monitor/system_monitor_container'
+[INFO] [vehicle_velocity_converter-2]: process started with pid [200]
+[INFO] [imu_corrector-3]: process started with pid [202]
+[INFO] [gnss_poser-4]: process started with pid [204]
+[INFO] [gyro_odometer-5]: process started with pid [206]
+[INFO] [imu_gnss_poser_node-6]: process started with pid [208]
+[INFO] [ekf_localizer-7]: process started with pid [210]
+[INFO] [twist2accel-8]: process started with pid [212]
+[INFO] [simple_trajectory_generator_node-9]: process started with pid [214]
+[INFO] [interactive_server-10]: process started with pid [216]
+[INFO] [simple_pure_pursuit-11]: process started with pid [218]
+[INFO] [component_container-12]: process started with pid [220]
+[INFO] [raw_vehicle_cmd_converter_node-13]: process started with pid [224]
+[INFO] [goal_pose_setter_node-14]: process started with pid [228]
+[INFO] [rviz2-15]: process started with pid [236]
+[INFO] [relay-16]: process started with pid [247]
+[INFO] [control_mode_adapter.py-17]: process started with pid [262]
+[INFO] [actuation_cmd_converter-18]: process started with pid [292]
+[INFO] [relay-19]: process started with pid [309]
+[INFO] [component_container_mt-20]: process started with pid [320]
+[simple_trajectory_generator_node-9] [INFO] [1754813766.070124640] [planning.scenario_planning.simple_trajectory_generator]: csv_path parameter changed from '' to '/aichallenge/workspace/install/simple_trajectory_generator/share/simple_trajectory_generator/data/raceline_awsim_15km.csv'
+[simple_trajectory_generator_node-9] [INFO] [1754813766.070793344] [planning.scenario_planning.simple_trajectory_generator]: Successfully loaded new trajectory from CSV: /aichallenge/workspace/install/simple_trajectory_generator/share/simple_trajectory_generator/data/raceline_awsim_15km.csv with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754813766.070947497] [planning.scenario_planning.simple_trajectory_generator]: z parameter changed to 6.500000
+[simple_trajectory_generator_node-9] [INFO] [1754813766.071372902] [planning.scenario_planning.simple_trajectory_generator]: Loaded trajectory from CSV with 121 points
+[simple_pure_pursuit-11] [INFO] [1754813766.073708858] [simple_pure_pursuit_node]: trajectory is not available
+[gyro_odometer-5] [WARN] [1754813766.187081663] [localization.gyro_odometer]: Twist msg is not subscribed
+[interactive_server-10] [INFO] [1754813766.215155463] [editor_tool_server]: Waiting for 5.000000 seconds before loading CSV and publishing markers.
+[ekf_localizer-7] [WARN] [1754813766.387290935] [localization.ekf_localizer]: The node is not activated. Provide initial pose to pose_initializer
+[robot_state_publisher-1] [INFO] [1754813766.417359721] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1754813766.417532138] [robot_state_publisher]: got segment gnss_link
+[robot_state_publisher-1] [INFO] [1754813766.418275535] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-1] [INFO] [1754813766.418485187] [robot_state_publisher]: got segment sensor_kit_base_link
+[rviz2-15] QPainter::begin: Paint device returned engine == 0, type: 2
+[rviz2-15] QPainter::setPen: Painter not active
+[rviz2-15] [INFO] [1754813766.964307745] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-15] [INFO] [1754813766.964538977] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-15] [INFO] [1754813767.016570017] [rviz2]: Stereo is NOT SUPPORTED
+[simple_trajectory_generator_node-9] [WARN] [1754813767.765270231] [planning.scenario_planning.simple_trajectory_generator]: New subscription discovered on topic '/planning/scenario_planning/trajectory', requesting incompatible QoS. No messages will be sent to it. Last incompatible policy: RELIABILITY_QOS_POLICY
+[simple_trajectory_generator_node-9] [WARN] [1754813767.767616478] [planning.scenario_planning.simple_trajectory_generator]: New subscription discovered on topic '/planning/scenario_planning/trajectory', requesting incompatible QoS. No messages will be sent to it. Last incompatible policy: RELIABILITY_QOS_POLICY
+[ekf_localizer-7] [WARN] [1754813768.391564360] [localization.ekf_localizer]: The node is not activated. Provide initial pose to pose_initializer
+[rviz2-15] QObject::connect: No such signal QLineEdit::valueChanged(std::string)
+[goal_pose_setter_node-14] [INFO] [1754813769.298595128] [goal_pose_setter]: Call localization trigger
+[goal_pose_setter_node-14] [INFO] [1754813769.298985412] [goal_pose_setter]: Complete localization trigger
+[rviz2-15] [WARN] [1754813770.100223293] [rviz2]: Negative eigenvalue found for position. Is the covariance matrix correct (positive semidefinite)?
+[rviz2-15] [WARN] [1754813770.387584658] [rviz2]: Negative eigenvalue found for position. Is the covariance matrix correct (positive semidefinite)?
+[rviz2-15] [WARN] [1754813770.548194436] [rviz2]: Negative eigenvalue found for position. Is the covariance matrix correct (positive semidefinite)?
+[ekf_localizer-7] [WARN] [1754813770.598094081] [localization.ekf_localizer]: The Mahalanobis distance 181127.6928 is over the limit 10000.0000.
+[interactive_server-10] [INFO] [1754813771.215435446] [editor_tool_server]: Loading CSV file: /aichallenge/workspace/src/aichallenge-trajectory-editor/csv/centerline_15km.csv
+[interactive_server-10] [ERROR] [1754813771.215579968] [editor_tool_server]: Failed to open file: /aichallenge/workspace/src/aichallenge-trajectory-editor/csv/centerline_15km.csv
+[simple_pure_pursuit-11] [INFO] [1754813771.220078712] [simple_pure_pursuit_node]: trajectory points is empty
+[relay-16] [WARN] [1754813786.997203626] [initial_pose_relay]: Some, but not all, publishers on topic /initialpose offer 'transient local' durability. Falling back to 'volatile' durability in orderto connect to all publishers.
+[ekf_localizer-7] [WARN] [1754813787.333612023] [localization.ekf_localizer]: The Mahalanobis distance 298475565.2039 is over the limit 10000.0000.
+[rviz2-15] OpenCV: FFMPEG: tag 0x34363268/'h264' is not supported with codec id 27 and format 'mp4 / MP4 (MPEG-4 Part 14)'
+[rviz2-15] OpenCV: FFMPEG: fallback to use tag 0x31637661/'avc1'
+[simple_trajectory_generator_node-9] [INFO] [1754813823.077389860] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754813884.095082700] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754813944.095591452] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754814005.106100610] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
+[simple_trajectory_generator_node-9] [INFO] [1754814066.122571288] [planning.scenario_planning.simple_trajectory_generator]: Published trajectory with 121 points
