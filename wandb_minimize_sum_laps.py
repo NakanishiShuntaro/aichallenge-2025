@@ -472,6 +472,11 @@ def sweep_run() -> None:
     )
 
     cfg = wandb.config
+    # 速度停止判定の既定値をプログラム側で設定（環境変数未設定時のみ）
+    stop_threshold = getattr(cfg, "stop_threshold", 0.1)
+    stop_hold_sec = getattr(cfg, "stop_hold_sec", 15)
+    os.environ.setdefault("SPEED_STOP_THRESHOLD", str(stop_threshold))
+    os.environ.setdefault("SPEED_STOP_HOLD_SEC", str(stop_hold_sec))
     # 期待パラメータが欠けている場合のフォールバック値（スイープ側で全て指定する想定）
     twist_smoothing_steps = int(getattr(cfg, "twist_smoothing_steps", 3))
     pose_smoothing_steps = int(getattr(cfg, "pose_smoothing_steps", 3))
