@@ -62,7 +62,7 @@
   </group>
 
     
-  <let name="pose_additional_delay_var" value="0.9713420681492146" />
+  <let name="pose_additional_delay_var" value="0.9569031698509096" />
   <group>
     <push-ros-namespace namespace="localization" />
     <include file="$(find-pkg-share gyro_odometer)/launch/gyro_odometer.launch.xml">
@@ -76,9 +76,9 @@
 
     <include file="$(find-pkg-share ekf_localizer)/launch/ekf_localizer.launch.xml">
       <arg name="enable_yaw_bias_estimation" value="false" />
-      <arg name="tf_rate" value="43.55966729979399" />
+      <arg name="tf_rate" value="27.496212091250285" />
       <arg name="twist_smoothing_steps" value="1" />
-      <arg name="pose_smoothing_steps" value="2" />
+      <arg name="pose_smoothing_steps" value="3" />
       <arg name="input_initial_pose_name" value="/localization/initial_pose3d" />
       <arg name="input_pose_with_cov_name" value="/localization/imu_gnss_poser/pose_with_covariance" />
       <arg name="input_twist_with_cov_name" value="/localization/twist_estimator/twist_with_covariance" />
@@ -89,16 +89,16 @@
       <arg name="output_biased_pose_with_covariance_name" value="biased_pose_with_covariance" />
       <arg name="output_twist_name" value="twist" />
       <arg name="output_twist_with_covariance_name" value="twist_with_covariance" />
-      <arg name="proc_stddev_vx_c" value="18.022651193102693" />
-      <arg name="proc_stddev_wz_c" value="2.461514660160823" />
+      <arg name="proc_stddev_vx_c" value="22.642992051958043" />
+      <arg name="proc_stddev_wz_c" value="1.6357986944770535" />
       <arg name="pose_additional_delay" value="$(var pose_additional_delay_var)" />
-      <arg name="extend_state_step" value="126" />
+      <arg name="extend_state_step" value="192" />
     </include>
 
     
     <group>
       <node pkg="twist2accel" exec="twist2accel" name="twist2accel" output="screen">
-        <param name="accel_lowpass_gain" value="0.6971596262259214" />
+        <param name="accel_lowpass_gain" value="0.6941722242857508" />
         <param name="use_odom" value="true" />
         <remap from="input/odom" to="/localization/kinematic_state" />
         <remap from="input/twist" to="/localization/twist_estimator/twist_with_covariance" />
@@ -134,15 +134,15 @@
     <param name="grad_max_speed" value="40.0" />
 </node>
   
-  <let name="steering_tire_angle_gain_var" value="1.547694503340776" if="$(var simulation)" />
+  <let name="steering_tire_angle_gain_var" value="1.1662546099300797" if="$(var simulation)" />
   <let name="steering_tire_angle_gain_var" value="1.639" unless="$(var simulation)" />
 
   <node pkg="simple_pure_pursuit" exec="simple_pure_pursuit" name="simple_pure_pursuit_node" output="screen">
     <param name="use_external_target_vel" value="false" />
-    <param name="external_target_vel" value="28.15460018499449" />
-    <param name="lookahead_gain" value="0.2674545151271004" />
-    <param name="lookahead_min_distance" value="2.0151281239809027" />
-    <param name="speed_proportional_gain" value="1.6782504801398357" />
+    <param name="external_target_vel" value="16.03546630833308" />
+    <param name="lookahead_gain" value="0.7775622025147959" />
+    <param name="lookahead_min_distance" value="1.8232362316767432" />
+    <param name="speed_proportional_gain" value="2.803683614564407" />
     <param name="steering_tire_angle_gain" value="$(var steering_tire_angle_gain_var)" />
 
     <remap from="input/kinematics" to="/localization/kinematic_state" />
