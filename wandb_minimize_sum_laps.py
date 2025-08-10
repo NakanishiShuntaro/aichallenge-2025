@@ -271,8 +271,8 @@ def _get_current_speed_mps(container_name: str) -> float | None:
             f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.y 2>/dev/null | tr -d '\r'",
         ]
 
-        res_x = subprocess.run(cmd_x, capture_output=True, text=True, timeout=10)
-        res_y = subprocess.run(cmd_y, capture_output=True, text=True, timeout=10)
+        res_x = subprocess.run(cmd_x, capture_output=True, text=True, timeout=20)
+        res_y = subprocess.run(cmd_y, capture_output=True, text=True, timeout=20)
 
         if debug:
             print(
@@ -316,7 +316,7 @@ def _get_current_speed_mps(container_name: str) -> float | None:
             "-lc",
             f"{source_cmd} >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state 2>/dev/null | tr -d '\r'",
         ]
-        res = subprocess.run(cmd_yaml, capture_output=True, text=True, timeout=10)
+        res = subprocess.run(cmd_yaml, capture_output=True, text=True, timeout=20)
         if res.returncode != 0 or not res.stdout:
             if debug:
                 err = res.stderr.strip() if res.stderr else ""
@@ -720,6 +720,28 @@ def sweep_run() -> None:
             print(
                 f"[monitor] Environment variables: SPEED_STOP_THRESHOLD={os.environ.get('SPEED_STOP_THRESHOLD', 'not_set')}, SPEED_STOP_HOLD_SEC={os.environ.get('SPEED_STOP_HOLD_SEC', 'not_set')}"
             )
+
+            # Warm-up: wait until topic appears to reduce None readings
+            # Try for up to 60s before starting low-speed checks
+            warmup_deadline = time.time() + 60.0
+            while proc.poll() is None and time.time() < warmup_deadline:
+                resolved = _resolve_container_name(deterministic_name)
+                if resolved:
+                    check_cmd = [
+                        "docker",
+                        "exec",
+                        resolved,
+                        "bash",
+                        "-lc",
+                        "if [ -f /aichallenge/workspace/install/setup.bash ]; then source /aichallenge/workspace/install/setup.bash; elif [ -f /autoware/install/setup.bash ]; then source /autoware/install/setup.bash; fi >/dev/null 2>&1; ros2 topic list | grep -q '^/localization/kinematic_state$'",
+                    ]
+                    ok = subprocess.run(check_cmd).returncode == 0
+                    if ok:
+                        print(
+                            "[monitor] Topic /localization/kinematic_state is available; starting speed monitor"
+                        )
+                        break
+                time.sleep(1.0)
 
             while proc.poll() is None:
                 loop_count += 1
