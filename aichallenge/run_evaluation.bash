@@ -214,8 +214,14 @@ cd "$OUTPUT_DIRECTORY" || exit
 
 # shellcheck disable=SC1091
 source /aichallenge/workspace/install/setup.bash
-sudo ip link set multicast on lo
-sudo sysctl -w net.core.rmem_max=2147483647 >/dev/null
+# Root 実行時は sudo を使わず直接実行
+if [ "$(id -u)" -eq 0 ]; then
+    ip link set multicast on lo || true
+    sysctl -w net.core.rmem_max=2147483647 >/dev/null || true
+else
+    sudo ip link set multicast on lo || true
+    sudo sysctl -w net.core.rmem_max=2147483647 >/dev/null || true
+fi
 
 # Start AWSIM with nohup
 echo "Start AWSIM"
@@ -288,5 +294,5 @@ sleep 3
 echo "Convert result"
 python3 /aichallenge/workspace/src/aichallenge_system/script/result-converter.py 60 11
 
-# If AWSIM finished naturally, we'll proceed with the rest of the cleanup
-cleanup
+# If AWSIM finished naturally, rely on trap to perform cleanup
+exit 0

@@ -437,7 +437,8 @@ def objective(trial):
         # 3. Docker run (without environment variables)
         # Assign deterministic container name so we can monitor/stop it by name
         # Use W&B run id if available, else fallback to timestamp
-        deterministic_name = f"aichallenge-2025-eval-{os.getpid()}"
+        # Include PID and epoch seconds to avoid name collisions across parallel runs
+        deterministic_name = f"aichallenge-2025-eval-{os.getpid()}-{int(time.time())}"
         env_for_run = os.environ.copy()
         env_for_run["CONTAINER_NAME"] = deterministic_name
 
@@ -649,26 +650,17 @@ def sweep_run() -> None:
             stderr=None,
         )
 
-        # Give the container and monitor a moment to initialize
-        time.sleep(5)
+        # Give the container and monitor more time to initialize
+        time.sleep(10)
 
         def _resolve_container_name(expected_name: str) -> str | None:
             """Resolve actual running container name.
 
-            1) Try output/latest/container_name written by docker_run.sh
-            2) If not found, try exact expected_name
+            Order changed to reduce race with shared container_name file:
+            1) Try exact expected_name via `docker ps`
+            2) Try output/latest/container_name written by docker_run.sh
             3) Fallback: pick running container that starts with 'aichallenge-2025-'
             """
-            try:
-                latest_path = os.path.join("output", "latest", "container_name")
-                if os.path.exists(latest_path):
-                    with open(latest_path) as f:
-                        name = f.read().strip()
-                        if name:
-                            return name
-            except Exception:
-                pass
-            # Try expected_name
             try:
                 out = subprocess.run(
                     ["docker", "ps", "--format", "{{.Names}}"],
@@ -680,7 +672,28 @@ def sweep_run() -> None:
                     names = [n.strip() for n in out.stdout.splitlines() if n.strip()]
                     if expected_name in names:
                         return expected_name
-                    # Fallback prefix search
+            except Exception:
+                pass
+            # Try file (may be overwritten by other runs)
+            try:
+                latest_path = os.path.join("output", "latest", "container_name")
+                if os.path.exists(latest_path):
+                    with open(latest_path) as f:
+                        name = f.read().strip()
+                        if name:
+                            return name
+            except Exception:
+                pass
+            # Fallback prefix search
+            try:
+                out = subprocess.run(
+                    ["docker", "ps", "--format", "{{.Names}}"],
+                    capture_output=True,
+                    text=True,
+                    timeout=5,
+                )
+                if out.returncode == 0:
+                    names = [n.strip() for n in out.stdout.splitlines() if n.strip()]
                     for n in names:
                         if n.startswith("aichallenge-2025-"):
                             return n
