@@ -108,41 +108,70 @@ verify_map_to_base_link_tf() {
 # covariance: [0]=0.25, [7]=0.25, [35]=0.06853891909122467
 set_initial_pose() {
     echo "Setting initial pose..."
-    local payload='{
-      header: {frame_id: "map"},
-      pose: {
-        pose: {
-          position: {x: 89633.29, y: 43127.57, z: 0.0},
-          orientation: {x: 0.0, y: -0.0, z: 0.8778, w: 0.4788}
-        },
-        covariance: [
-          0.25, 0.0, 0.0, 0.0, 0.0, 0.0,
-          0.0, 0.25, 0.0, 0.0, 0.0, 0.0,
-          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-          0.0, 0.0, 0.0, 0.0, 0.0, 0.06853891909122467
-        ]
-      }
-    }'
+    # 1) /clock を1サンプル取得して現在時刻を使用（失敗時は0）
+    local clock_out sec nsec
+    clock_out=$(timeout 5s bash -lc 'ros2 topic echo -n 1 /clock 2>/dev/null' || true)
+    sec=$(echo "$clock_out" | grep -m1 "sec:" | awk '{print $2}')
+    nsec=$(echo "$clock_out" | grep -m1 "nanosec:" | awk '{print $2}')
+    [ -z "$sec" ] && sec=0
+    [ -z "$nsec" ] && nsec=0
 
-    local tries=0
-    local max_tries=3
+    # 2) 購読者が付くまで待機（最大30s）
+    local timeout_seconds=30
+    local elapsed=0
+    while true; do
+        local info subs
+        info=$(timeout 5s bash -lc 'ros2 topic info /localization/initial_pose3d 2>/dev/null' || true)
+        subs=$(echo "$info" | grep -E "Subscription count:|Subscriber count:|Subscribers:" | grep -Eo "[0-9]+" | head -1)
+        if [ -n "$subs" ] && [ "$subs" -ge 1 ] 2>/dev/null; then
+            echo "Subscriber detected on /localization/initial_pose3d ($subs)"
+            break
+        fi
+        sleep 1
+        elapsed=$((elapsed + 1))
+        echo "Waiting subscriber on /localization/initial_pose3d... (${elapsed}s elapsed)"
+        if [ $elapsed -ge $timeout_seconds ]; then
+            echo "Warning: subscriber not detected after ${timeout_seconds}s. Continuing anyway..."
+            break
+        fi
+    done
+
+    # 3) メッセージ生成（フォーク元と同値＋現在時刻を付与）
+    local payload
+    payload=$(cat <<EOF
+{
+  header: {frame_id: "map", stamp: {sec: ${sec}, nanosec: ${nsec}}},
+  pose: {
+    pose: {
+      position: {x: 89633.29, y: 43127.57, z: 0.0},
+      orientation: {x: 0.0, y: -0.0, z: 0.8778, w: 0.4788}
+    },
+    covariance: [
+      0.25, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.25, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+      0.0, 0.0, 0.0, 0.0, 0.0, 0.06853891909122467
+    ]
+  }
+}
+EOF
+)
+
+    # 4) 5回送信（200ms間隔）
+    local sends=5
     local ok=0
-    while [ $tries -lt $max_tries ]; do
-        timeout 20s bash -lc "ros2 topic pub -1 \
-          /localization/initial_pose3d geometry_msgs/msg/PoseWithCovarianceStamped '${payload}'" >/dev/null
+    for i in $(seq 1 $sends); do
+        timeout 10s bash -lc "ros2 topic pub -1 /localization/initial_pose3d geometry_msgs/msg/PoseWithCovarianceStamped '${payload}'" >/dev/null
         rc=$?
         if [ $rc -eq 0 ]; then
             ok=1
-            break
         fi
-        tries=$((tries + 1))
-        echo "Retry initial pose ($tries/$max_tries)"
-        sleep 1
+        sleep 0.2
     done
     if [ $ok -eq 1 ]; then
-        echo "Initial pose set successfully"
+        echo "Initial pose published ($sends times)"
     else
         echo "Warning: Initial pose publication failed"
     fi
