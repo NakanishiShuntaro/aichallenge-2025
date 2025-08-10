@@ -107,13 +107,15 @@ cleanup() {
         wmctrl -c "RViz" 2>/dev/null || true
         sleep 0.5
     fi
-    if pgrep -f "rviz2" >/dev/null 2>&1; then
-        pkill -TERM -f "rviz2" 2>/dev/null || true
-        sleep 1
-        if pgrep -f "rviz2" >/dev/null 2>&1; then
-            pkill -KILL -f "rviz2" 2>/dev/null || true
+    for pat in "rviz2" "rviz2-bin" " rviz "; do
+        if pgrep -f "$pat" >/dev/null 2>&1; then
+            pkill -TERM -f "$pat" 2>/dev/null || true
+            sleep 1
+            if pgrep -f "$pat" >/dev/null 2>&1; then
+                pkill -KILL -f "$pat" 2>/dev/null || true
+            fi
         fi
-    fi
+    done
 
     # shutdown ROS2 nodes
     echo "Shutting down ROS2 nodes gracefully..."
@@ -272,9 +274,10 @@ echo "$PID_AWSIM" >"$PID_FILE"
 get_child_pids "$PID_AWSIM"
 sleep 3
 
-# Start Autoware with nohup
-echo "Start Autoware"
-nohup /aichallenge/run_autoware.bash awsim >autoware.log 2>&1 &
+# Start Autoware with nohup (no RViz)
+echo "Start Autoware (no RViz)"
+RUN_WITH_RVIZ=0
+nohup /aichallenge/run_autoware.bash awsim-no-viz >autoware.log 2>&1 &
 PID_AUTOWARE=$!
 echo "Autoware PID: $PID_AUTOWARE"
 echo "$PID_AUTOWARE" >>"$PID_FILE"
@@ -299,9 +302,13 @@ sleep 3
 PID_UPDATER=$!
 echo "$PID_UPDATER" >>"$PID_FILE"
 
-move_window
+if [ "${RUN_WITH_RVIZ:-1}" -eq 1 ]; then
+    move_window
+fi
 bash /aichallenge/publish.bash check
-move_window
+if [ "${RUN_WITH_RVIZ:-1}" -eq 1 ]; then
+    move_window
+fi
 bash /aichallenge/publish.bash all
 bash /aichallenge/publish.bash screen
 
