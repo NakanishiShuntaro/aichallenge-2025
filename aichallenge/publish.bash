@@ -102,20 +102,28 @@ verify_map_to_base_link_tf() {
 }
 
 # Function to set initial pose
-# Assignment 1 set correct initial pose
-#            x: 89633.29,
-#            y: 43127.57,
-#            z: 0.8778,
-#            w: 0.4788
+# Fork元と同値・同経路
+# position: x=89633.29, y=43127.57, z=0.0
+# orientation: x=0.0, y=-0.0, z=0.8778, w=0.4788
+# covariance: [0]=0.25, [7]=0.25, [35]=0.06853891909122467
 set_initial_pose() {
     echo "Setting initial pose..."
-    # QoS を明示（reliable / transient_local）し、取りこぼしを減らす
-    # フォーク元の初期姿勢に合わせる
-    # position: x=89634.00, y=43129.00 （zは0.0のまま）
-    # orientation: z=0.8000, w=0.4000
     local payload='{
       header: {frame_id: "map"},
-      pose: {pose: {position: {x: 89634.00, y: 43129.00, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.8000, w: 0.4000}}}
+      pose: {
+        pose: {
+          position: {x: 89633.29, y: 43127.57, z: 0.0},
+          orientation: {x: 0.0, y: -0.0, z: 0.8778, w: 0.4788}
+        },
+        covariance: [
+          0.25, 0.0, 0.0, 0.0, 0.0, 0.0,
+          0.0, 0.25, 0.0, 0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0, 0.0, 0.0, 0.06853891909122467
+        ]
+      }
     }'
 
     local tries=0
@@ -123,11 +131,7 @@ set_initial_pose() {
     local ok=0
     while [ $tries -lt $max_tries ]; do
         timeout 20s bash -lc "ros2 topic pub -1 \
-          --qos-reliability reliable \
-          --qos-durability transient_local \
-          --qos-history keep_last \
-          --qos-depth 1 \
-          /initialpose geometry_msgs/msg/PoseWithCovarianceStamped '${payload}'" >/dev/null
+          /localization/initial_pose3d geometry_msgs/msg/PoseWithCovarianceStamped '${payload}'" >/dev/null
         rc=$?
         if [ $rc -eq 0 ]; then
             ok=1
