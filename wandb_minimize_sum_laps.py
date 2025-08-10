@@ -9,7 +9,17 @@ Docker を用いて評価実行し、各試行のメトリクスとアーティ�
 """
 
 import argparse
+import glob
 import importlib
+import json
+import math
+import os
+import shutil
+import subprocess
+import sys
+import threading
+import time
+import xml.etree.ElementTree as ET
 from typing import Any, cast
 
 try:
@@ -39,15 +49,6 @@ except Exception:
                 pass
 
     wandb = cast(Any, _WandbStub())
-import glob
-import json
-import os
-import shutil
-import subprocess
-import sys
-import threading
-import time
-import xml.etree.ElementTree as ET
 
 
 def spinner_animation(message, stop_event):
@@ -209,6 +210,43 @@ def modify_xml_parameter(xml_file_path, parameter_updates):
     tree.write(xml_file_path, encoding="utf-8", xml_declaration=True)
 
 
+def _get_current_speed_mps(container_name: str) -> float | None:
+    """コンテナ内で /localization/kinematic_state の合成速度を1回取得する。
+
+    twist.twist.linear.{x,y} を取得し、sqrt(x^2 + y^2) を返す。取得失敗時は None。
+    """
+    try:
+        cmd_x = [
+            "docker",
+            "exec",
+            container_name,
+            "bash",
+            "-lc",
+            "source /autoware/install/setup.bash >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.x 2>/dev/null | tr -d '\r'",
+        ]
+        cmd_y = [
+            "docker",
+            "exec",
+            container_name,
+            "bash",
+            "-lc",
+            "source /autoware/install/setup.bash >/dev/null 2>&1; ros2 topic echo -n 1 /localization/kinematic_state --field twist.twist.linear.y 2>/dev/null | tr -d '\r'",
+        ]
+        res_x = subprocess.run(cmd_x, capture_output=True, text=True, timeout=5)
+        res_y = subprocess.run(cmd_y, capture_output=True, text=True, timeout=5)
+        if res_x.returncode != 0 or res_y.returncode != 0:
+            return None
+        sx = res_x.stdout.strip()
+        sy = res_y.stdout.strip()
+        if not sx or not sy:
+            return None
+        vx = float(sx)
+        vy = float(sy)
+        return math.hypot(vx, vy)
+    except Exception:
+        return None
+
+
 def objective(trial):
     run = None
     wandb_entity = os.environ.get(
@@ -302,8 +340,20 @@ def objective(trial):
             return 225.0
 
         # 3. Docker run (without environment variables)
+        # Assign deterministic container name so we can monitor/stop it by name
+        # Use W&B run id if available, else fallback to timestamp
+        deterministic_name = f"aichallenge-2025-eval-{os.getpid()}"
+        env_for_run = os.environ.copy()
+        env_for_run["CONTAINER_NAME"] = deterministic_name
+
         run_result = run_subprocess_with_spinner(
-            ["./docker_run.sh", "eval", "cpu"],
+            [
+                "env",
+                f"CONTAINER_NAME={deterministic_name}",
+                "./docker_run.sh",
+                "eval",
+                "cpu",
+            ],
             "Running Docker container...",
             capture_output=True,
             text=True,
@@ -484,16 +534,57 @@ def sweep_run() -> None:
             wandb.log({"total_time": 225.0, "status": "build_failed"})
             return
 
-        run_result = run_subprocess_with_spinner(
-            ["./docker_run.sh", "eval", "cpu"],
-            "Running Docker container...",
-            capture_output=True,
+        deterministic_name = f"aichallenge-2025-eval-{os.getpid()}"
+        # Run container in background and monitor speed
+        proc = subprocess.Popen(
+            [
+                "env",
+                f"CONTAINER_NAME={deterministic_name}",
+                "./docker_run.sh",
+                "eval",
+                "cpu",
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             text=True,
-            timeout=3600,
         )
-        if run_result.returncode != 0:
-            print(f"Docker run failed: {run_result.stderr}")
-            wandb.log({"total_time": 225.0, "status": "run_failed"})
+
+        def monitor_and_stop_on_slow_speed():
+            # 合成速度（sqrt(vx^2 + vy^2)）が threshold 未満の状態が hold_seconds 継続したら停止
+            threshold = float(os.environ.get("SPEED_STOP_THRESHOLD", "0.1"))
+            hold_seconds = float(os.environ.get("SPEED_STOP_HOLD_SEC", "15"))
+            consecutive = 0.0
+            interval = 1.0
+            while proc.poll() is None:
+                speed = _get_current_speed_mps(deterministic_name)
+                if speed is not None and abs(speed) < threshold:
+                    consecutive += interval
+                else:
+                    consecutive = 0.0
+                if consecutive >= hold_seconds:
+                    subprocess.run(
+                        ["docker", "stop", "-t", "5", deterministic_name],
+                        capture_output=True,
+                    )
+                    break
+                time.sleep(interval)
+
+        monitor_thread = threading.Thread(
+            target=monitor_and_stop_on_slow_speed, daemon=True
+        )
+        monitor_thread.start()
+
+        try:
+            proc.wait(timeout=3600)
+        except subprocess.TimeoutExpired:
+            subprocess.run(
+                ["docker", "stop", "-t", "5", deterministic_name], capture_output=True
+            )
+            proc.wait()
+
+        if proc.returncode != 0:
+            print("Docker run failed or stopped")
+            wandb.log({"total_time": 225.0, "status": "run_failed_or_stopped"})
             return
 
         result_folders = glob.glob(
