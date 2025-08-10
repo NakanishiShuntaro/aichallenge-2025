@@ -2,9 +2,13 @@
 
 target="${1}"
 device="${2}"
+user_flag="--user"
 case "${target}" in
 "eval")
-    volume="output:/output"
+    # Bind mount host output to ensure results/logs are visible on host
+    volume="$(pwd)/output:/output"
+    # Run as root in eval to allow sudo/sysctl and writing under /output
+    user_flag=""
     ;;
 "dev")
     volume="output:/output aichallenge:/aichallenge remote:/remote vehicle:/vehicle"
@@ -41,7 +45,6 @@ mkdir -p $LOG_DIR
 LOG_FILE="$LOG_DIR/docker_run.log"
 echo "A rocker run log is stored at : file://$LOG_FILE"
 
-# shellcheck disable=SC2086
 # Allow external override of container name via CONTAINER_NAME env var
 container_name_env=${CONTAINER_NAME}
 if [ -z "$container_name_env" ]; then
@@ -51,4 +54,5 @@ fi
 # Write out the chosen container name so external tools can reference it reliably
 echo "$container_name_env" > "$LOG_DIR/container_name"
 
-rocker ${opts} --x11 --devices /dev/dri --user --net host --privileged --name "$container_name_env" --volume ${volume} -- "aichallenge-2025-${target}-${USER}" 2>&1 | tee "$LOG_FILE"
+# shellcheck disable=SC2086
+rocker ${opts} --x11 --devices /dev/dri ${user_flag} --net host --privileged --name "$container_name_env" --volume ${volume} -- "aichallenge-2025-${target}-${USER}" 2>&1 | tee "$LOG_FILE"
