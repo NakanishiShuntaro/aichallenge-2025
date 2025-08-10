@@ -110,12 +110,12 @@ verify_map_to_base_link_tf() {
 set_initial_pose() {
     echo "Setting initial pose..."
     # QoS を明示（reliable / transient_local）し、取りこぼしを減らす
-    # 推奨初期姿勢（Assignment 1）に合わせる
-    # position: x=89633.29, y=43127.57 （zは0.0のまま）
-    # orientation: z=0.8778, w=0.4788
+    # フォーク元の初期姿勢に合わせる
+    # position: x=89634.00, y=43129.00 （zは0.0のまま）
+    # orientation: z=0.8000, w=0.4000
     local payload='{
       header: {frame_id: "map"},
-      pose: {pose: {position: {x: 89633.29, y: 43127.57, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.8778, w: 0.4788}}}
+      pose: {pose: {position: {x: 89634.00, y: 43129.00, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.8000, w: 0.4000}}}
     }'
 
     local tries=0
