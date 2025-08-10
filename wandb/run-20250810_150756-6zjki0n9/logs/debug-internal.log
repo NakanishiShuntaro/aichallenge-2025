@@ -1,0 +1,7 @@
+{"time":"2025-08-10T15:07:56.578220681+09:00","level":"INFO","msg":"stream: starting","core version":"0.21.1"}
+{"time":"2025-08-10T15:07:56.96214698+09:00","level":"INFO","msg":"stream: created new stream","id":"6zjki0n9"}
+{"time":"2025-08-10T15:07:56.96218896+09:00","level":"INFO","msg":"stream: started","id":"6zjki0n9"}
+{"time":"2025-08-10T15:07:56.962208713+09:00","level":"INFO","msg":"writer: started","stream_id":"6zjki0n9"}
+{"time":"2025-08-10T15:07:56.962215448+09:00","level":"INFO","msg":"handler: started","stream_id":"6zjki0n9"}
+{"time":"2025-08-10T15:07:56.962300259+09:00","level":"INFO","msg":"sender: started","stream_id":"6zjki0n9"}
+{"time":"2025-08-10T16:40:20.140243019+09:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/nakanishi-shuntaro-638-kyushu-university/aichallenge-2025/6zjki0n9/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
