@@ -20,3 +20,10 @@ config: {'_wandb': {}}
 2025-08-10 23:23:36,158 INFO    MainThread:562904 [wandb_run.py:_redirect():2411] Wrapping output streams.
 2025-08-10 23:23:36,158 INFO    MainThread:562904 [wandb_run.py:_redirect():2434] Redirects installed.
 2025-08-10 23:23:36,161 INFO    MainThread:562904 [wandb_init.py:init():1075] run started, returning control to user process
+2025-08-10 23:43:08,772 INFO    MainThread:562904 [wandb_run.py:_finish():2260] finishing run nakanishi-shuntaro-638-kyushu-university/aichallenge-2025/r8oezmr8
+2025-08-10 23:43:08,788 INFO    MainThread:562904 [wandb_run.py:_atexit_cleanup():2459] got exitcode: 0
+2025-08-10 23:43:08,791 INFO    MainThread:562904 [wandb_run.py:_restore():2441] restore
+2025-08-10 23:43:08,795 INFO    MainThread:562904 [wandb_run.py:_restore():2447] restore done
+2025-08-10 23:43:10,331 INFO    MainThread:562904 [wandb_run.py:_footer_history_summary_info():3895] rendering history
+2025-08-10 23:43:10,336 INFO    MainThread:562904 [wandb_run.py:_footer_history_summary_info():3927] rendering summary
+2025-08-10 23:43:10,342 INFO    MainThread:562904 [wandb_run.py:_footer_sync_info():3856] logging synced files

@@ -1,0 +1,38 @@
+Initial backup created at: ./output/reference.launch.xml.backup
+XML parameters updated successfully (sweep)
+[monitor] Starting monitoring thread...
+[monitor] Monitor thread started, initializing...[monitor] Monitor thread started
+
+[monitor] Configured: threshold=0.27183689380030673, hold_seconds=14.0, debug=True
+[monitor] Environment variables: SPEED_STOP_THRESHOLD=0.27183689380030673, SPEED_STOP_HOLD_SEC=14
+[monitor] Topic /localization/kinematic_state is available; starting speed monitor
+[speed] Getting speed data from container: aichallenge-2025-eval-885079
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #1 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-885079
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #2 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-885079
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #3 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-885079
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse

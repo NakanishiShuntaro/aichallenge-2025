@@ -1,0 +1,22 @@
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_setup.py:_flush():80] Current SDK version is 0.21.1
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_setup.py:_flush():80] Configure stats pid to 870025
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_setup.py:_flush():80] Loading settings from /home/ubuntu/.config/wandb/settings
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_setup.py:_flush():80] Loading settings from /home/ubuntu/aichallenge-2025/wandb/settings
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /home/ubuntu/aichallenge-2025/wandb/run-20250811_001432-vl7ovej1/logs/debug.log
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /home/ubuntu/aichallenge-2025/wandb/run-20250811_001432-vl7ovej1/logs/debug-internal.log
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_init.py:init():830] calling init triggers
+2025-08-11 00:14:32,804 INFO    MainThread:870025 [wandb_init.py:init():835] wandb.init called with sweep_config: {'accel_lowpass_gain': 0.3026381130743391, 'extend_state_step': 182, 'external_target_vel': 20.58040992832983, 'lookahead_gain': 0.21888524418719452, 'lookahead_min_distance': 2.081234920840027, 'pose_additional_delay_var': 0.8163243076559197, 'pose_smoothing_steps': 3, 'proc_stddev_vx_c': 21.33549878415022, 'proc_stddev_wz_c': 0.5345750474480537, 'speed_proportional_gain': 0.8652310325955963, 'steering_tire_angle_gain_var': 1.5223631230972527, 'stop_hold_sec': 22, 'stop_threshold': 0.2607358268168503, 'tf_rate': 17.848743214555117, 'twist_smoothing_steps': 4}
+config: {'_wandb': {}}
+2025-08-11 00:14:32,805 INFO    MainThread:870025 [wandb_init.py:init():871] starting backend
+2025-08-11 00:14:33,032 INFO    MainThread:870025 [wandb_init.py:init():874] sending inform_init request
+2025-08-11 00:14:33,047 INFO    MainThread:870025 [wandb_init.py:init():882] backend started and connected
+2025-08-11 00:14:33,050 INFO    MainThread:870025 [wandb_run.py:_config_callback():1380] config_cb None None {'accel_lowpass_gain': 0.3026381130743391, 'extend_state_step': 182, 'external_target_vel': 20.58040992832983, 'lookahead_gain': 0.21888524418719452, 'lookahead_min_distance': 2.081234920840027, 'pose_additional_delay_var': 0.8163243076559197, 'pose_smoothing_steps': 3, 'proc_stddev_vx_c': 21.33549878415022, 'proc_stddev_wz_c': 0.5345750474480537, 'speed_proportional_gain': 0.8652310325955963, 'steering_tire_angle_gain_var': 1.5223631230972527, 'stop_hold_sec': 22, 'stop_threshold': 0.2607358268168503, 'tf_rate': 17.848743214555117, 'twist_smoothing_steps': 4}
+2025-08-11 00:14:33,053 INFO    MainThread:870025 [wandb_init.py:init():953] updated telemetry
+2025-08-11 00:14:33,091 INFO    MainThread:870025 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout
+2025-08-11 00:14:33,810 INFO    MainThread:870025 [wandb_init.py:init():1029] starting run threads in backend
+2025-08-11 00:14:34,088 INFO    MainThread:870025 [wandb_run.py:_console_start():2494] atexit reg
+2025-08-11 00:14:34,089 INFO    MainThread:870025 [wandb_run.py:_redirect():2342] redirect: wrap_raw
+2025-08-11 00:14:34,089 INFO    MainThread:870025 [wandb_run.py:_redirect():2411] Wrapping output streams.
+2025-08-11 00:14:34,089 INFO    MainThread:870025 [wandb_run.py:_redirect():2434] Redirects installed.
+2025-08-11 00:14:34,094 INFO    MainThread:870025 [wandb_init.py:init():1075] run started, returning control to user process
