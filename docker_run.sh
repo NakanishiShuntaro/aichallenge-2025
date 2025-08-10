@@ -42,4 +42,10 @@ LOG_FILE="$LOG_DIR/docker_run.log"
 echo "A rocker run log is stored at : file://$LOG_FILE"
 
 # shellcheck disable=SC2086
-rocker ${opts} --x11 --devices /dev/dri --user --net host --privileged --name "aichallenge-2025-$(date "+%Y-%m-%d-%H-%M-%S")" --volume ${volume} -- "aichallenge-2025-${target}-${USER}" 2>&1 | tee "$LOG_FILE"
+# Allow external override of container name via CONTAINER_NAME env var
+container_name_env=${CONTAINER_NAME}
+if [ -z "$container_name_env" ]; then
+  container_name_env="aichallenge-2025-$(date "+%Y-%m-%d-%H-%M-%S")"
+fi
+
+rocker ${opts} --x11 --devices /dev/dri --user --net host --privileged --name "$container_name_env" --volume ${volume} -- "aichallenge-2025-${target}-${USER}" 2>&1 | tee "$LOG_FILE"

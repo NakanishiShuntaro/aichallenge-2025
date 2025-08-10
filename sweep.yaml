@@ -1,4 +1,4 @@
-program: optuna_minimize_sum_laps.py
+program: wandb_minimize_sum_laps.py
 command:
   - ${env}
   - ${interpreter}
