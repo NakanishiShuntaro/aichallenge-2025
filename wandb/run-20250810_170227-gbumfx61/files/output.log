@@ -1,4 +1,0 @@
-Initial backup created at: ./output/reference.launch.xml.backup
-XML parameters updated successfully (sweep)
-Building Docker image... \[monitor] Starting monitoring thread...Error during sweep run: [Errno 5] Input/output error
-Exception in thread Thread-4 (spinner_animation)Exception in threading.excepthook:Exception ignored in thread started by <bound method Thread._bootstrap of <Thread(Thread-4 (spinner_animation), started 126755205535424)>>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

@@ -1,7 +1,0 @@
-{"time":"2025-08-10T12:40:18.067443556+09:00","level":"INFO","msg":"stream: starting","core version":"0.21.1"}
-{"time":"2025-08-10T12:40:18.700673579+09:00","level":"INFO","msg":"stream: created new stream","id":"g28cpe62"}
-{"time":"2025-08-10T12:40:18.700726957+09:00","level":"INFO","msg":"stream: started","id":"g28cpe62"}
-{"time":"2025-08-10T12:40:18.700761996+09:00","level":"INFO","msg":"sender: started","stream_id":"g28cpe62"}
-{"time":"2025-08-10T12:40:18.700788432+09:00","level":"INFO","msg":"handler: started","stream_id":"g28cpe62"}
-{"time":"2025-08-10T12:40:18.700837477+09:00","level":"INFO","msg":"writer: started","stream_id":"g28cpe62"}
-{"time":"2025-08-10T12:43:38.638101562+09:00","level":"ERROR","msg":"monitor: error sampling metrics: rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial unix /tmp/wandb_gpu_stats-574134-574170-1754797218078.sock: connect: connection refused\""}
