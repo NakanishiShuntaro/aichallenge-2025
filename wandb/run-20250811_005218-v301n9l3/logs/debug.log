@@ -1,0 +1,29 @@
+2025-08-11 00:52:18,106 INFO    MainThread:1094239 [wandb_setup.py:_flush():80] Current SDK version is 0.21.1
+2025-08-11 00:52:18,106 INFO    MainThread:1094239 [wandb_setup.py:_flush():80] Configure stats pid to 1094239
+2025-08-11 00:52:18,106 INFO    MainThread:1094239 [wandb_setup.py:_flush():80] Loading settings from /home/ubuntu/.config/wandb/settings
+2025-08-11 00:52:18,106 INFO    MainThread:1094239 [wandb_setup.py:_flush():80] Loading settings from /home/ubuntu/aichallenge-2025/wandb/settings
+2025-08-11 00:52:18,106 INFO    MainThread:1094239 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-08-11 00:52:18,107 INFO    MainThread:1094239 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /home/ubuntu/aichallenge-2025/wandb/run-20250811_005218-v301n9l3/logs/debug.log
+2025-08-11 00:52:18,107 INFO    MainThread:1094239 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /home/ubuntu/aichallenge-2025/wandb/run-20250811_005218-v301n9l3/logs/debug-internal.log
+2025-08-11 00:52:18,107 INFO    MainThread:1094239 [wandb_init.py:init():830] calling init triggers
+2025-08-11 00:52:18,107 INFO    MainThread:1094239 [wandb_init.py:init():835] wandb.init called with sweep_config: {'accel_lowpass_gain': 0.4646332498778985, 'extend_state_step': 163, 'external_target_vel': 12.201076669447112, 'lookahead_gain': 0.42398230306564566, 'lookahead_min_distance': 2.993858115459049, 'pose_additional_delay_var': 0.6739345152501055, 'pose_smoothing_steps': 3, 'proc_stddev_vx_c': 22.40324870202201, 'proc_stddev_wz_c': 1.1070332924424016, 'speed_proportional_gain': 2.138527029080933, 'steering_tire_angle_gain_var': 1.5546621606799529, 'stop_hold_sec': 19, 'stop_threshold': 0.17907847936020588, 'tf_rate': 20.307322003799793, 'twist_smoothing_steps': 2}
+config: {'_wandb': {}}
+2025-08-11 00:52:18,107 INFO    MainThread:1094239 [wandb_init.py:init():871] starting backend
+2025-08-11 00:52:18,320 INFO    MainThread:1094239 [wandb_init.py:init():874] sending inform_init request
+2025-08-11 00:52:18,326 INFO    MainThread:1094239 [wandb_init.py:init():882] backend started and connected
+2025-08-11 00:52:18,326 INFO    MainThread:1094239 [wandb_run.py:_config_callback():1380] config_cb None None {'accel_lowpass_gain': 0.4646332498778985, 'extend_state_step': 163, 'external_target_vel': 12.201076669447112, 'lookahead_gain': 0.42398230306564566, 'lookahead_min_distance': 2.993858115459049, 'pose_additional_delay_var': 0.6739345152501055, 'pose_smoothing_steps': 3, 'proc_stddev_vx_c': 22.40324870202201, 'proc_stddev_wz_c': 1.1070332924424016, 'speed_proportional_gain': 2.138527029080933, 'steering_tire_angle_gain_var': 1.5546621606799529, 'stop_hold_sec': 19, 'stop_threshold': 0.17907847936020588, 'tf_rate': 20.307322003799793, 'twist_smoothing_steps': 2}
+2025-08-11 00:52:18,327 INFO    MainThread:1094239 [wandb_init.py:init():953] updated telemetry
+2025-08-11 00:52:18,332 INFO    MainThread:1094239 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout
+2025-08-11 00:52:19,443 INFO    MainThread:1094239 [wandb_init.py:init():1029] starting run threads in backend
+2025-08-11 00:52:19,589 INFO    MainThread:1094239 [wandb_run.py:_console_start():2494] atexit reg
+2025-08-11 00:52:19,589 INFO    MainThread:1094239 [wandb_run.py:_redirect():2342] redirect: wrap_raw
+2025-08-11 00:52:19,590 INFO    MainThread:1094239 [wandb_run.py:_redirect():2411] Wrapping output streams.
+2025-08-11 00:52:19,590 INFO    MainThread:1094239 [wandb_run.py:_redirect():2434] Redirects installed.
+2025-08-11 00:52:19,596 INFO    MainThread:1094239 [wandb_init.py:init():1075] run started, returning control to user process
+2025-08-11 01:09:30,356 INFO    MainThread:1094239 [wandb_run.py:_finish():2260] finishing run nakanishi-shuntaro-638-kyushu-university/aichallenge-2025/v301n9l3
+2025-08-11 01:09:30,356 INFO    MainThread:1094239 [wandb_run.py:_atexit_cleanup():2459] got exitcode: 0
+2025-08-11 01:09:30,357 INFO    MainThread:1094239 [wandb_run.py:_restore():2441] restore
+2025-08-11 01:09:30,357 INFO    MainThread:1094239 [wandb_run.py:_restore():2447] restore done
+2025-08-11 01:09:31,926 INFO    MainThread:1094239 [wandb_run.py:_footer_history_summary_info():3895] rendering history
+2025-08-11 01:09:31,926 INFO    MainThread:1094239 [wandb_run.py:_footer_history_summary_info():3927] rendering summary
+2025-08-11 01:09:31,927 INFO    MainThread:1094239 [wandb_run.py:_footer_sync_info():3856] logging synced files

@@ -4,3 +4,9 @@
 {"time":"2025-08-11T00:14:33.499194565+09:00","level":"INFO","msg":"writer: started","stream_id":"vl7ovej1"}
 {"time":"2025-08-11T00:14:33.499218771+09:00","level":"INFO","msg":"handler: started","stream_id":"vl7ovej1"}
 {"time":"2025-08-11T00:14:33.49925735+09:00","level":"INFO","msg":"sender: started","stream_id":"vl7ovej1"}
+{"time":"2025-08-11T00:36:02.687071859+09:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading wandb-summary.json","runtime_seconds":0.761367263,"progress":"125B/125B"},{"desc":"uploading config.yaml","runtime_seconds":0.458768448,"progress":"2.2KB/2.2KB"}],"total_operations":2}}
+{"time":"2025-08-11T00:36:02.851911218+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-11T00:36:03.198317422+09:00","level":"INFO","msg":"stream: closing","id":"vl7ovej1"}
+{"time":"2025-08-11T00:36:03.198372372+09:00","level":"INFO","msg":"handler: closed","stream_id":"vl7ovej1"}
+{"time":"2025-08-11T00:36:03.198468869+09:00","level":"INFO","msg":"sender: closed","stream_id":"vl7ovej1"}
+{"time":"2025-08-11T00:36:03.19848997+09:00","level":"INFO","msg":"stream: closed","id":"vl7ovej1"}

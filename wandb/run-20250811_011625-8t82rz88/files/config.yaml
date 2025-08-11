@@ -1,0 +1,73 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            lp1yqf4k68wixon2iu352rxs42bw31kn:
+                args:
+                    - --sweep
+                codePath: wandb_minimize_sum_laps.py
+                codePathLocal: wandb_minimize_sum_laps.py
+                cpu_count: 10
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "501809635328"
+                        used: "105484976128"
+                email: nakanishi.shuntaro.638@s.kyushu-u.ac.jp
+                executable: /home/ubuntu/aichallenge-2025/.venv/bin/python
+                git:
+                    commit: b80fd8687b73fd667a6a122a99cb4f592f3085be
+                    remote: git@github.com:NakanishiShuntaro/aichallenge-2025.git
+                host: ubuntu-HP-Laptop-14s-dq5xxx
+                memory:
+                    total: "16425721856"
+                os: Linux-6.14.0-27-generic-x86_64-with-glibc2.39
+                program: /home/ubuntu/aichallenge-2025/wandb_minimize_sum_laps.py
+                python: CPython 3.13.6
+                root: /home/ubuntu/aichallenge-2025
+                startedAt: "2025-08-10T16:16:25.643973Z"
+                writerId: lp1yqf4k68wixon2iu352rxs42bw31kn
+        m: []
+        python_version: 3.13.6
+        t:
+            "1":
+                - 105
+            "2":
+                - 105
+            "3":
+                - 2
+                - 14
+            "4": 3.13.6
+            "5": 0.21.1
+            "12": 0.21.1
+            "13": linux-x86_64
+accel_lowpass_gain:
+    value: 0.5181468686134487
+extend_state_step:
+    value: 98
+external_target_vel:
+    value: 8.042034767325799
+lookahead_gain:
+    value: 0.5479360967219176
+lookahead_min_distance:
+    value: 4.581302714599293
+pose_additional_delay_var:
+    value: 0.6297070516517161
+pose_smoothing_steps:
+    value: 3
+proc_stddev_vx_c:
+    value: 23.961318069606236
+proc_stddev_wz_c:
+    value: 0.61309589756335
+speed_proportional_gain:
+    value: 2.7529230909944085
+steering_tire_angle_gain_var:
+    value: 1.6249345203670502
+stop_hold_sec:
+    value: 17
+stop_threshold:
+    value: 0.14285075764469407
+tf_rate:
+    value: 11.226036963508728
+twist_smoothing_steps:
+    value: 5

@@ -1,0 +1,392 @@
+Initial backup created at: ./output/reference.launch.xml.backup
+XML parameters updated successfully (sweep)
+[monitor] Starting monitoring thread...
+[monitor] Monitor thread started, initializing...
+[monitor] Configured: threshold=0.055325915666623746, hold_seconds=13.0, debug=True
+[monitor] Environment variables: SPEED_STOP_THRESHOLD=0.055325915666623746, SPEED_STOP_HOLD_SEC=13
+[monitor] Monitor thread started
+[monitor] Topic /localization/kinematic_state is available; starting speed monitor
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #1 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #2 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #3 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #4 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #5 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #6 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #7 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #8 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #9 (last_speed: None)
+[monitor] Loop #10: Still monitoring, proc status: None
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #10 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #11 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #12 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #13 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #14 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #15 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #16 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #17 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #18 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #19 (last_speed: None)
+[monitor] Loop #20: Still monitoring, proc status: None
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #20 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #21 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #22 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #23 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #24 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #25 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #26 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #27 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #28 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #29 (last_speed: None)
+[monitor] Loop #30: Still monitoring, proc status: None
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #30 (last_speed: None)
+[monitor] Status: container=aichallenge-2025-eval-1363034 speed=None last=None consec=0.0s thresh=0.055325915666623746 hold=13.0s loop=30
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #31 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #32 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #33 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #34 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #35 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #36 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #37 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #38 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #39 (last_speed: None)
+[monitor] Loop #40: Still monitoring, proc status: None
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #40 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #41 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #42 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #43 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #44 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #45 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=0, vy_rc=0
+[speed] Raw topic output: vx='', vy=''
+[speed] Empty output from topic: vx='', vy=''
+[speed] Alt topic results: vx_rc=0, vy_rc=0
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=0, stderr=''
+[monitor] Speed data miss #46 (last_speed: None)
+[speed] Getting speed data from container: aichallenge-2025-eval-1363034
+[speed] Command results: vx_rc=137, vy_rc=1
+[speed] vx command error: stderr=''
+[speed] vy command error: stderr='Error response from daemon: container 5adb1cd002af8524e5f227f641d616e7d4a990a5665512ff97e7a66ce35d9365 is not running'
+[speed] Alt topic results: vx_rc=1, vy_rc=1
+[speed] Falling back to YAML parse
+[speed] YAML echo failed: rc=1, stderr='Error response from daemon: No such container: aichallenge-2025-eval-1363034'
+[monitor] Speed data miss #47 (last_speed: None)
+Modified XML saved to: ./output/artifacts/reference.1754845625.launch.xml
+Result data: {'laps': [], 'min_time': None, 'total_lap_time': None, 'num_laps': 0}
+No laps data found

@@ -4,3 +4,9 @@
 {"time":"2025-08-11T00:17:22.977583518+09:00","level":"INFO","msg":"writer: started","stream_id":"384xy5we"}
 {"time":"2025-08-11T00:17:22.977965166+09:00","level":"INFO","msg":"handler: started","stream_id":"384xy5we"}
 {"time":"2025-08-11T00:17:22.978043614+09:00","level":"INFO","msg":"sender: started","stream_id":"384xy5we"}
+{"time":"2025-08-11T00:35:59.059732294+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-08-11T00:35:59.178015629+09:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 0-0, summary, console lines 242-254","runtime_seconds":0.118164795}],"total_operations":1}}
+{"time":"2025-08-11T00:35:59.510075353+09:00","level":"INFO","msg":"stream: closing","id":"384xy5we"}
+{"time":"2025-08-11T00:35:59.510268182+09:00","level":"INFO","msg":"handler: closed","stream_id":"384xy5we"}
+{"time":"2025-08-11T00:35:59.510269693+09:00","level":"INFO","msg":"sender: closed","stream_id":"384xy5we"}
+{"time":"2025-08-11T00:35:59.510312479+09:00","level":"INFO","msg":"stream: closed","id":"384xy5we"}
